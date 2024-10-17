@@ -13,10 +13,10 @@ function onClick() {
     <v-app :theme="theme">
       <v-app-bar :style="{ backgroundColor: '#111703' }" class="px-3">
         <v-toolbar-title>CampusThreads</v-toolbar-title>
+        <v-btn text>Home</v-btn>
         <v-btn text>Departments</v-btn>
         <v-btn text>Shop all</v-btn>
         <v-btn text>About</v-btn>
-        <v-btn text class="mr-8">Contact</v-btn>
 
         <v-text-field
           placeholder="search"
