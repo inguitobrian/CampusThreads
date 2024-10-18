@@ -9,7 +9,7 @@ function onClick() {
 </script>
 
 <template>
-  <v-responsive class="border rounded" max-height="300">
+  <v-responsive class="border rounded">
     <v-app :theme="theme">
       <v-app-bar :style="{ backgroundColor: '#111703' }" class="px-3">
         <v-toolbar-title>CampusThreads</v-toolbar-title>
@@ -42,10 +42,41 @@ function onClick() {
       </v-app-bar>
 
       <v-main>
-        <v-container>
-          <h1>CARAGA STATE UNIVERSITY</h1>
+        <v-container fluid>
+          <v-row justify="end">
+            <v-col cols="12" md="6" class="d-flex justify-end">
+              <v-card
+                class="text-center mx-9 mt-8"
+                prepend-icon="$vuetify"
+                style="max-width: 450px"
+              >
+                <template v-slot:title>
+                  <span class="font-weight-black">Welcome Back!</span>
+                </template>
+
+                <v-card-text class="bg-surface-white mx-8">
+                  Securely log in to your CampusThreads account and enjoy
+                  personalized shopping.
+                </v-card-text>
+
+                <v-card-text class="bg-surface-light pt-4">
+                  <v-form fast-fail @submit.prevent>
+                    <v-text-field label="Enter ID"></v-text-field>
+
+                    <v-text-field
+                      label="Password"
+                      type="password"
+                    ></v-text-field>
+
+                    <v-btn class="mt-2" type="submit" block>Submit</v-btn>
+                  </v-form>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
         </v-container>
       </v-main>
+      <v-footer border app>2024- CampusThreads</v-footer>
     </v-app>
   </v-responsive>
 </template>
