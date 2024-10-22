@@ -88,7 +88,7 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
             <v-col cols="12" md="6" class="d-flex justify-center align-center">
               <v-col cols="12" md="10" class="d-flex flex-column">
                 <v-img
-                  src="/images/loginimage.svg"
+                  src="/loginimage.svg"
                   alt="Login Image"
                   class="pa-2"
                   cover
@@ -122,7 +122,7 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                   style="gap: 16px"
                 >
                   <v-img
-                    src="/images/i_logo.png"
+                    src="/i_logo.png"
                     alt="Custom Logo"
                     max-width="40px"
                     contain
