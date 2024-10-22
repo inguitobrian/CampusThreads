@@ -94,32 +94,47 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                   cover
                 ></v-img>
                 <span
-                  class="font-weight-bold text-h6"
-                  style="color: black; margin-top: 20px; text-align: center"
+                  class="text-h5"
+                  style="color: #40513b; margin-top: 20px; text-align: center"
                 >
-                  Stay connected and enjoy the latest from CampusThreads!
+                  Stay connected and enjoy the latest from
+                  <span class="font-weight-bold text-h5">CampusThreads</span>!
                 </span>
               </v-col>
             </v-col>
             <v-col cols="12" md="6" class="d-flex justify-center">
               <v-card
                 class="text-center rounded-xl elevation-10"
-                style="max-width: 400px"
-                height="auto"
+                style="
+                  max-width: 400px;
+                  background: linear-gradient(
+                    to top,
+                    #b4cca9,
+                    #cdddc6,
+                    #ffffff,
+                    #ffffff
+                  );
+                  padding: 20px; /* Optional: Add padding to ensure content does not touch edges */
+                "
               >
-                <v-img
-                  src="public\i_logo.png"
-                  alt="Custom Logo"
-                  class="mb-4"
-                  max-width="40"
-                  contain
-                ></v-img>
-
-                <v-card-title
-                  class="text-h4 font-weight-black light-green-darken-4"
+                <div
+                  class="d-flex align-center justify-center"
+                  style="gap: 16px"
                 >
-                  <span>Welcome Back!</span>
-                </v-card-title>
+                  <v-img
+                    src="/images/i_logo.png"
+                    alt="Custom Logo"
+                    max-width="40px"
+                    contain
+                  ></v-img>
+
+                  <v-card-title
+                    class="text-h4 font-weight-black light-green-darken-4"
+                    style="margin: 0; color: #40513b"
+                  >
+                    <span>Welcome Back!</span>
+                  </v-card-title>
+                </div>
 
                 <v-card-text class="d-flex justify-center mb-4">
                   <v-btn
@@ -159,10 +174,11 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                       @click:append-inner="visible = !visible"
                     ></v-text-field>
 
-                    <div class="d-flex align-center justify-between mb-2">
+                    <div class="d-flex align-center justify-between">
                       <v-checkbox
+                        class="mt-4"
                         v-model="rememberMe"
-                        label="Remember Me"
+                        label="Remember me"
                         style="color: #63794e"
                       ></v-checkbox>
                       <a
@@ -172,12 +188,14 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                         target="_blank"
                         style="margin-left: auto"
                       >
-                        <u>Forgot password?</u>
+                        <span style="color: #0000ff; text-decoration: underline"
+                          >Forgot password?</span
+                        >
                       </a>
                     </div>
 
                     <v-btn
-                      class="mt-2 mb-8 text-h6 font-weight-bold bg-login"
+                      class="mt-2 mb-3 text-h6 font-weight-bold bg-login"
                       size="large"
                       type="submit"
                       block
@@ -185,19 +203,20 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                     </v-btn>
                     <v-card-text class="text-center">
                       <a
-                        class="text-blue text-decoration-none"
                         href="#"
                         rel="noopener noreferrer"
                         target="_blank"
+                        style="color: #40513b; text-decoration: none"
                       >
-                        Don't have an account yet? Sign up now
+                        Don't have an account yet?
+                        <span style="color: #0000ff; text-decoration: underline"
+                          >Sign up now</span
+                        >
                         <v-icon icon="mdi-chevron-right"></v-icon>
                       </a>
                     </v-card-text>
                   </v-form>
                 </v-card-text>
-
-                <v-card-actions></v-card-actions>
               </v-card>
             </v-col>
           </v-row>
