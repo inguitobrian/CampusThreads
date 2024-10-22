@@ -10,14 +10,23 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
 
 <template>
   <v-responsive class="border rounded">
-    <v-app :theme="theme" style="background-color: #e1ebdc; font-family: 'Roboto', sans-serif;">
+    <v-app
+      :theme="theme"
+      style="background-color: #e1ebdc; font-family: 'Roboto', sans-serif"
+    >
       <!-- App Bar -->
       <v-app-bar :style="{ backgroundColor: '#111703' }" class="px-3 nav-bar">
         <!-- Mobile View: Hamburger Icon -->
-        <v-app-bar-nav-icon @click="drawer = !drawer" style="color: white" class="d-lg-none"></v-app-bar-nav-icon>
-        
+        <v-app-bar-nav-icon
+          @click="drawer = !drawer"
+          style="color: white"
+          class="d-lg-none"
+        ></v-app-bar-nav-icon>
+
         <!-- Toolbar Title -->
-        <v-toolbar-title style="color: white; font-family: 'Montserrat', sans-serif;">
+        <v-toolbar-title
+          style="color: white; font-family: 'Montserrat', sans-serif"
+        >
           CampusThreads
         </v-toolbar-title>
 
@@ -88,7 +97,7 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                   class="font-weight-bold text-h6"
                   style="color: black; margin-top: 20px; text-align: center"
                 >
-                  Stay connected and enjoy the latest from CampusThreads
+                  Stay connected and enjoy the latest from CampusThreads!
                 </span>
               </v-col>
             </v-col>
@@ -99,24 +108,40 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                 height="auto"
               >
                 <v-img
-                  src="public\i_logo.png" 
+                  src="public\i_logo.png"
                   alt="Custom Logo"
                   class="mb-4"
-                  max-width="40" 
+                  max-width="40"
                   contain
                 ></v-img>
 
-                <v-card-title class="text-h4 font-weight-black light-green-darken-4">
+                <v-card-title
+                  class="text-h4 font-weight-black light-green-darken-4"
+                >
                   <span>Welcome Back!</span>
                 </v-card-title>
 
                 <v-card-text class="d-flex justify-center mb-4">
-                  <v-btn @click="isAdmin = false" :class="{'bg-student': !isAdmin}" style="color: #cdd7bf;">Student</v-btn>
-                  <v-btn @click="isAdmin = true" :class="{'bg-admin': isAdmin}" style="color: #cdd7bf;">Admin</v-btn>
+                  <v-btn
+                    @click="isAdmin = false"
+                    :class="{ 'bg-student': !isAdmin }"
+                    style="color: #cdd7bf"
+                    >Student</v-btn
+                  >
+                  <v-btn
+                    @click="isAdmin = true"
+                    :class="{ 'bg-admin': isAdmin }"
+                    style="color: #cdd7bf"
+                    >Admin</v-btn
+                  >
                 </v-card-text>
 
                 <v-card-text class="bg-surface-white mx-8 text-center ml-14">
-                  {{ isAdmin ? 'Securely log in to your CampusThreads Admin account.' : 'Securely log in to your CampusThreads Student account.' }}
+                  {{
+                    isAdmin
+                      ? 'Securely log in to your CampusThreads Admin account.'
+                      : 'Securely log in to your CampusThreads Student account.'
+                  }}
                 </v-card-text>
 
                 <v-card-text>
@@ -135,13 +160,17 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                     ></v-text-field>
 
                     <div class="d-flex align-center justify-between mb-2">
-                      <v-checkbox v-model="rememberMe" label="Remember Me" style="color: #63794e;"></v-checkbox>
+                      <v-checkbox
+                        v-model="rememberMe"
+                        label="Remember Me"
+                        style="color: #63794e"
+                      ></v-checkbox>
                       <a
                         class="text-caption text-decoration-none text-blue"
                         href="#"
                         rel="noopener noreferrer"
                         target="_blank"
-                        style="margin-left: auto;"
+                        style="margin-left: auto"
                       >
                         <u>Forgot password?</u>
                       </a>
@@ -152,7 +181,7 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                       size="large"
                       type="submit"
                       block
-                    >Log In
+                      >Log In
                     </v-btn>
                     <v-card-text class="text-center">
                       <a
@@ -161,7 +190,8 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                         rel="noopener noreferrer"
                         target="_blank"
                       >
-                        Don't have an account yet? Sign up now <v-icon icon="mdi-chevron-right"></v-icon>
+                        Don't have an account yet? Sign up now
+                        <v-icon icon="mdi-chevron-right"></v-icon>
                       </a>
                     </v-card-text>
                   </v-form>
@@ -187,20 +217,23 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
 }
 
 .bg-student {
-  background-color: #8fa477; 
+  background-color: #8fa477;
 }
 
 .bg-admin {
-  background-color: #acbd99; 
+  background-color: #acbd99;
 }
 
-.v-input--selection-controls .v-input--checkbox .v-input__control .v-input__slot {
-  color: #63794e; 
+.v-input--selection-controls
+  .v-input--checkbox
+  .v-input__control
+  .v-input__slot {
+  color: #63794e;
 }
 
 .nav-bar {
-  min-height: 64px; 
-  padding: 0 16px; 
+  min-height: 64px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
 }
@@ -214,7 +247,7 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
 .search-bar {
   min-width: 300px;
   max-width: 500px;
-  margin-right: 20px; 
+  margin-right: 20px;
 }
 
 .search-bar {
