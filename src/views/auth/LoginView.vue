@@ -141,8 +141,10 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                     @click="isAdmin = false"
                     :class="{ 'bg-student': !isAdmin }"
                     style="color: #cdd7bf"
+                    class="mr-5"
                     >Student</v-btn
                   >
+
                   <v-btn
                     @click="isAdmin = true"
                     :class="{ 'bg-admin': isAdmin }"
