@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import { RouterLink } from 'vue-router'
 
 const theme = ref('light')
 const visible = ref(false)
@@ -104,9 +105,11 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
             </v-col>
             <v-col cols="12" md="6" class="d-flex justify-center">
               <v-card
-                class="text-center rounded-xl elevation-10"
+                class="text-center rounded-xl"
+                elevation="24"
                 style="
                   max-width: 400px;
+                  height: 550px;
                   background: linear-gradient(
                     to top,
                     #b4cca9,
@@ -136,7 +139,7 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                   </v-card-title>
                 </div>
 
-                <v-card-text class="d-flex justify-center mb-4">
+                <v-card-text class="d-flex justify-center pa-0">
                   <v-btn
                     @click="isAdmin = false"
                     :class="{ 'bg-student': !isAdmin }"
@@ -153,7 +156,7 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                   >
                 </v-card-text>
 
-                <v-card-text class="bg-surface-white mx-8 text-center ml-14">
+                <v-card-text class="bg-surface-white mx-8 text-center">
                   {{
                     isAdmin
                       ? 'Securely log in to your CampusThreads Admin account.'
@@ -176,46 +179,25 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                       @click:append-inner="visible = !visible"
                     ></v-text-field>
 
-                    <div class="d-flex align-center justify-between">
-                      <v-checkbox
-                        class="mt-4"
-                        v-model="rememberMe"
-                        label="Remember me"
-                        style="color: #63794e"
-                      ></v-checkbox>
-                      <a
-                        class="text-caption text-decoration-none text-blue"
-                        href="#"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        style="margin-left: auto"
-                      >
-                        <span style="color: #0000ff; text-decoration: underline"
-                          >Forgot password?</span
-                        >
-                      </a>
-                    </div>
-
                     <v-btn
-                      class="mt-2 mb-3 text-h6 font-weight-bold bg-login"
+                      class="mt-2 mb-3 text-h6 font-weight-bold bg-login mb-5"
                       size="large"
                       type="submit"
                       block
+                      style="color: #162013"
                       >Log In
                     </v-btn>
+
+                    <v-divider thickness="2"></v-divider>
+
                     <v-card-text class="text-center">
-                      <a
-                        href="#"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        style="color: #40513b; text-decoration: none"
+                      <span style="color: #40513b; text-decoration: none"
+                        >Don't have an account yet?</span
                       >
-                        Don't have an account yet?
-                        <span style="color: #0000ff; text-decoration: underline"
-                          >Sign up now</span
-                        >
-                        <v-icon icon="mdi-chevron-right"></v-icon>
-                      </a>
+                      <RouterLink style="color: #0000ff" to="/register">
+                        Sign up now</RouterLink
+                      >
+                      <v-icon icon="mdi-chevron-right"></v-icon>
                     </v-card-text>
                   </v-form>
                 </v-card-text>

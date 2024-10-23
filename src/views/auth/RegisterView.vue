@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from 'vue'
+import { RouterLink } from 'vue-router'
 
 const theme = ref('light')
 const visible = ref(false)
+const reenter = ref(false)
 const isAdmin = ref(false)
 const rememberMe = ref(false)
 const drawer = ref(false) // for the navigation drawer on mobile screens
@@ -85,26 +87,10 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
       <v-main>
         <v-container fluid>
           <v-row justify="end">
-            <v-col cols="12" md="6" class="d-flex justify-center align-center">
-              <v-col cols="12" md="10" class="d-flex flex-column">
-                <v-img
-                  src="/loginimage.svg"
-                  alt="Login Image"
-                  class="pa-2"
-                  cover
-                ></v-img>
-                <span
-                  class="text-h5"
-                  style="color: #40513b; margin-top: 20px; text-align: center"
-                >
-                  Stay connected and enjoy the latest from
-                  <span class="font-weight-bold text-h5">CampusThreads</span>!
-                </span>
-              </v-col>
-            </v-col>
             <v-col cols="12" md="6" class="d-flex justify-center">
               <v-card
-                class="text-center rounded-xl elevation-10"
+                class="text-center rounded-xl"
+                elevation="24"
                 style="
                   max-width: 400px;
                   background: linear-gradient(
@@ -129,14 +115,14 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                   ></v-img>
 
                   <v-card-title
-                    class="text-h4 font-weight-black light-green-darken-4"
+                    class="text-h4 font-weight-medium light-green-darken-4"
                     style="margin: 0; color: #40513b"
                   >
-                    <span>Welcome Back!</span>
+                    <span>Let's get started</span>
                   </v-card-title>
                 </div>
 
-                <v-card-text class="d-flex justify-center mb-4">
+                <v-card-text class="d-flex justify-center pa-0">
                   <v-btn
                     @click="isAdmin = false"
                     :class="{ 'bg-student': !isAdmin }"
@@ -153,26 +139,35 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                   >
                 </v-card-text>
 
-                <v-card-text class="bg-surface-white mx-8 text-center ml-14">
+                <v-card-text class="bg-surface-white mx-8 text-center">
                   {{
                     isAdmin
-                      ? 'Securely log in to your CampusThreads Admin account.'
-                      : 'Securely log in to your CampusThreads Student account.'
+                      ? 'Sign Up to your CampusThreads Admin account.'
+                      : 'Sign Up to your CampusThreads Student account.'
                   }}
                 </v-card-text>
 
                 <v-card-text>
                   <v-form fast-fail @submit.prevent>
-                    <div class="d-flex justify-space-between" style="gap: 16px">
-                      <v-text-field
-                        label="First Name"
-                        prepend-inner-icon="mdi-account"
-                      ></v-text-field>
-                      <v-text-field
-                        label="Last Name"
-                        prepend-inner-icon="mdi-account"
-                      ></v-text-field>
-                    </div>
+                    <v-row>
+                      <v-col cols="6">
+                        <v-text-field
+                          label="First Name"
+                          prepend-inner-icon="mdi-account"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="6">
+                        <v-text-field
+                          label="Last Name"
+                          prepend-inner-icon="mdi-account"
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+
+                    <v-text-field
+                      label="Phone Number"
+                      prepend-inner-icon="mdi mdi-phone"
+                    ></v-text-field>
 
                     <v-text-field
                       label="email"
@@ -187,50 +182,53 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
                       @click:append-inner="visible = !visible"
                     ></v-text-field>
 
-                    <div class="d-flex align-center justify-between">
-                      <v-checkbox
-                        class="mt-4"
-                        v-model="rememberMe"
-                        label="Remember me"
-                        style="color: #63794e"
-                      ></v-checkbox>
-                      <a
-                        class="text-caption text-decoration-none text-blue"
-                        href="#"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        style="margin-left: auto"
-                      >
-                        <span style="color: #0000ff; text-decoration: underline"
-                          >Forgot password?</span
-                        >
-                      </a>
-                    </div>
+                    <v-text-field
+                      :append-inner-icon="reenter ? 'mdi-eye-off' : 'mdi-eye'"
+                      :type="reenter ? 'text' : 'password'"
+                      label="Re-enter Password"
+                      prepend-inner-icon="mdi-lock-outline"
+                      @click:append-inner="reenter = !reenter"
+                    ></v-text-field>
 
                     <v-btn
                       class="mt-2 mb-3 text-h6 font-weight-bold bg-login"
                       size="large"
                       type="submit"
                       block
-                      >Log In
+                      style="color: #162013"
+                      >Create my Account
                     </v-btn>
                     <v-card-text class="text-center">
-                      <a
-                        href="#"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        style="color: #40513b; text-decoration: none"
+                      <span style="color: #40513b; text-decoration: none"
+                        >Already have an account?</span
                       >
-                        Don't have an account yet?
-                        <span style="color: #0000ff; text-decoration: underline"
-                          >Sign up now</span
-                        >
-                        <v-icon icon="mdi-chevron-right"></v-icon>
-                      </a>
+                      <RouterLink
+                        style="color: #0000ff; text-decoration: underline"
+                        to="/"
+                      >
+                        Log in here</RouterLink
+                      >
                     </v-card-text>
                   </v-form>
                 </v-card-text>
               </v-card>
+            </v-col>
+            <v-col cols="12" md="6" class="d-flex justify-center align-center">
+              <v-col cols="12" md="10" class="d-flex flex-column">
+                <v-img
+                  src="/pana.svg"
+                  alt="Login Image"
+                  class="pa-2"
+                  cover
+                ></v-img>
+                <span
+                  class="text-h5"
+                  style="color: #40513b; margin-top: 20px; text-align: center"
+                >
+                  Stay connected and enjoy the latest from
+                  <span class="font-weight-bold text-h5">CampusThreads</span>!
+                </span>
+              </v-col>
             </v-col>
           </v-row>
         </v-container>
