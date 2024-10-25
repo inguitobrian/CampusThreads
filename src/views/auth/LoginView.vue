@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import AppLayout from '@/components/layout/AppLayout.vue'
-import Loginform from '@/components/auth/Loginform.vue'
+import Loginform from '@/components/auth/LoginForm.vue'
 const isAdmin = ref(false)
 </script>
 
