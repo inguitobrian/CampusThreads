@@ -10,8 +10,15 @@ const props = defineProps({
 
 const visible = ref(false)
 const reenter = ref(false)
-const departments = ['CCIS', 'CEGS', 'CHASS'] // List of departments
+const departments = ['CCIS', 'CEGS', 'CHASS', 'CAA', 'COFES', 'CMNS', 'CED'] // List of departments
 const selectedDepartment = ref('') // To hold the selected department
+
+// Function to validate ID format
+function isValidId(id) {
+  const idPattern = /^\d{3}-\d{5}$/ // Pattern: 3 digits, a slash, and 5 digits
+  return idPattern.test(id)
+}
+const id = ref('') // ID input value
 </script>
 
 <template>
@@ -30,6 +37,17 @@ const selectedDepartment = ref('') // To hold the selected department
         ></v-text-field>
       </v-col>
     </v-row>
+
+    <!-- New ID input field -->
+    <v-text-field
+      v-model="id"
+      label="ID (e.g. 221/00391)"
+      prepend-inner-icon="mdi-account-card-details"
+      :rules="[
+        value =>
+          isValidId(value) || 'ID must be in the format 3 digits / 5 digits',
+      ]"
+    ></v-text-field>
 
     <v-text-field
       label="Phone Number"

@@ -4,7 +4,7 @@ import AppLayout from '@/components/layout/AppLayout.vue'
 import RegisterForm from '@/components/auth/RegisterForm.vue'
 
 const isAdmin = ref(false)
-const departments = ['CCIS', 'CEGS', 'CHASS'] // List of departments
+const departments = ['CCIS', 'CEGS', 'CHASS', 'CAA', 'COFES', 'CMNS', 'CED'] // List of departments
 const selectedDepartment = ref('') // To hold the selected department
 </script>
 
