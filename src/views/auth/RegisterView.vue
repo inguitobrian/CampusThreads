@@ -2,7 +2,10 @@
 import { ref } from 'vue'
 import AppLayout from '@/components/layout/AppLayout.vue'
 import RegisterForm from '@/components/auth/RegisterForm.vue'
+
 const isAdmin = ref(false)
+const departments = ['CCIS', 'CEGS', 'CHASS'] // List of departments
+const selectedDepartment = ref('') // To hold the selected department
 </script>
 
 <template>
@@ -22,7 +25,7 @@ const isAdmin = ref(false)
                 #ffffff,
                 #ffffff
               );
-              padding: 20px; /* Optional: Add padding to ensure content does not touch edges */
+              padding: 20px;
             "
           >
             <div class="d-flex align-center justify-center" style="gap: 16px">
@@ -67,7 +70,16 @@ const isAdmin = ref(false)
             </v-card-text>
 
             <v-card-text>
-              <RegisterForm></RegisterForm>
+              <RegisterForm v-if="!isAdmin"></RegisterForm>
+              <div v-if="isAdmin">
+                <v-select
+                  v-model="selectedDepartment"
+                  :items="departments"
+                  label="Select Department"
+                  class="mt-3"
+                ></v-select>
+                <RegisterForm></RegisterForm>
+              </div>
             </v-card-text>
           </v-card>
         </v-col>

@@ -1,7 +1,17 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, defineProps } from 'vue'
+
+const props = defineProps({
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+})
+
 const visible = ref(false)
 const reenter = ref(false)
+const departments = ['CCIS', 'CEGS', 'CHASS'] // List of departments
+const selectedDepartment = ref('') // To hold the selected department
 </script>
 
 <template>
@@ -27,7 +37,7 @@ const reenter = ref(false)
     ></v-text-field>
 
     <v-text-field
-      label="email"
+      label="Email"
       prepend-inner-icon="mdi-email-outline"
     ></v-text-field>
 
@@ -47,20 +57,30 @@ const reenter = ref(false)
       @click:append-inner="reenter = !reenter"
     ></v-text-field>
 
+    <!-- Conditionally render the department dropdown for Admins -->
+    <v-select
+      v-if="isAdmin"
+      v-model="selectedDepartment"
+      :items="departments"
+      label="Select Department"
+      class="mt-3"
+    ></v-select>
+
     <v-btn
       class="mt-2 mb-3 text-h6 font-weight-bold bg-login"
       size="large"
       type="submit"
       block
       style="color: #162013"
-      >Create my Account
-    </v-btn>
+      >Create my Account</v-btn
+    >
+
     <v-card-text class="text-center">
       <span style="color: #40513b; text-decoration: none"
         >Already have an account?</span
       >
-      <RouterLink style="color: #0000ff; text-decoration: underline" to="/">
-        Log in here</RouterLink
+      <RouterLink style="color: #0000ff; text-decoration: underline" to="/"
+        >Log in here</RouterLink
       >
     </v-card-text>
   </v-form>
