@@ -93,6 +93,31 @@ const items = [
     </v-col>
   </v-row>
 </v-container>
+<v-parallax src="public/pexels-pavel-danilyuk-6461397.jpg" height="600">
+  <v-row class="fill-height d-flex align-center text-white px-8">
+    <!-- Left Column: Text and Button -->
+    <v-col cols="6" class="d-flex flex-column justify-center">
+      <h1 class="text-h2 font-weight-bold mb-4" style="color: white;">
+        <span style="color: #FFCC00;">CampusThreads</span>
+      </h1>
+      <h2 class="text-h4 font-weight-regular mb-6" style="line-height: 1.5; color: white;">
+        With <span style="color: #FFCC00;">CampusThreads</span>, you can create & showcase
+        custom merchandise for your <span style="color: #FFCC00;">college departments</span> 
+        or organization in an exclusive online store.
+      </h2>
+      <v-btn outlined rounded class="text-none" style="color: #537346; border-color: #537346; padding: 10px 24px; width: 120px;">
+  Get Started
+</v-btn>
+
+    </v-col>
+
+    <!-- Right Column: Image -->
+    <v-col cols="6" class="d-flex justify-center align-center">
+      <v-img src="public\1eace6f4f286927833a35f8e45cc92bc (1).gif" max-width="100%" max-height="400" contain></v-img>
+    </v-col>
+  </v-row>
+</v-parallax>
+
 
 
     </template>
