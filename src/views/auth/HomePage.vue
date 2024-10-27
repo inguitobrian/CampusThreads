@@ -4,7 +4,7 @@ import AppLayout from '@/components/layout/AppLayout.vue'
 // Define items as a plain JavaScript array
 const items = [
   { src: 'public/pexels-daiangan-102129.jpg' },
-  { src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg' },
+  { src: 'public/DJI_0016 (1).jpg' },
   { src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg' },
   { src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg' },
 ]
@@ -105,7 +105,7 @@ const items = [
         custom merchandise for your <span style="color: #FFCC00;">college departments</span> 
         or organization in an exclusive online store.
       </h2>
-      <v-btn outlined rounded class="text-none" style="color: #537346; border-color: #537346; padding: 10px 24px; width: 120px;">
+      <v-btn outlined rounded class="text-none" style="color: #537346; font-weight: bold; border-color: #537346; padding: 10px 24px; width: 120px;">
   Get Started
 </v-btn>
 
@@ -117,6 +117,24 @@ const items = [
     </v-col>
   </v-row>
 </v-parallax>
+
+<!-- New Row Below -->
+<v-container fluid class="mt-8">
+    <!-- Left Column: Text -->
+    <v-col cols="6" class="d-flex flex-column justify-center">
+      <h1 class="text-h3 font-weight-bold mb-2" style="color: #537346;">
+        College Departments
+      </h1>
+      <p class="text-body-1 mb-4" style="font-size: 1.2rem; color: #333;">
+        Discover merchandise from all our colleges. Browse unique <br>items from each department and show your school spirit!
+      </p>
+      <v-btn outlined rounded class="text-none" style="color: #537346; font-weight: bold; border-color: #537346; padding: 8px 20px; width: 180px;">
+        View Merchandise
+      </v-btn>
+    </v-col>
+</v-container>
+
+
 
 
 
