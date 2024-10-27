@@ -1,19 +1,73 @@
 <script setup>
 import AppLayout from '@/components/layout/AppLayout.vue'
 
-// Define items as a plain JavaScript array
 const items = [
   { src: 'public/pexels-daiangan-102129.jpg' },
   { src: 'public/DJI_0016 (1).jpg' },
   { src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg' },
   { src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg' },
 ]
+
+import { ref } from 'vue';
+
+// Array of card data with unique images, titles, subtitles, and descriptions
+const cards = [
+  {
+    title: 'College of Computing and Information Sciences',
+    subtitle: 'Bask in the golden rays',
+    image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
+    description: 'Explore the stunning coastline with warm beaches and vibrant culture.',
+  },
+  {
+    title: 'College of Mathematics and Natural Science',
+    subtitle: 'Reach new heights',
+    image: 'https://cdn.vuetifyjs.com/images/cards/mountain.jpg',
+    description: 'Conquer the towering mountains and enjoy breathtaking views.',
+  },
+  {
+    title: 'College of Forestry and Enviromental Science',
+    subtitle: 'Cityscapes and skylines',
+    image: 'https://cdn.vuetifyjs.com/images/cards/city.jpg',
+    description: 'Discover the bustling city life, where every corner has a story.',
+  },
+  {
+    title: 'College of Education',
+    subtitle: 'A green escape',
+    image: 'https://cdn.vuetifyjs.com/images/cards/forest.jpg',
+    description: 'Relax in the tranquility of nature and enjoy fresh air in lush forests.',
+  },
+  {
+    title: 'College of Engineering and Geo-Sciences',
+    subtitle: 'Endless sands',
+    image: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
+    description: 'Experience the beauty and mystery of the vast desert landscape.',
+  },
+  {
+    title: 'College of Agriculture and Agri-Industries',
+    subtitle: 'Winter’s embrace',
+    image: 'https://cdn.vuetifyjs.com/images/cards/snow.jpg',
+    description: 'Embrace the magic of snowy landscapes and enjoy winter sports.',
+  },
+  {
+    title: 'College of Humanities and Social Sciences',
+    subtitle: 'Reflections of peace',
+    image: 'https://cdn.vuetifyjs.com/images/cards/lake.jpg',
+    description: 'Find peace by the lakeside with calm waters and serene surroundings.',
+  },
+];
+
+// Create an array to track the "show" state for each card
+const show = ref(Array(cards.length).fill(false));
+
+// Toggle function to change "show" state for a specific card
+const toggleShow = (index) => {
+  show.value[index] = !show.value[index];
+};
 </script>
 
 <template>
   <AppLayout>
     <template #content>
-      <!-- Carousel Section -->
       <v-carousel :show-arrows="false">
         <v-carousel-item
           v-for="(item, i) in items"
@@ -23,7 +77,6 @@ const items = [
         ></v-carousel-item>
       </v-carousel>
 
-      <!-- Text Section -->
       <v-container class="text-center mt-8">
         <h1 class="text-h4 font-weight-bold mb-4" style="font-size: 2rem;">
           "Wear Your School Spirit, Share Your Pride"
@@ -35,7 +88,7 @@ const items = [
       </v-container>
       <v-container fluid>
   <v-row>
-    <!-- First Image: Lanyards -->
+
     <v-col cols="4">
       <v-parallax
         height="600"
@@ -54,7 +107,6 @@ const items = [
       </v-parallax>
     </v-col>
 
-    <!-- Second Image: Uniform -->
     <v-col cols="4">
       <v-parallax
         height="600"
@@ -72,8 +124,6 @@ const items = [
         </v-overlay>
       </v-parallax>
     </v-col>
-
-    <!-- Third Image: Accessories -->
     <v-col cols="4">
       <v-parallax
         height="600"
@@ -95,7 +145,7 @@ const items = [
 </v-container>
 <v-parallax src="public/pexels-pavel-danilyuk-6461397.jpg" height="600">
   <v-row class="fill-height d-flex align-center text-white px-8">
-    <!-- Left Column: Text and Button -->
+   
     <v-col cols="6" class="d-flex flex-column justify-center">
       <h1 class="text-h2 font-weight-bold mb-4" style="color: white;">
         <span style="color: #FFCC00;">CampusThreads</span>
@@ -111,17 +161,17 @@ const items = [
 
     </v-col>
 
-    <!-- Right Column: Image -->
+    
     <v-col cols="6" class="d-flex justify-center align-center">
       <v-img src="public\1eace6f4f286927833a35f8e45cc92bc (1).gif" max-width="100%" max-height="400" contain></v-img>
     </v-col>
   </v-row>
 </v-parallax>
 
-<!-- New Row Below -->
-<v-container fluid class="mt-8">
-    <!-- Left Column: Text -->
-    <v-col cols="6" class="d-flex flex-column justify-center">
+
+<v-container fluid class="mt-4 d-flex justify-center align-center" style="height: 50vh;">
+    
+    <v-col cols="12" class="text-center">
       <h1 class="text-h3 font-weight-bold mb-2" style="color: #537346;">
         College Departments
       </h1>
@@ -133,6 +183,65 @@ const items = [
       </v-btn>
     </v-col>
 </v-container>
+<v-container fluid>
+    <!-- First row with 4 cards -->
+    <v-row>
+      <v-col cols="3" v-for="(card, index) in cards.slice(0, 4)" :key="index">
+        <v-card max-width="344">
+          <v-img :src="card.image" height="200px" cover></v-img>
+
+          <v-card-title>{{ card.title }}</v-card-title>
+          <v-card-subtitle>{{ card.subtitle }}</v-card-subtitle>
+
+          <v-card-actions>
+            <v-btn color="orange-lighten-2" text>Explore</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn
+              :icon="show[index] ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+              @click="toggleShow(index)"
+            ></v-btn>
+          </v-card-actions>
+
+          <v-expand-transition>
+            <div v-show="show[index]">
+              <v-divider></v-divider>
+              <v-card-text>{{ card.description }}</v-card-text>
+            </div>
+          </v-expand-transition>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <!-- Second row with 3 centered cards -->
+    <v-row justify="center">
+      <v-col cols="3" v-for="(card, index) in cards.slice(4, 7)" :key="4 + index">
+        <v-card max-width="344">
+          <v-img :src="card.image" height="200px" cover></v-img>
+
+          <v-card-title>{{ card.title }}</v-card-title>
+          <v-card-subtitle>{{ card.subtitle }}</v-card-subtitle>
+
+          <v-card-actions>
+            <v-btn color="orange-lighten-2" text>Explore</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn
+              :icon="show[4 + index] ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+              @click="toggleShow(4 + index)"
+            ></v-btn>
+          </v-card-actions>
+
+          <v-expand-transition>
+            <div v-show="show[4 + index]">
+              <v-divider></v-divider>
+              <v-card-text>{{ card.description }}</v-card-text>
+            </div>
+          </v-expand-transition>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+
+
 
 
 
