@@ -146,7 +146,32 @@ const shopItems = [
     </v-col>
   </v-row>
 </v-container>
-<v-parallax src="public/pexels-pavel-danilyuk-6461397.jpg" height="600">
+
+<v-container class="text-center mt-8">
+  <h1 class="display-2 font-weight-bold mb-2">
+    "Inspiring the Future, Empowering the Present"
+  </h1>
+  <p class="text-body-1 mb-6" style="font-size: 1.2rem; color: #333;">
+    Discover, Learn, and Grow with Us – Where Education and Excellence Meet
+  </p>
+</v-container>
+
+<v-responsive class="video-fullscreen" aspect-ratio="16/9">
+    <video autoplay loop playsinline controls style="width: 100%; height: 100%; object-fit: cover;">
+      <source src="/464664855_8759599854100641_1316003168808465613_n.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </v-responsive>
+
+
+
+
+<v-container class="text-center mt-8">
+  <h1 class="display-2 font-weight-bold mb-2">
+    "Wear your pride. With CampusThreads, your college spirit comes to life through custom merchandise."
+  </h1>
+</v-container>
+<v-parallax src="public/pexels-pavel-danilyuk-6461397.jpg" height="600" style="margin-top: 20px;">
   <v-row class="fill-height d-flex align-center text-white px-8">
    
     <v-col cols="6" class="d-flex flex-column justify-center">
@@ -187,7 +212,7 @@ const shopItems = [
     </v-col>
 </v-container>
 <v-container fluid>
-    <!-- First row with 4 cards -->
+   
     <v-row>
       <v-col cols="3" v-for="(card, index) in cards.slice(0, 4)" :key="index">
         <v-card max-width="344">
@@ -215,7 +240,6 @@ const shopItems = [
       </v-col>
     </v-row>
 
-    <!-- Second row with 3 centered cards -->
     <v-row justify="center">
       <v-col cols="3" v-for="(card, index) in cards.slice(4, 7)" :key="4 + index">
         <v-card max-width="344">
@@ -261,3 +285,13 @@ const shopItems = [
   </AppLayout>
 </template>
 
+<style scoped>
+.video-fullscreen {
+  
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+}
+</style>
