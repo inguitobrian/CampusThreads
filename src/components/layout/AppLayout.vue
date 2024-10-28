@@ -85,9 +85,7 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
         </v-container>
       </v-main>
 
-      <v-footer border style="background-color: #111703; color: white">
-        2024 - CampusThreads
-      </v-footer>
+     
     </v-app>
   </v-responsive>
 </template>

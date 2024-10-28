@@ -13,52 +13,50 @@ import { ref } from 'vue';
 const cards = [
   {
     title: 'College of Computing and Information Sciences',
-    subtitle: 'Bask in the golden rays',
-    image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-    description: 'Explore the stunning coastline with warm beaches and vibrant culture.',
+    subtitle: 'IT, CS, IS',
+    image: 'public/pexels-kubrangle-15247433.jpg',
+    description: 'Gain expertise in software development, data science, and cybersecurity, preparing you for impactful careers in tech.',
   },
   {
     title: 'College of Mathematics and Natural Science',
-    subtitle: 'Reach new heights',
-    image: 'https://cdn.vuetifyjs.com/images/cards/mountain.jpg',
-    description: 'Conquer the towering mountains and enjoy breathtaking views.',
+    subtitle: 'MATH, APPLIEDMATH, PHYSICS, CHEMISTRY',
+    image: 'public/pexels-pixabay-256490.jpg',
+    description: 'Discover the principles of natural sciences and advanced mathematics, building a foundation for research and analysis.',
   },
   {
-    title: 'College of Forestry and Enviromental Science',
-    subtitle: 'Cityscapes and skylines',
-    image: 'https://cdn.vuetifyjs.com/images/cards/city.jpg',
-    description: 'Discover the bustling city life, where every corner has a story.',
+    title: 'College of Forestry and Environmental Science',
+    subtitle: 'ES, FORESTRY, AGROFORESTRY',
+    image: 'public/pexels-ivan-drazic-20457695-20385805.jpg',
+    description: 'Develop skills in sustainable forestry and environmental management to protect ecosystems and resources.',
   },
   {
     title: 'College of Education',
-    subtitle: 'A green escape',
-    image: 'https://cdn.vuetifyjs.com/images/cards/forest.jpg',
-    description: 'Relax in the tranquility of nature and enjoy fresh air in lush forests.',
+    subtitle: 'ELEM, ENG, SCIENCE, MATH, FIL',
+    image: 'public/pexels-manelandsean-17328274.jpg',
+    description: 'Equip yourself with essential teaching skills and knowledge to inspire and educate future generations.',
   },
   {
     title: 'College of Engineering and Geo-Sciences',
-    subtitle: 'Endless sands',
-    image: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
-    description: 'Experience the beauty and mystery of the vast desert landscape.',
+    subtitle: 'GE, CE, ECE, GEOL, ME',
+    image: 'public/pexels-karinarud-11964281.jpg',
+    description: 'Master engineering principles and geoscience knowledge to solve complex environmental and infrastructural challenges.',
   },
   {
     title: 'College of Agriculture and Agri-Industries',
-    subtitle: 'Winter’s embrace',
-    image: 'https://cdn.vuetifyjs.com/images/cards/snow.jpg',
-    description: 'Embrace the magic of snowy landscapes and enjoy winter sports.',
+    subtitle: 'AGRI, AGRITECH',
+    image: 'public/pexels-uraw-12512732.jpg',
+    description: 'Explore agricultural sciences and technology, advancing skills in sustainable farming and food production.',
   },
   {
     title: 'College of Humanities and Social Sciences',
-    subtitle: 'Reflections of peace',
-    image: 'https://cdn.vuetifyjs.com/images/cards/lake.jpg',
-    description: 'Find peace by the lakeside with calm waters and serene surroundings.',
+    subtitle: 'SW, PSYCH, SOCIO',
+    image: 'public/pexels-george-pak-7972506.jpg',
+    description: 'Engage with diverse perspectives in humanities and social sciences, fostering critical thinking and cultural understanding.',
   },
 ];
 
-// Create an array to track the "show" state for each card
 const show = ref(Array(cards.length).fill(false));
 
-// Toggle function to change "show" state for a specific card
 const toggleShow = (index) => {
   show.value[index] = !show.value[index];
 };
@@ -259,8 +257,7 @@ const shopItems = [
       </v-col>
     </v-row>
 
-
-
     </template>
   </AppLayout>
 </template>
+
