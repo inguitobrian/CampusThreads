@@ -158,13 +158,10 @@ const shopItems = [
 
 <v-responsive class="video-fullscreen" aspect-ratio="16/9">
     <video autoplay loop playsinline controls style="width: 100%; height: 100%; object-fit: cover;">
-      <source src="/464664855_8759599854100641_1316003168808465613_n.mp4" type="video/mp4">
+      <source src="/videos/464664855_8759599854100641_1316003168808465613_n.mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
   </v-responsive>
-
-
-
 
 <v-container class="text-center mt-8">
   <h1 class="display-2 font-weight-bold mb-2">
