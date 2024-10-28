@@ -10,7 +10,6 @@ const items = [
 
 import { ref } from 'vue';
 
-// Array of card data with unique images, titles, subtitles, and descriptions
 const cards = [
   {
     title: 'College of Computing and Information Sciences',
@@ -63,6 +62,12 @@ const show = ref(Array(cards.length).fill(false));
 const toggleShow = (index) => {
   show.value[index] = !show.value[index];
 };
+const shopItems = [
+  { name: 'University Exclusive Outfit', image: 'public/b0ac2c12da0c00691252ef81e3f9d4b1.jpg '},
+  { name: 'Department Lanyard', image: 'public/86b0588cda7de732293e10ac99e6b7d2.jpg' },
+  { name: 'Campus Accessory', image: 'public/c8d902f304580e3a65c358a71c0cd760.png' },
+  { name: 'Department Tees', image: 'public/b438a2cb928c528ee494e31b275d8f06.jpg' },
+];
 </script>
 
 <template>
@@ -240,10 +245,19 @@ const toggleShow = (index) => {
       </v-col>
     </v-row>
   </v-container>
+  <v-container class="text-center my-10">
+      <h1 class="display-1 font-weight-bold mb-4">WHAT’S HOT</h1>
+      <p class="subtitle-1">Discover this season’s must-haves and elevate your campus wardrobe to new heights!</p>
+    </v-container>
 
 
-
-
+    <v-row class="text-center">
+      <v-col cols="3" v-for="(item, index) in shopItems" :key="index">
+        <v-img :src="item.image" height="250px" cover></v-img>
+        <h3 class="mt-3">{{ item.name }}</h3>
+        <a href="#" style="text-decoration: underline; color: black;">Shop Now</a>
+      </v-col>
+    </v-row>
 
 
 
