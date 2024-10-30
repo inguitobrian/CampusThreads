@@ -48,7 +48,7 @@ const router = createRouter({
       component: CegsPage,
     },
     {
-      path: '/chass',
+      path: '/',
       name: 'chass',
       component: ChassPage,
     },
@@ -58,7 +58,7 @@ const router = createRouter({
       component: CmnsPage,
     },
     {
-      path: '/',
+      path: '/cofes',
       name: 'cofes',
       component: CofesPage,
     },
