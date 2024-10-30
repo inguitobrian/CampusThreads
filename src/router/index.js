@@ -6,6 +6,7 @@ import CcisPage from '@/views/auth/CcisPage.vue'
 import CaaPage from '@/views/auth/CaaPage.vue'
 import CedPage from '@/views/auth/CedPage.vue'
 import CegsPage from '@/views/auth/CegsPage.vue'
+import ChassPage from '@/views/auth/ChassPage.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -40,9 +41,14 @@ const router = createRouter({
       component: CedPage,
     },
     {
-      path: '/',
+      path: '/cegs',
       name: 'cegs',
       component: CegsPage,
+    },
+    {
+      path: '/',
+      name: 'chass',
+      component: ChassPage,
     },
   ],
 })
