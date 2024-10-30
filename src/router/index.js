@@ -4,6 +4,7 @@ import RegisterView from '@/views/auth/RegisterView.vue'
 import HomePage from '@/views/auth/HomePage.vue'
 import CcisPage from '@/views/auth/CcisPage.vue'
 import CaaPage from '@/views/auth/CaaPage.vue'
+import CedPage from '@/views/auth/CedPage.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -28,10 +29,15 @@ const router = createRouter({
       component: CcisPage,
     },
     {
-      path: '/',
+      path: '/caa',
       name: 'caa',
       component: CaaPage,
-    }
+    },
+    {
+      path: '/',
+      name: 'ced',
+      component: CedPage,
+    },
   ],
 })
 
