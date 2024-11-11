@@ -48,12 +48,12 @@ const router = createRouter({
       component: CegsPage,
     },
     {
-      path: '/',
+      path: '/chass',
       name: 'chass',
       component: ChassPage,
     },
     {
-      path: '/cmns',
+      path: '/',
       name: 'cmns',
       component: CmnsPage,
     },

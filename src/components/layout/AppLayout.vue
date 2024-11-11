@@ -84,12 +84,33 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
           <slot name="content"></slot>
         </v-container>
       </v-main>
+      <v-footer class="footer" padless>
+  <v-container class="text-center">
+    <v-row align="center" justify="center">
+      <!-- Center Column: Links in a single line -->
+      <v-col cols="12" md="12">
+        <span style="color: black; font-size: 14px; margin-right: 20px;">Privacy Policy</span>
+        <span style="color: black; font-size: 14px; margin-right: 20px;">Terms of Service</span>
+        <span style="color: black; font-size: 14px; margin-right: 20px;">FAQs</span>
+        <span style="color: black; font-size: 14px; margin-right: 20px;">Feedback</span>
+      </v-col>
+    </v-row>
 
+    <!-- Bottom Row: Website Name -->
+    <v-row>
+      <v-col class="text-center" cols="12">
+        <span style="color: black; font-size: 14px;"><b>© 2024 CampusThreads. All Rights Reserved.</b></span>
+      </v-col>
+    </v-row>
+  </v-container>
+
+</v-footer>
      
     </v-app>
   </v-responsive>
 </template>
 <style>
+
 .bg-login {
   background-color: #71885a;
 }
@@ -130,5 +151,10 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
 
 .search-bar {
   min-height: 40px;
+}
+
+.footer {
+  background: linear-gradient(135deg, #d0ebde, #b0ebc3); /* Purple gradient */
+  padding: 20px 0;
 }
 </style>

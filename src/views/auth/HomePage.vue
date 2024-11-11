@@ -269,14 +269,14 @@ const shopItems = [
       <p class="subtitle-1">Discover this season’s must-haves and elevate your campus wardrobe to new heights!</p>
     </v-container>
 
-
     <v-row class="text-center">
-      <v-col cols="3" v-for="(item, index) in shopItems" :key="index">
-        <v-img :src="item.image" height="250px" cover></v-img>
-        <h3 class="mt-3">{{ item.name }}</h3>
-        <a href="#" style="text-decoration: underline; color: black;">Shop Now</a>
-      </v-col>
-    </v-row>
+  <v-col cols="3" v-for="(item, index) in shopItems" :key="index">
+    <v-img :src="item.image" height="250px" cover class="hover-effect"></v-img>
+    <h3 class="mt-3">{{ item.name }}</h3>
+    <a href="#" style="text-decoration: underline; color: black;">Shop Now</a>
+  </v-col>
+</v-row>
+
 
     </template>
   </AppLayout>
@@ -291,4 +291,13 @@ const shopItems = [
   height: 100vh;
 
 }
+.hover-effect {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hover-effect:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
 </style>
