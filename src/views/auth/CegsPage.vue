@@ -126,7 +126,7 @@ function prevSet() {
       <v-main>
         <v-container fluid>
           <v-img src="public/pexels-karinarud-11964281.jpg" height="400px" cover>
-            <div class="text">College of Engineering and Geo-Sciences</div>
+            <div class="d-text">College of Engineering and Geo-Sciences</div>
           </v-img>
           <v-container>
             <h1 class="text-h4 font-weight-bold" style="font-size: 2rem; text-align: left; padding-top:50px;">
@@ -224,7 +224,7 @@ function prevSet() {
 
     <!-- Modal for displaying the image in full size -->
     <v-dialog v-model="modalVisible" max-width="800px">
-      <v-card class="card">
+      <v-card class="d-card">
         <!-- Large Image -->
         <v-img :src="selectedImage.src" height="500px" class="d-flex align-center justify-center" contain></v-img>
         
@@ -251,7 +251,7 @@ function prevSet() {
 
         <!-- Buy Now Button -->
         <v-card-actions class="d-flex justify-end">
-          <v-btn class="btn" @click="buyNow">Buy Now</v-btn>
+          <v-btn class="d-btn" @click="buyNow">Buy Now</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -260,7 +260,7 @@ function prevSet() {
       </v-main>
     </v-app>
   </v-responsive>
-  <v-footer class="footer" padless>
+  <v-footer class="d-footer" padless>
   <v-container class="text-center">
     <v-row align="center" justify="center">
       <!-- Center Column: Links in a single line -->
@@ -329,7 +329,7 @@ function prevSet() {
   position: relative;
 }
 
-.text {
+.d-text {
   position: absolute;
   top: 50%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -343,7 +343,7 @@ function prevSet() {
   border-radius: 10px;
 }
 
-.footer {
+.d-footer {
   background: linear-gradient(135deg, #9a0000, #f74b4b); /* Purple gradient */
   padding: 20px 0;
 }
@@ -418,7 +418,7 @@ function prevSet() {
   padding: 0 !important;
 }
 
-.card {
+.d-card {
   background: linear-gradient(135deg, #f6942c, #f42424);
   color: white;
   border-radius: 10px;
@@ -433,7 +433,7 @@ function prevSet() {
   font-size: 18px;
 }
 
-.v-btn.btn {
+.v-btn.d-btn {
   background: linear-gradient(45deg, #ea3434, #ea602e);
   color: white;
   font-weight: bold;
@@ -442,7 +442,7 @@ function prevSet() {
   padding: 10px 20px;
 }
 
-.v-btn.btn:hover {
+.v-btn.d-btn:hover {
   background: linear-gradient(45deg, #ea602e, #ea3434);
 }
 

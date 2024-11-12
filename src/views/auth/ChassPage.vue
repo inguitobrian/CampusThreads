@@ -135,7 +135,7 @@ function prevSet() {
         <v-container fluid>
           <v-img src="public/pexels-george-pak-7972506.jpg" height="400px" cover class="image-overlay"
     >
-      <div class="overlay-text">College of Humanities and Social Sciences</div>
+      <div class="c-text">College of Humanities and Social Sciences</div>
     </v-img>
 
           <v-container>
@@ -231,7 +231,7 @@ function prevSet() {
 
     <!-- Modal for displaying the image in full size -->
     <v-dialog v-model="modalVisible" max-width="800px">
-      <v-card class="gradient-card">
+      <v-card class="c-card">
         <!-- Large Image -->
         <v-img :src="selectedImage.src" height="500px" class="d-flex align-center justify-center" contain></v-img>
         
@@ -258,7 +258,7 @@ function prevSet() {
 
         <!-- Buy Now Button -->
         <v-card-actions class="d-flex justify-end">
-          <v-btn class="buy-now-btn" @click="buyNow">Buy Now</v-btn>
+          <v-btn class="c-btn" @click="buyNow">Buy Now</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -267,7 +267,7 @@ function prevSet() {
       </v-main>
     </v-app>
   </v-responsive>
-  <v-footer class="gradient-footer" padless>
+  <v-footer class="c-footer" padless>
   <v-container class="text-center">
     <v-row align="center" justify="center">
       <!-- Center Column: Links in a single line -->
@@ -336,7 +336,7 @@ function prevSet() {
   position: relative;
 }
 
-.overlay-text {
+.c-text {
   position: absolute;
   top: 50%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -350,7 +350,7 @@ function prevSet() {
   border-radius: 10px;
 }
 
-.gradient-footer {
+.c-footer {
   background: linear-gradient(135deg, #6a1b9a, #ab47bc); /* Purple gradient */
   padding: 20px 0;
 }
@@ -425,7 +425,7 @@ function prevSet() {
   padding: 0 !important;
 }
 
-.gradient-card {
+.c-card {
   background: linear-gradient(135deg, #6a1b9a, #9c27b0);
   color: white;
   border-radius: 10px;
@@ -440,7 +440,7 @@ function prevSet() {
   font-size: 18px;
 }
 
-.v-btn.buy-now-btn {
+.v-btn.c-btn {
   background: linear-gradient(45deg, #9c27b0, #6a1b9a);
   color: white;
   font-weight: bold;
@@ -449,7 +449,7 @@ function prevSet() {
   padding: 10px 20px;
 }
 
-.v-btn.buy-now-btn:hover {
+.v-btn.c-btn:hover {
   background: linear-gradient(45deg, #6a1b9a, #9c27b0);
 }
 
@@ -468,7 +468,7 @@ function prevSet() {
     height: 400px;
   }
 
-  .gradient-card {
+  .c-card {
     border-radius: 5px;
   }
 
@@ -477,7 +477,7 @@ function prevSet() {
     font-size: 16px;
   }
 
-  .v-btn.buy-now-btn {
+  .v-btn.c-btn {
     font-size: 14px;
   }
 }

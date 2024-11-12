@@ -91,7 +91,7 @@ function prevSet() {
         <v-container fluid>
           <!-- Banner Image -->
           <v-img src="public/pexels-uraw-12512732.jpg" height="400px" cover>
-            <div class="overlay-text">College of Agriculture and Agri-Industries</div>
+            <div class="g-text">College of Agriculture and Agri-Industries</div>
           </v-img>
 
           <v-container>
@@ -186,7 +186,7 @@ function prevSet() {
 
     <!-- Modal for displaying the image in full size -->
     <v-dialog v-model="modalVisible" max-width="800px">
-      <v-card class="card">
+      <v-card class="g-card">
         <!-- Large Image -->
         <v-img :src="selectedImage.src" height="500px" class="d-flex align-center justify-center" contain></v-img>
         
@@ -213,7 +213,7 @@ function prevSet() {
 
         <!-- Buy Now Button -->
         <v-card-actions class="d-flex justify-end">
-          <v-btn class="btn" @click="buyNow">Buy Now</v-btn>
+          <v-btn class="g-btn" @click="buyNow">Buy Now</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -222,7 +222,7 @@ function prevSet() {
       </v-main>
     </v-app>
   </v-responsive>
-  <v-footer class="footer" padless>
+  <v-footer class="g-footer" padless>
   <v-container class="text-center">
     <v-row align="center" justify="center">
       <!-- Center Column: Links in a single line -->
@@ -291,7 +291,7 @@ function prevSet() {
   position: relative;
 }
 
-.overlay-text {
+.g-text {
   position: absolute;
   top: 50%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -300,13 +300,13 @@ function prevSet() {
   font-size: 3rem; /* Larger text */
   font-weight: bold;
   text-align: center;
-  background-color: rgba(245, 158, 245, 0.3); /* Darker background for contrast */
+  background-color: rgba(223, 199, 46, 0.3); /* Darker background for contrast */
   padding: 15px 30px;
   border-radius: 10px;
 }
 
-.footer {
-  background: linear-gradient(135deg, #456ae4, #f0dd4a); /* Purple gradient */
+.g-footer {
+  background: linear-gradient(135deg, #ad9c17, #d8be3c); /* Purple gradient */
   padding: 20px 0;
 }
 
@@ -380,8 +380,8 @@ function prevSet() {
   padding: 0 !important;
 }
 
-.card {
-  background: linear-gradient(135deg, #efe645, #355feb);
+.g-card {
+  background: linear-gradient(135deg, #ece451, #776f09);
   color: white;
   border-radius: 10px;
 }
@@ -395,8 +395,8 @@ function prevSet() {
   font-size: 18px;
 }
 
-.v-btn.btn {
-  background: linear-gradient(45deg, #edd434, #404fee);
+.v-btn.g-btn {
+  background: linear-gradient(45deg, #c4ab0a, #ddda3f);
   color: white;
   font-weight: bold;
   border-radius: 5px;
@@ -404,8 +404,8 @@ function prevSet() {
   padding: 10px 20px;
 }
 
-.v-btn.btn:hover {
-  background: linear-gradient(45deg, #404fee, #edd434);
+.v-btn.g-btn:hover {
+  background: linear-gradient(45deg, #ddda3f, #c4ab0a);
 }
 
 /* Quantity Input Styles */
@@ -423,7 +423,7 @@ function prevSet() {
     height: 400px;
   }
 
-  .gradient-card {
+  .g-card {
     border-radius: 5px;
   }
 
@@ -432,7 +432,7 @@ function prevSet() {
     font-size: 16px;
   }
 
-  .v-btn.btn {
+  .v-btn.g-btn {
     font-size: 14px;
   }
 }

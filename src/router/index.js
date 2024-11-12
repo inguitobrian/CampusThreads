@@ -28,14 +28,14 @@ const router = createRouter({
       component: HomePage,
     },
     {
+      path: '/',
+      name: 'caa',
+      component: CaaPage,
+    },
+    {
       path: '/ccis',
       name: 'ccis',
       component: CcisPage,
-    },
-    {
-      path: '/caa',
-      name: 'caa',
-      component: CaaPage,
     },
     {
       path: '/ced',
@@ -53,7 +53,7 @@ const router = createRouter({
       component: ChassPage,
     },
     {
-      path: '/',
+      path: '/cmns',
       name: 'cmns',
       component: CmnsPage,
     },

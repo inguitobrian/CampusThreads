@@ -122,7 +122,7 @@ function prevSet() {
       <v-main>
         <v-container fluid>
           <v-img src="public/pexels-pixabay-256490.jpg" height="400px" cover>
-            <div class="overlay-text">College of Mathematics and Natural Sciences</div>
+            <div class="a-text">College of Mathematics and Natural Sciences</div>
           </v-img>
 
           <v-container>
@@ -220,7 +220,7 @@ function prevSet() {
 
     <!-- Modal for displaying the image in full size -->
     <v-dialog v-model="modalVisible" max-width="800px">
-      <v-card class="gradient-card">
+      <v-card class="a-card">
         <!-- Large Image -->
         <v-img :src="selectedImage.src" height="500px" class="d-flex align-center justify-center" contain></v-img>
         
@@ -247,7 +247,7 @@ function prevSet() {
 
         <!-- Buy Now Button -->
         <v-card-actions class="d-flex justify-end">
-          <v-btn class="btn" @click="buyNow">Buy Now</v-btn>
+          <v-btn class="a-btn" @click="buyNow">Buy Now</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -256,7 +256,7 @@ function prevSet() {
       </v-main>
     </v-app>
   </v-responsive>
-  <v-footer class="gradient-footer" padless>
+  <v-footer class="a-footer" padless>
   <v-container class="text-center">
     <v-row align="center" justify="center">
       <!-- Center Column: Links in a single line -->
@@ -325,7 +325,7 @@ function prevSet() {
   position: relative;
 }
 
-.overlay-text {
+.a-text {
   position: absolute;
   top: 50%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -339,7 +339,7 @@ function prevSet() {
   border-radius: 10px;
 }
 
-.gradient-footer {
+.a-footer {
   background: linear-gradient(135deg, #4e0606, #7e0f0f); /* Purple gradient */
   padding: 20px 0;
 }
@@ -414,7 +414,7 @@ function prevSet() {
   padding: 0 !important;
 }
 
-.gradient-card {
+.a-card {
   background: linear-gradient(135deg, #670202, #a70b0b);
   color: white;
   border-radius: 10px;
@@ -429,7 +429,7 @@ function prevSet() {
   font-size: 18px;
 }
 
-.v-btn.btn {
+.v-btn.a-btn {
   background: linear-gradient(45deg, #890a0a, #570707);
   color: white;
   font-weight: bold;
@@ -438,7 +438,7 @@ function prevSet() {
   padding: 10px 20px;
 }
 
-.v-btn.btn:hover {
+.v-btn.a-btn:hover {
   background: linear-gradient(45deg, #570707, #890a0a);
 }
 
@@ -457,7 +457,7 @@ function prevSet() {
     height: 400px;
   }
 
-  .card {
+  .a-card {
     border-radius: 5px;
   }
 
@@ -466,7 +466,7 @@ function prevSet() {
     font-size: 16px;
   }
 
-  .v-btn.btn {
+  .v-btn.a-btn {
     font-size: 14px;
   }
 }

@@ -129,7 +129,7 @@ function prevSet() {
       <v-main>
         <v-container fluid>
         <v-img src="public/pexels-manelandsean-17328274.jpg" height="400px" cover>
-          <div class="text">College of Education</div>
+          <div class="e-text">College of Education</div>
         </v-img>
 
         <v-container>
@@ -225,7 +225,7 @@ function prevSet() {
 
     <!-- Modal for displaying the image in full size -->
     <v-dialog v-model="modalVisible" max-width="800px">
-      <v-card class="card">
+      <v-card class="e-card">
         <!-- Large Image -->
         <v-img :src="selectedImage.src" height="500px" class="d-flex align-center justify-center" contain></v-img>
         
@@ -252,7 +252,7 @@ function prevSet() {
 
         <!-- Buy Now Button -->
         <v-card-actions class="d-flex justify-end">
-          <v-btn class="btn" @click="buyNow">Buy Now</v-btn>
+          <v-btn class="e-btn" @click="buyNow">Buy Now</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -261,7 +261,7 @@ function prevSet() {
       </v-main>
     </v-app>
   </v-responsive>
-  <v-footer class="footer" padless>
+  <v-footer class="e-footer" padless>
   <v-container class="text-center">
     <v-row align="center" justify="center">
       <!-- Center Column: Links in a single line -->
@@ -330,7 +330,7 @@ function prevSet() {
   position: relative;
 }
 
-.text {
+.e-text {
   position: absolute;
   top: 50%; /* Center vertically */
   left: 50%; /* Center horizontally */
@@ -344,7 +344,7 @@ function prevSet() {
   border-radius: 10px;
 }
 
-.footer {
+.e-footer {
   background: linear-gradient(135deg, #f9e36b, #1e3d58); /* Light yellow to dark blue gradient */
   padding: 20px 0;
 }
@@ -420,7 +420,7 @@ function prevSet() {
   padding: 0 !important;
 }
 
-.card {
+.e-card {
   background: linear-gradient(135deg, #f9e36b, #1e3d58); /* Lighter yellow to darker blue */
   color: white;
   border-radius: 10px;
@@ -435,7 +435,7 @@ function prevSet() {
   font-size: 18px;
 }
 
-.v-btn.btn {
+.v-btn.e-btn {
   background: linear-gradient(45deg, #f9e36b, #1e3d58); /* Lighter yellow to darker blue */
   color: white;
   font-weight: bold;
@@ -444,7 +444,7 @@ function prevSet() {
   padding: 10px 20px;
 }
 
-.v-btn.btn:hover {
+.v-btn.e-btn:hover {
   background: linear-gradient(45deg, #1e3d58, #f9e36b); /* Reverse gradient on hover */
 }
 
