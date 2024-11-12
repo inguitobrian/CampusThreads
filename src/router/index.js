@@ -23,12 +23,12 @@ const router = createRouter({
       component: RegisterView,
     },
     {
-      path: '/',
+      path: '/home',
       name: 'home', 
       component: HomePage,
     },
     {
-      path: '/caa',
+      path: '/',
       name: 'caa',
       component: CaaPage,
     },
