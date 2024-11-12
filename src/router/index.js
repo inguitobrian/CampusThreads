@@ -1,68 +1,43 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LoginView from '@/views/auth/LoginView.vue'
-import RegisterView from '@/views/auth/RegisterView.vue'
-import HomePage from '@/views/auth/HomePage.vue'
-import CcisPage from '@/views/auth/CcisPage.vue'
-import CaaPage from '@/views/auth/CaaPage.vue'
-import CedPage from '@/views/auth/CedPage.vue'
-import CegsPage from '@/views/auth/CegsPage.vue'
-import ChassPage from '@/views/auth/ChassPage.vue'
-import CmnsPage from '@/views/auth/CmnsPage.vue'
-import CofesPage from '@/views/auth/CofesPage.vue'
+import { routes } from '@/router/routesPath'
+import { useAuthUserStore } from '@/stores/authUser'
+import { isAuthenticated } from '@/utils/supabase'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/login',
-      name: 'login',
-      component: LoginView,
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: RegisterView,
-    },
-    {
-      path: '/',
-      name: 'home',
-      component: HomePage,
-    },
-    {
-      path: '/caa',
-      name: 'caa',
-      component: CaaPage,
-    },
-    {
-      path: '/ccis',
-      name: 'ccis',
-      component: CcisPage,
-    },
-    {
-      path: '/ced',
-      name: 'ced',
-      component: CedPage,
-    },
-    {
-      path: '/cegs',
-      name: 'cegs',
-      component: CegsPage,
-    },
-    {
-      path: '/chass',
-      name: 'chass',
-      component: ChassPage,
-    },
-    {
-      path: '/cmns',
-      name: 'cmns',
-      component: CmnsPage,
-    },
-    {
-      path: '/cofes',
-      name: 'cofes',
-      component: CofesPage,
-    },
-  ],
+  routes,
+})
+
+router.beforeEach(async to => {
+  const authStore = useAuthUserStore()
+  const isLoggedIn = await isAuthenticated()
+
+  // Prevent logged-in users from accessing login or register pages
+  if (isLoggedIn && (to.name === 'login' || to.name === 'register')) {
+    return { name: 'home' }
+  }
+
+  // Redirect unauthenticated users trying to access protected routes
+  if (!isLoggedIn && to.meta.requiresAuth) {
+    return { name: 'login' }
+  }
+
+  // If logged in, verify role-based access
+  if (isLoggedIn) {
+    if (!authStore.userData) {
+      await authStore.getUserInformation()
+    }
+
+    const userRole = authStore.userData.role
+    const allowedRoles = to.meta.allowedRoles || []
+
+    // Allow access if the route allows all roles or if the user's role is in allowedRoles
+    if (allowedRoles.length > 0 && !allowedRoles.includes(userRole)) {
+      return { name: 'forbidden' }
+    }
+  }
+
+  return true
 })
 
 export default router
