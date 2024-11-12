@@ -113,6 +113,17 @@ const onSubmit = async () => {
   formAction.value.formProcess = false
 }
 
+// Logout function
+const logout = async () => {
+  try {
+    await supabase.auth.signOut()
+    // Redirect to login page
+    router.push('/login')
+  } catch (error) {
+    console.error('Error logging out:', error.message)
+  }
+}
+
 // Fetch colleges when the component mounts
 onMounted(fetchColleges)
 </script>
@@ -212,6 +223,9 @@ onMounted(fetchColleges)
         <span v-if="formAction.formProcess">Processing...</span>
         <span v-else>Register LSG</span>
       </v-btn>
+
+      <!-- Logout Button -->
+      <v-btn @click="logout"> Logout </v-btn>
     </v-form>
   </div>
 </template>

@@ -50,7 +50,7 @@ const onSubmit = async () => {
       if (userRole === 'Admin') {
         router.replace('/admin')
       } else {
-        router.replace('/merchs')
+        router.replace('/home')
       }
     }
   }

@@ -43,29 +43,8 @@ const selectedDepartment = ref('') // To hold the selected department
           </v-card-title>
         </div>
 
-        <v-card-text class="d-flex justify-center pa-0">
-          <v-btn
-            @click="isAdmin = false"
-            :class="{ 'bg-student': !isAdmin }"
-            style="color: #cdd7bf"
-            class="mr-5"
-            >Student</v-btn
-          >
-
-          <v-btn
-            @click="isAdmin = true"
-            :class="{ 'bg-admin': isAdmin }"
-            style="color: #cdd7bf"
-            >Admin</v-btn
-          >
-        </v-card-text>
-
         <v-card-text class="bg-surface-white mx-8 pt-8 text-center">
-          {{
-            isAdmin
-              ? 'Sign Up to your CampusThreads Admin account.'
-              : 'Sign Up to your CampusThreads Student account.'
-          }}
+          Sign Up to your CampusThreads Account
         </v-card-text>
 
         <v-card-text>

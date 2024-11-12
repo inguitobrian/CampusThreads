@@ -16,17 +16,23 @@ const userInfo = ref(authStore.userData)
 const avatarText = ref('')
 const fullName = ref('')
 const userEmail = ref('')
+const isLSGAccount = ref(false) // To store if user has 'LSG' role
 
 // Fetch user data on component mount
 onMounted(async () => {
   await authStore.getUserInformation() // Fetch user info from store
 
   if (authStore.userData) {
-    const { firstname, lastname, email } = authStore.userData
+    const { firstname, lastname, email, role } = authStore.userData
     avatarText.value =
       `${firstname.charAt(0)}${lastname.charAt(0)}`.toUpperCase()
     fullName.value = `${firstname} ${lastname}`
     userEmail.value = email
+
+    // Check if the user has an 'LSG' role from metadata
+    if (role === 'LSG') {
+      isLSGAccount.value = true
+    }
   }
 })
 
@@ -78,6 +84,16 @@ const onLogout = async () => {
         <!-- Account Settings Button -->
         <v-btn prepend-icon="mdi-wrench" variant="plain" to="/settings">
           Account Settings
+        </v-btn>
+        <v-divider class="my-3"></v-divider>
+        <!-- Conditionally Render "Manage Merchandise" Button based on role -->
+        <v-btn
+          v-if="isLSGAccount"
+          prepend-icon="mdi-cogs"
+          variant="plain"
+          to="/stocks"
+        >
+          Manage Merchandise
         </v-btn>
 
         <v-divider class="my-3"></v-divider>

@@ -38,9 +38,9 @@ onMounted(() => {
               class="mt-2"
               color="red-darken-4"
               prepend-icon="mdi-home"
-              to="/"
+              to="/home"
             >
-              Back to {{ isLoggedIn ? 'Dashboard' : 'Homepage' }}
+              Back to {{ isLoggedIn ? 'HomePage' : 'Homepage' }}
             </v-btn>
           </v-col>
         </v-row>

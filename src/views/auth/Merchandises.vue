@@ -129,7 +129,7 @@ onMounted(async () => {
   <AppLayout>
     <template #content>
       <v-container>
-        <h2 class="text-center">Merchandise</h2>
+        <h2 class="text-center">College Merchandises</h2>
         <!-- Filter Buttons -->
         <div class="text-center d-flex justify-center gap-4">
           <v-btn class="mx-2" @click="activeType = ''">All</v-btn>

@@ -58,27 +58,9 @@ const isAdmin = ref(false)
                 <span>Welcome Back!</span>
               </v-card-title>
             </div>
-            <v-card-text class="d-flex justify-center pa-0">
-              <v-btn
-                @click="isAdmin = false"
-                :class="{ 'bg-student': !isAdmin }"
-                style="color: #cdd7bf"
-                class="mr-5"
-                >Student</v-btn
-              >
-              <v-btn
-                @click="isAdmin = true"
-                :class="{ 'bg-admin': isAdmin }"
-                style="color: #cdd7bf"
-                >Admin</v-btn
-              >
-            </v-card-text>
+
             <v-card-text class="bg-surface-white mx-8 text-center">
-              {{
-                isAdmin
-                  ? 'Securely log in to your CampusThreads Admin account.'
-                  : 'Securely log in to your CampusThreads Student account.'
-              }}
+              Securely log in to your CampusThreads account
             </v-card-text>
             <Loginform :is-admin="isAdmin"></Loginform>
           </v-card>
