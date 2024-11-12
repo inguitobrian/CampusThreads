@@ -72,14 +72,25 @@ const shopItems = [
   <AppLayout>
     <template #content>
       <v-carousel :show-arrows="false">
-        <v-carousel-item
-          v-for="(item, i) in items"
-          :key="i"
-          :src="item.src"
-          cover
-        ></v-carousel-item>
-      </v-carousel>
-
+    <v-carousel-item
+      v-for="(item, i) in items"
+      :key="i"
+      :src="item.src"
+      cover
+    >
+      <v-container
+        class="d-flex flex-column justify-center align-center"
+        style="color: white; height: 100%;"
+      >
+        <h1 class="display-2" style="font-weight: bold; font-size: 4rem;">
+          University Spirit Merchandise Hub
+        </h1>
+        <p class="text-h5" style="max-width: 600px; text-align: center; margin-top: 20px;">
+          Your one-stop shop for all campus gear and essentials.
+        </p>
+      </v-container>
+    </v-carousel-item>
+  </v-carousel>
       <v-container class="text-center mt-8">
         <h1 class="text-h4 font-weight-bold mb-4" style="font-size: 2rem;">
           "Wear Your School Spirit, Share Your Pride"
@@ -298,6 +309,14 @@ const shopItems = [
 .hover-effect:hover {
   transform: scale(1.05);
   opacity: 0.9;
+}
+
+.v-carousel-item {
+  position: relative;
+}
+
+.display-2 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 </style>
