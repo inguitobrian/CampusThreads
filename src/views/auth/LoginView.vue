@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import AppLayout from '@/components/layout/AppLayout.vue'
 import Loginform from '@/components/auth/LoginForm.vue'
+
 const isAdmin = ref(false)
 </script>
 
@@ -50,7 +51,6 @@ const isAdmin = ref(false)
                 max-width="40px"
                 contain
               ></v-img>
-
               <v-card-title
                 class="text-h4 font-weight-black light-green-darken-4"
                 style="margin: 0; color: #40513b"
@@ -58,7 +58,6 @@ const isAdmin = ref(false)
                 <span>Welcome Back!</span>
               </v-card-title>
             </div>
-
             <v-card-text class="d-flex justify-center pa-0">
               <v-btn
                 @click="isAdmin = false"
@@ -67,7 +66,6 @@ const isAdmin = ref(false)
                 class="mr-5"
                 >Student</v-btn
               >
-
               <v-btn
                 @click="isAdmin = true"
                 :class="{ 'bg-admin': isAdmin }"
@@ -75,7 +73,6 @@ const isAdmin = ref(false)
                 >Admin</v-btn
               >
             </v-card-text>
-
             <v-card-text class="bg-surface-white mx-8 text-center">
               {{
                 isAdmin
@@ -83,8 +80,7 @@ const isAdmin = ref(false)
                   : 'Securely log in to your CampusThreads Student account.'
               }}
             </v-card-text>
-            <Loginform></Loginform>
-            <v-card-text> </v-card-text>
+            <Loginform :is-admin="isAdmin"></Loginform>
           </v-card>
         </v-col>
       </v-row>

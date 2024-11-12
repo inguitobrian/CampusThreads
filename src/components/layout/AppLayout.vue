@@ -1,8 +1,21 @@
 <script setup>
-import { ref } from 'vue'
+import { isAuthenticated } from '@/utils/supabase'
+import { onMounted, ref } from 'vue'
+import ProfileHeader from './ProfileHeader.vue'
 
 const theme = ref('light')
+const isLoggedIn = ref(false)
 const drawer = ref(false) // for the navigation drawer on mobile screens
+
+// Get Authentication status from supabase
+const getLoggedStatus = async () => {
+  isLoggedIn.value = await isAuthenticated()
+}
+
+// Load Functions during component rendering
+onMounted(() => {
+  getLoggedStatus()
+})
 </script>
 
 <template>
@@ -46,12 +59,8 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
             solo
           ></v-text-field>
         </div>
-
+        <ProfileHeader v-if="isLoggedIn"></ProfileHeader>
         <!-- Log In Button for all sizes -->
-        <v-btn class="mr-5 ml-5" style="color: white">
-          <v-icon left>mdi-account</v-icon>
-          Log In
-        </v-btn>
       </v-app-bar>
 
       <!-- Mobile Navigation Drawer -->
@@ -71,9 +80,6 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
           </v-list-item>
           <v-list-item link>
             <v-list-item-content>About</v-list-item-content>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-content>Log In</v-list-item-content>
           </v-list-item>
         </v-list>
       </v-navigation-drawer>

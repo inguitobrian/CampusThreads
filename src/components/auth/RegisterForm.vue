@@ -1,53 +1,90 @@
 <script setup>
-import { ref, defineProps } from 'vue'
+import { ref } from 'vue'
 import {
   requiredValidator,
   emailValidator,
   passwordValidator,
   confirmedValidator,
 } from '@/utils/validators'
+import AlertNotification from '@/components/common/AlertNotification.vue'
+import { supabase, formActionDefault } from '@/utils/supabase.js'
+import { useRouter } from 'vue-router'
 
-const props = defineProps({
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
-})
-
+const router = useRouter()
 const visible = ref(false)
 const reenter = ref(false)
 const refVForm = ref()
-const departments = ['CCIS', 'CEGS', 'CHASS', 'CAA', 'COFES', 'CMNS', 'CED'] // List of departments
-const selectedDepartment = ref('') // To hold the selected department
 
 const formDataDefault = {
-  id: '',
   firstname: '',
   lastname: '',
+  account_id: '',
   email: '',
+  number: '',
   password: '',
-  password_confirmation: '',
 }
 
 const formData = ref({
   ...formDataDefault,
 })
 
+const formAction = ref({
+  ...formActionDefault,
+})
+
 const onFormSubmit = () => {
   refVForm.value?.validate().then(({ valid }) => {
-    if (valid) onLogin()
+    if (valid) onSubmit()
   })
 }
 
-// Function to validate ID format
-function isValidId(id) {
-  const idPattern = /^\d{3}-\d{5}$/ // Pattern: 3 digits, a slash, and 5 digits
-  return idPattern.test(id)
+function isValidId(account_id) {
+  const idPattern = /^\d{3}-\d{5}$/
+  return idPattern.test(account_id)
 }
-const id = ref('') // ID input value
+
+const onSubmit = async () => {
+  // Reset Form Action utils
+  formAction.value = { ...formActionDefault, formProcess: true }
+
+  const { data, error } = await supabase.auth.signUp({
+    email: formData.value.email,
+    password: formData.value.password,
+    options: {
+      data: {
+        firstname: formData.value.firstname,
+        lastname: formData.value.lastname,
+        number: formData.value.number,
+        account_id: formData.value.account_id,
+        role: 'Student', // Default role set as "Student"
+        isLSG: false, // Default LSG status to false
+      },
+    },
+  })
+
+  if (error) {
+    // Add Error Message and Status Code
+    formAction.value.formErrorMessage = error.message
+    formAction.value.formStatus = error.status
+  } else if (data) {
+    console.log(data)
+    formAction.value.formSuccessMessage = 'Successfully Registered Account.'
+
+    await supabase.auth.signOut()
+  }
+
+  refVForm.value?.reset()
+  // Turn off processing
+  formAction.value.formProcess = false
+}
 </script>
 
 <template>
+  <AlertNotification
+    :form-success-message="formAction.formSuccessMessage"
+    :form-error-message="formAction.formErrorMessage"
+  ></AlertNotification>
+
   <v-form ref="refVForm" @submit.prevent="onFormSubmit">
     <v-row>
       <v-col cols="6">
@@ -60,6 +97,7 @@ const id = ref('') // ID input value
       </v-col>
       <v-col cols="6">
         <v-text-field
+          v-model="formData.lastname"
           label="Last Name"
           prepend-inner-icon="mdi-account"
           :rules="[requiredValidator]"
@@ -67,26 +105,27 @@ const id = ref('') // ID input value
       </v-col>
     </v-row>
 
-    <!-- New ID input field -->
     <v-text-field
-      v-model="id"
-      label="ID (e.g. 221/00391)"
+      v-model="formData.account_id"
+      label="ID (e.g. 221-00391)"
       prepend-inner-icon="mdi-account-card-details"
       :rules="[
         requiredValidator,
         value =>
-          isValidId(value) || 'ID must be in the format 3 digits / 5 digits',
+          isValidId(value) || 'ID must be in the format 3 digits-5 digits',
       ]"
     ></v-text-field>
 
     <v-text-field
       label="Phone Number"
+      v-model="formData.number"
       prepend-inner-icon="mdi mdi-phone"
       :rules="[requiredValidator]"
     ></v-text-field>
 
     <v-text-field
       label="Email"
+      v-model="formData.email"
       prepend-inner-icon="mdi-email-outline"
       :rules="[requiredValidator, emailValidator]"
     ></v-text-field>
@@ -114,29 +153,24 @@ const id = ref('') // ID input value
       ]"
     ></v-text-field>
 
-    <!-- Conditionally render the department dropdown for Admins -->
-    <v-select
-      v-if="isAdmin"
-      v-model="selectedDepartment"
-      :items="departments"
-      label="Select Department"
-      class="mt-3"
-    ></v-select>
-
     <v-btn
       class="mt-2 mb-3 text-h6 font-weight-bold bg-login"
       size="large"
       type="submit"
+      prepend-icon="mdi-account-plus"
       block
       style="color: #162013"
-      >Create my Account</v-btn
+      :disabled="formAction.formProcess"
+      :loading="formAction.formProcess"
     >
+      Create my Account
+    </v-btn>
 
     <v-card-text class="text-center">
-      <span style="color: #40513b; text-decoration: none"
-        >Already have an account?</span
+      <span style="color: #40513b; text-decoration: none">
+        Already have an account?</span
       >
-      <RouterLink style="color: #0000ff; text-decoration: underline" to="/"
+      <RouterLink style="color: #0000ff; text-decoration: underline" to="/login"
         >Log in here</RouterLink
       >
     </v-card-text>

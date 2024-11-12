@@ -1,0 +1,76 @@
+import LoginView from '@/views/auth/LoginView.vue'
+import RegisterView from '@/views/auth/RegisterView.vue'
+import DashboardView from '@/views/system/DashboardView.vue'
+import AccountSettingsView from '@/views/system/AccountSettingsView.vue'
+import AdminDashboard from '@/views/system/AdminDashboard.vue'
+import Stocks from '@/views/system/Stocks.vue'
+import Merchandises from '@/views/auth/Merchandises.vue'
+import AddMerchandise from '@/views/system/AddMerchandise.vue'
+import OrderHistory from '@/views/system/order-history/OrderHistory.vue'
+import ForbiddenView from '@/views/errors/ForbiddenView.vue'
+import NotFoundView from '@/views/errors/NotFoundView.vue'
+
+export const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView,
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: RegisterView,
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: DashboardView,
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: AccountSettingsView,
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: AdminDashboard,
+    meta: { requiresAuth: false, allowedRoles: ['Admin'] }, // No access for Student or LSG
+  },
+  {
+    path: '/stocks',
+    name: 'stocks',
+    component: Stocks,
+    meta: { requiresAuth: true, allowedRoles: ['LSG'] },
+  },
+  {
+    path: '/merchs',
+    name: 'merchs',
+    component: Merchandises,
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
+  },
+  {
+    path: '/addmerch',
+    name: 'addmerch',
+    component: AddMerchandise,
+    meta: { requiresAuth: true, allowedRoles: ['LSG'] },
+  },
+  {
+    path: '/orders',
+    name: 'orders',
+    component: OrderHistory,
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },
+  },
+  {
+    path: '/forbidden',
+    name: 'forbidden',
+    component: ForbiddenView,
+  },
+  {
+    path: '/:catchAll(.*)',
+    name: 'not-found',
+    component: NotFoundView,
+  },
+]
