@@ -5,6 +5,7 @@ import {
   emailValidator,
   passwordValidator,
   confirmedValidator,
+  phoneNumberValidator,
 } from '@/utils/validators'
 import AlertNotification from '@/components/common/AlertNotification.vue'
 import { supabase, formActionDefault } from '@/utils/supabase.js'
@@ -120,7 +121,7 @@ const onSubmit = async () => {
       label="Phone Number"
       v-model="formData.number"
       prepend-inner-icon="mdi mdi-phone"
-      :rules="[requiredValidator]"
+      :rules="[requiredValidator, phoneNumberValidator]"
     ></v-text-field>
 
     <v-text-field
