@@ -68,6 +68,16 @@ export const betweenValidator = (value, min, max) => {
     `Enter number between ${min} and ${max}`
   )
 }
+// 👉 Philippine Phone Number Validator
+export const phoneNumberValidator = value => {
+  if (isEmpty(value)) return true // Allow empty input to be checked by the requiredValidator
+
+  const phonePattern = /^(09|\+639)\d{9}$/ // Matches numbers starting with '09' or '+639' followed by 9 digits
+  return (
+    phonePattern.test(String(value)) ||
+    'The Phone Number field must be a valid number (e.g., 09123456789 or +639123456789)'
+  )
+}
 
 // 👉 Integer Validator
 export const integerValidator = value => {

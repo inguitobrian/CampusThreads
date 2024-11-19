@@ -8,6 +8,7 @@ import { requiredValidator, emailValidator } from '@/utils/validators'
 const router = useRouter()
 const visible = ref(false)
 const refVForm = ref()
+const isAdminLogin = ref(false) // Toggle for admin login
 const formDataDefault = {
   email: '',
   password: '',
@@ -19,7 +20,7 @@ const formAction = ref({
   ...formActionDefault,
 })
 
-// Function to log in with regular user credentials
+// Function to log in
 const onSubmit = async () => {
   formAction.value = { ...formActionDefault, formProcess: true }
 
@@ -37,19 +38,23 @@ const onSubmit = async () => {
     // Get the role from user metadata
     const userRole = user?.user_metadata?.role
 
-    // Allow both 'Student' and 'LSG' roles, plus 'Admin' for the admin login
-    const validRoles = ['Student', 'LSG', 'Admin']
-
-    if (!validRoles.includes(userRole)) {
-      formAction.value.formErrorMessage = `The account must be a ${validRoles.join(' or ')}`
-      formAction.value.formStatus = 403
-    } else {
-      formAction.value.formSuccessMessage = 'Successfully Logged In.'
-
-      // Conditional redirection based on role
-      if (userRole === 'Admin') {
-        router.replace('/admin')
+    // Handle Admin login
+    if (isAdminLogin.value) {
+      if (userRole !== 'Admin') {
+        formAction.value.formErrorMessage = `Only Admin accounts can log in here.`
+        formAction.value.formStatus = 403
       } else {
+        formAction.value.formSuccessMessage = 'Successfully Logged In as Admin.'
+        router.replace('/admin')
+      }
+    } else {
+      // Handle Student or LSG login
+      const validUserRoles = ['Student', 'LSG']
+      if (!validUserRoles.includes(userRole)) {
+        formAction.value.formErrorMessage = `The user is not registered yet.`
+        formAction.value.formStatus = 403
+      } else {
+        formAction.value.formSuccessMessage = 'Successfully Logged In.'
         router.replace('/home')
       }
     }
@@ -73,6 +78,14 @@ const onFormSubmit = () => {
   ></AlertNotification>
 
   <v-form ref="refVForm" fast-fail @submit.prevent="onFormSubmit">
+    <!-- Toggle for Admin Login -->
+    <v-switch
+      v-model="isAdminLogin"
+      label="Log in as Admin"
+      class="mb-4 d-flex justify-center align-center"
+    ></v-switch>
+
+    <!-- Email Field -->
     <v-text-field
       v-model="formData.email"
       label="Email"
@@ -80,6 +93,7 @@ const onFormSubmit = () => {
       :rules="[requiredValidator, emailValidator]"
     ></v-text-field>
 
+    <!-- Password Field -->
     <v-text-field
       v-model="formData.password"
       :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
@@ -90,6 +104,7 @@ const onFormSubmit = () => {
       :rules="[requiredValidator]"
     ></v-text-field>
 
+    <!-- Submit Button -->
     <v-btn
       class="mt-2 mb-3 text-h6 font-weight-bold bg-login mb-5"
       size="large"
