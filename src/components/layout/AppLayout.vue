@@ -54,7 +54,7 @@ onMounted(() => {
 
         <!-- Desktop View: Nav Buttons -->
         <div class="d-none d-lg-flex nav-buttons">
-          <v-btn text style="color: white" to="/home">Home</v-btn>
+          <v-btn text style="color: white" to="/">Home</v-btn>
 
           <!-- Departments Dropdown -->
           <v-menu offset-y>
@@ -74,17 +74,8 @@ onMounted(() => {
             </v-list>
           </v-menu>
 
-          <v-btn text style="color: white">Shop all</v-btn>
+          <v-btn text style="color: white" to="/merchs">Shop all</v-btn>
           <v-btn text style="color: white">About</v-btn>
-          <v-text-field
-            class="mx-4 search-bar"
-            style="color: white"
-            prepend-inner-icon="mdi-magnify"
-            placeholder="Search"
-            hide-details
-            dense
-            solo
-          ></v-text-field>
         </div>
 
         <ProfileHeader v-if="isLoggedIn"></ProfileHeader>
@@ -93,7 +84,7 @@ onMounted(() => {
       <!-- Mobile Navigation Drawer -->
       <v-navigation-drawer v-model="drawer" app temporary>
         <v-list dense>
-          <v-list-item link to="/home">
+          <v-list-item link to="/">
             <v-list-item-content>Home</v-list-item-content>
           </v-list-item>
 

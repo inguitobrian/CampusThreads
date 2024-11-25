@@ -71,7 +71,7 @@ export const routes = [
     component: ForbiddenView,
   },
   {
-    path: '/home',
+    path: '/',
     name: 'home',
     component: HomePage,
     meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },

@@ -32,8 +32,8 @@ const isAdmin = ref(false)
             class="text-center rounded-xl"
             elevation="24"
             style="
-              max-width: 400px;
-              height: 550px;
+              max-width: 600px;
+              height: auto;
               background: linear-gradient(
                 to top,
                 #b4cca9,
