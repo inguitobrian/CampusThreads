@@ -89,7 +89,7 @@ const onLogout = async () => {
         <!-- Conditionally Render "Manage Merchandise" Button based on role -->
         <v-btn
           v-if="isLSGAccount"
-          prepend-icon="mdi-cogs"
+          prepend-icon="mdi-tshirt-crew"
           variant="plain"
           to="/stocks"
         >
