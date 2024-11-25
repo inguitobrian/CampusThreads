@@ -94,7 +94,7 @@ onMounted(() => {
           </v-list-item>
 
           <!-- About Link -->
-          <v-list-item link>
+          <v-list-item link to="/about">
             <v-list-item-content>About</v-list-item-content>
           </v-list-item>
         </v-list>
