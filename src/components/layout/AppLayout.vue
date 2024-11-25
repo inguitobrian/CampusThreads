@@ -5,7 +5,7 @@ import ProfileHeader from './ProfileHeader.vue'
 
 const theme = ref('light')
 const isLoggedIn = ref(false)
-const drawer = ref(false) // for the navigation drawer on mobile screens
+const drawer = ref(false) // for the navigation drawer on mobile and large screens
 
 // List of departments for dropdown
 const departments = ref([
@@ -17,6 +17,9 @@ const departments = ref([
   { name: 'COFES', route: '/cofes' },
   { name: 'CAA', route: '/caa' },
 ])
+
+// Manage dropdown visibility
+const menuVisible = ref(false)
 
 // Get Authentication status from supabase
 const getLoggedStatus = async () => {
@@ -35,16 +38,15 @@ onMounted(() => {
       :theme="theme"
       style="background-color: #e1ebdc; font-family: 'Roboto', sans-serif"
     >
-      <!-- App Bar -->
+      <!-- App Bar with Hamburger Icon for Mobile and Large Screen -->
       <v-app-bar :style="{ backgroundColor: '#111703' }" class="px-3 nav-bar">
-        <!-- Mobile View: Hamburger Icon -->
+        <!-- Mobile and Desktop View: Hamburger Icon -->
         <v-app-bar-nav-icon
           @click="drawer = !drawer"
           style="color: white"
-          class="d-lg-none"
+          class="d-block"
         ></v-app-bar-nav-icon>
 
-        <!-- Toolbar Title -->
         <v-toolbar-title
           style="color: white; font-family: 'Montserrat', sans-serif"
           >CampusThreads</v-toolbar-title
@@ -52,55 +54,46 @@ onMounted(() => {
 
         <v-spacer></v-spacer>
 
-        <!-- Desktop View: Nav Buttons -->
-        <div class="d-none d-lg-flex nav-buttons">
-          <v-btn text style="color: white" to="/">Home</v-btn>
-
-          <!-- Departments Dropdown -->
-          <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn text v-bind="attrs" v-on="on" style="color: white"
-                >Departments</v-btn
-              >
-            </template>
-            <v-list>
-              <v-list-item
-                v-for="(dept, index) in departments"
-                :key="index"
-                :to="dept.route"
-              >
-                <v-list-item-content>{{ dept.name }}</v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-
-          <v-btn text style="color: white" to="/merchs">Shop all</v-btn>
-          <v-btn text style="color: white">About</v-btn>
-        </div>
-
+        <!-- Profile Header only for logged-in users -->
         <ProfileHeader v-if="isLoggedIn"></ProfileHeader>
       </v-app-bar>
 
-      <!-- Mobile Navigation Drawer -->
+      <!-- Mobile Navigation Drawer (Hamburger Menu Content) -->
       <v-navigation-drawer v-model="drawer" app temporary>
         <v-list dense>
+          <!-- Home Link -->
           <v-list-item link to="/">
             <v-list-item-content>Home</v-list-item-content>
           </v-list-item>
 
-          <v-subheader>Departments</v-subheader>
-          <v-list-item
-            v-for="(dept, index) in departments"
-            :key="index"
-            :to="dept.route"
-          >
-            <v-list-item-content>{{ dept.name }}</v-list-item-content>
+          <!-- Colleges Dropdown -->
+          <v-list-item @click="menuVisible = !menuVisible">
+            <v-list-item-content>Colleges</v-list-item-content>
+            <v-icon :style="{ transform: menuVisible ? 'rotate(180deg)' : 'rotate(0deg)' }">
+              mdi-chevron-down
+            </v-icon>
           </v-list-item>
 
+          <!-- Dropdown menu for colleges -->
+          <v-slide-y-transition>
+            <v-list v-if="menuVisible" dense>
+              <v-list-item
+                v-for="(dept, index) in departments"
+                :key="index"
+                :to="dept.route"
+                link
+              >
+                <v-list-item-content>{{ dept.name }}</v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-slide-y-transition>
+
+          <!-- Shop All Link -->
           <v-list-item link to="/merchs">
             <v-list-item-content>Shop all</v-list-item-content>
           </v-list-item>
 
+          <!-- About Link -->
           <v-list-item link>
             <v-list-item-content>About</v-list-item-content>
           </v-list-item>
@@ -113,82 +106,16 @@ onMounted(() => {
           <slot name="content"></slot>
         </v-container>
       </v-main>
-
-      <v-footer class="footer" padless>
-        <v-container class="text-center">
-          <v-row align="center" justify="center">
-            <!-- Center Column: Links in a single line -->
-            <v-col cols="12" md="12">
-              <span style="color: black; font-size: 14px; margin-right: 20px"
-                >Privacy Policy</span
-              >
-              <span style="color: black; font-size: 14px; margin-right: 20px"
-                >Terms of Service</span
-              >
-              <span style="color: black; font-size: 14px; margin-right: 20px"
-                >FAQs</span
-              >
-              <span style="color: black; font-size: 14px; margin-right: 20px"
-                >Feedback</span
-              >
-            </v-col>
-          </v-row>
-
-          <!-- Bottom Row: Website Name -->
-          <v-row>
-            <v-col class="text-center" cols="12">
-              <span style="color: black; font-size: 14px"
-                ><b>© 2024 CampusThreads. All Rights Reserved.</b></span
-              >
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-footer>
     </v-app>
   </v-responsive>
 </template>
 
-<style>
-.bg-login {
-  background-color: #71885a;
-}
-
-.bg-student {
-  background-color: #8fa477;
-}
-
-.bg-admin {
-  background-color: #acbd99;
-}
-
-.v-input--selection-controls
-  .v-input--checkbox
-  .v-input__control
-  .v-input__slot {
-  color: #63794e;
-}
-
+<style scoped>
 .nav-bar {
   min-height: 64px;
   padding: 0 16px;
   display: flex;
   align-items: center;
-}
-
-.nav-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.search-bar {
-  min-width: 300px;
-  max-width: 500px;
-  margin-right: 20px;
-}
-
-.search-bar {
-  min-height: 40px;
 }
 
 .footer {

@@ -306,7 +306,7 @@ function prevSet() {
 
                 <!-- Buy Now Button -->
                 <v-card-actions class="d-flex justify-end">
-                  <v-btn class="g-btn" @click="buyNow">Buy Now</v-btn>
+                  <v-btn class="btn" @click="buyNow">Buy Now</v-btn>
                 </v-card-actions>
               </v-card>
             </v-dialog>
@@ -472,7 +472,7 @@ function prevSet() {
   font-size: 18px;
 }
 
-.v-btn.g-btn {
+.v-btn.btn {
   background: linear-gradient(45deg, #c4ab0a, #ddda3f);
   color: white;
   font-weight: bold;
@@ -481,7 +481,7 @@ function prevSet() {
   padding: 10px 20px;
 }
 
-.v-btn.g-btn:hover {
+.v-btn.btn:hover {
   background: linear-gradient(45deg, #ddda3f, #c4ab0a);
 }
 

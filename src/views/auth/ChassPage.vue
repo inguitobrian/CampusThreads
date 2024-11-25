@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import AppLayout from '@/components/layout/AppLayout.vue'
 
 const theme = ref('light')
 const drawer = ref(false) // for the navigation drawer on mobile screens
@@ -50,6 +51,8 @@ function prevSet() {
 
 
 <template>
+  <AppLayout>
+    <template #content>
   <v-responsive class="border rounded">
     <v-app
   :theme="theme"
@@ -58,78 +61,6 @@ function prevSet() {
     font-family: 'Roboto', sans-serif
   "
 >
-  <!-- App Bar -->
-  <v-app-bar
-    :style="{
-      background: 'linear-gradient(to left, #5e2b8c, #111703)' /* Darker from right to left */
-    }"
-    class="px-3 nav-bar"
-  >
-        <!-- Mobile View: Hamburger Icon -->
-        <v-app-bar-nav-icon
-          @click="drawer = !drawer"
-          style="color: white"
-          class="d-lg-none"
-        ></v-app-bar-nav-icon>
-
-        <!-- Toolbar Title -->
-        <v-toolbar-title
-          style="color: white; font-family: 'Montserrat', sans-serif"
-        >
-          CampusThreads
-        </v-toolbar-title>
-
-        <v-spacer></v-spacer>
-
-        <!-- Desktop View: Nav Buttons -->
-        <div class="d-none d-lg-flex nav-buttons">
-          <v-btn text class="mr-1" style="color: white">Home</v-btn>
-          <v-btn text class="mr-1" style="color: white">Departments</v-btn>
-          <v-btn text class="mr-1" style="color: white">Shop all</v-btn>
-          <v-btn text class="mr-1" style="color: white">About</v-btn>
-          <!-- Search Field -->
-          <v-text-field
-            class="mx-4 search-bar"
-            style="color: white"
-            prepend-inner-icon="mdi-magnify"
-            placeholder="Search"
-            hide-details
-            dense
-            solo
-          ></v-text-field>
-        </div>
-
-        <!-- Log In Button for all sizes -->
-        <v-btn class="mr-5 ml-5" style="color: white">
-          <v-icon left>mdi-account</v-icon>
-          Log In
-        </v-btn>
-      </v-app-bar>
-
-      <!-- Mobile Navigation Drawer -->
-      <v-navigation-drawer v-model="drawer" app temporary>
-        <v-list dense>
-          <v-list-item>
-            <v-list-item-title class="text-h6">Menu</v-list-item-title>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-content>Home</v-list-item-content>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-content>Departments</v-list-item-content>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-content>Shop all</v-list-item-content>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-content>About</v-list-item-content>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-content>Log In</v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-
       <!-- Main Content -->
       <v-main>
         <v-container fluid>
@@ -289,6 +220,9 @@ function prevSet() {
 
 </v-footer>
 </template>
+</AppLayout>
+</template>
+
 
 <style>
 .bg-login {
