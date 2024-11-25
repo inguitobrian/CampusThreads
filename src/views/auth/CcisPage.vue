@@ -459,7 +459,7 @@ function prevSet() {
     height: 400px;
   }
 
-  .card {
+  .f-card {
     border-radius: 5px;
   }
 
@@ -468,7 +468,7 @@ function prevSet() {
     font-size: 16px;
   }
 
-  .v-btn.btn {
+  .v-btn.f-btn {
     font-size: 14px;
   }
 }
