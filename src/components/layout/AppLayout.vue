@@ -61,17 +61,17 @@ onMounted(() => {
       <!-- Mobile Navigation Drawer (Hamburger Menu Content) -->
       <v-navigation-drawer v-model="drawer" app temporary>
         <v-list dense>
-          <!-- Home Link -->
+          <!-- Home Link with Icon -->
           <v-list-item link to="/">
+            <v-icon left class="mr-2">mdi-home</v-icon>
             <v-list-item-content>Home</v-list-item-content>
           </v-list-item>
 
           <!-- Colleges Dropdown -->
           <v-list-item @click="menuVisible = !menuVisible">
+            <v-icon left class="mr-2">mdi-school</v-icon>
             <v-list-item-content>Colleges</v-list-item-content>
-            <v-icon :style="{ transform: menuVisible ? 'rotate(180deg)' : 'rotate(0deg)' }">
-              mdi-chevron-down
-            </v-icon>
+            <v-icon :style="{ transform: menuVisible ? 'rotate(180deg)' : 'rotate(0deg)' }">mdi-chevron-down</v-icon>
           </v-list-item>
 
           <!-- Dropdown menu for colleges -->
@@ -88,13 +88,15 @@ onMounted(() => {
             </v-list>
           </v-slide-y-transition>
 
-          <!-- Shop All Link -->
+          <!-- Shop All Link with Icon -->
           <v-list-item link to="/merchs">
+            <v-icon left class="mr-2">mdi-cart</v-icon>
             <v-list-item-content>Shop all</v-list-item-content>
           </v-list-item>
 
-          <!-- About Link -->
+          <!-- About Link with Icon -->
           <v-list-item link to="/about">
+            <v-icon left class="mr-2">mdi-information</v-icon>
             <v-list-item-content>About</v-list-item-content>
           </v-list-item>
         </v-list>
