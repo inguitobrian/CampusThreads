@@ -1,14 +1,15 @@
 <script setup>
 import { ref } from 'vue';
+import AppLayout from '@/components/layout/AppLayout.vue'
 
 const theme = ref('light');
 const drawer = ref(false);
 
 const images = [
-  { src: 'public/b438a2cb928c528ee494e31b275d8f06.jpg', price: '₱350', name: 'College Tee' },
-  { src: 'public/b0ac2c12da0c00691252ef81e3f9d4b1.jpg', price: '₱500', name: 'Outfits' },
-  { src: 'public/a8433f3083b769da094ddb1d81408e6b.jpg', price: '₱50', name: 'Accessories' },
-  { src: 'public/86b0588cda7de732293e10ac99e6b7d2.jpg', price: '₱100', name: 'Lanyard' },
+  { src: 'public/e98b82627662e62ab553b39ebe51174a.jpg', price: '₱350', name: 'College Tee' },
+  { src: 'public/45573a304bbfe6132dbac1cf25da78fd.jpg', price: '₱500', name: 'Outfits' },
+  { src: 'public/ef74f22d91a1496a8c3c6223eb56c80f.jpg', price: '₱50', name: 'Accessories' },
+  { src: 'public/df92d76bfd8fa56352d2b916bfb4b973.jpg', price: '₱100', name: 'Lanyard' },
 ]
 const modalVisible = ref(false)
 const selectedImage = ref({})
@@ -49,82 +50,14 @@ function prevSet() {
 </script>
 
 <template>
+  <AppLayout>
+   <template #content>
+
   <v-responsive class="border rounded">
     <v-app
       :theme="theme"
       style="background: linear-gradient(to right, #add8e6, #fdfd96); font-family: 'Roboto', sans-serif"
     >
-      <!-- App Bar -->
-      <v-app-bar
-  :style="{ background: 'linear-gradient(to right, #003366, #b8860b)' }"
-  class="px-3 nav-bar"
->
-
-        <!-- Mobile View: Hamburger Icon -->
-        <v-app-bar-nav-icon
-          @click="drawer = !drawer"
-          style="color: white"
-          class="d-lg-none"
-        ></v-app-bar-nav-icon>
-
-        <!-- Toolbar Title -->
-        <v-toolbar-title
-          style="color: white; font-family: 'Montserrat', sans-serif"
-        >
-          CampusThreads
-        </v-toolbar-title>
-
-        <v-spacer></v-spacer>
-
-        <!-- Desktop View: Nav Buttons -->
-        <div class="d-none d-lg-flex nav-buttons">
-          <v-btn text class="mr-1" style="color: white">Home</v-btn>
-          <v-btn text class="mr-1" style="color: white">Departments</v-btn>
-          <v-btn text class="mr-1" style="color: white">Shop all</v-btn>
-          <v-btn text class="mr-1" style="color: white">About</v-btn>
-          <!-- Search Field -->
-          <v-text-field
-            class="mx-4 search-bar"
-            style="color: white"
-            prepend-inner-icon="mdi-magnify"
-            placeholder="Search"
-            hide-details
-            dense
-            solo
-          ></v-text-field>
-        </div>
-
-        <!-- Log In Button for all sizes -->
-        <v-btn class="mr-5 ml-5" style="color: white">
-          <v-icon left>mdi-account</v-icon>
-          Log In
-        </v-btn>
-      </v-app-bar>
-
-      <!-- Mobile Navigation Drawer -->
-      <v-navigation-drawer v-model="drawer" app temporary>
-        <v-list dense>
-          <v-list-item>
-            <v-list-item-title class="text-h6">Menu</v-list-item-title>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-content>Home</v-list-item-content>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-content>Departments</v-list-item-content>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-content>Shop all</v-list-item-content>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-content>About</v-list-item-content>
-          </v-list-item>
-          <v-list-item link>
-            <v-list-item-content>Log In</v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
-
       <!-- Main Content -->
       <v-main>
         <v-container fluid>
@@ -141,7 +74,7 @@ function prevSet() {
         <v-container fluid>
           <v-row>
             <v-col cols="6">
-              <v-parallax height="500" src="public/fa157f04dc5f874ebddd2f56382dd64b.jpg">
+              <v-parallax height="500" src="public/df92d76bfd8fa56352d2b916bfb4b973.jpg">
                 <v-overlay>
                   <template v-slot:activator="{ props }">
                     <v-container v-bind="props" class="fill-height d-flex flex-column justify-space-between align-start">
@@ -160,7 +93,7 @@ function prevSet() {
             </v-col>
 
             <v-col cols="6">
-              <v-parallax height="500" src="public/pexels-eben-15404590.jpg">
+              <v-parallax height="500" src="public/e98b82627662e62ab553b39ebe51174a.jpg">
                 <v-overlay>
                   <template v-slot:activator="{ props }">
                     <v-container v-bind="props" class="fill-height d-flex flex-column justify-space-between align-start">
@@ -261,28 +194,10 @@ function prevSet() {
       </v-main>
     </v-app>
   </v-responsive>
-  <v-footer class="e-footer" padless>
-  <v-container class="text-center">
-    <v-row align="center" justify="center">
-      <!-- Center Column: Links in a single line -->
-      <v-col cols="12" md="12">
-        <span style="color: black; font-size: 14px; margin-right: 20px;">Privacy Policy</span>
-        <span style="color: black; font-size: 14px; margin-right: 20px;">Terms of Service</span>
-        <span style="color: black; font-size: 14px; margin-right: 20px;">FAQs</span>
-        <span style="color: black; font-size: 14px; margin-right: 20px;">Feedback</span>
-      </v-col>
-    </v-row>
-
-    <!-- Bottom Row: Website Name -->
-    <v-row>
-      <v-col class="text-center" cols="12">
-        <span style="color: black; font-size: 14px;"><b>© 2024 CampusThreads. All Rights Reserved.</b></span>
-      </v-col>
-    </v-row>
-  </v-container>
-
-</v-footer>
+  
 </template>
+  </AppLayout>
+  </template>
 
 <style>
 .bg-login {
@@ -343,12 +258,6 @@ function prevSet() {
   padding: 15px 30px;
   border-radius: 10px;
 }
-
-.e-footer {
-  background: linear-gradient(135deg, #f9e36b, #1e3d58); /* Light yellow to dark blue gradient */
-  padding: 20px 0;
-}
-
 
 .v-btn {
   margin: 5px;
@@ -464,7 +373,7 @@ function prevSet() {
     height: 400px;
   }
 
-  .card {
+  .e-card {
     border-radius: 5px;
   }
 
@@ -473,7 +382,7 @@ function prevSet() {
     font-size: 16px;
   }
 
-  .v-btn.btn {
+  .v-btn.e-btn {
     font-size: 14px;
   }
 }

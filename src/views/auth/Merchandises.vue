@@ -129,29 +129,28 @@ onMounted(async () => {
   <AppLayout>
     <template #content>
       <v-container>
-        <h2 class="text-center">College Merchandises</h2>
+        <h2 class="text-center mb-4">College Merchandises</h2>
+
         <!-- Filter Buttons -->
         <div class="text-center d-flex justify-center gap-4">
-          <v-btn class="mx-2" @click="activeType = ''">All</v-btn>
-          <v-btn class="mx-2" @click="activeType = 'Lanyard'">Lanyards</v-btn>
-          <v-btn class="mx-2" @click="activeType = 'Uniform'">Uniforms</v-btn>
-          <v-btn class="mx-2" @click="activeType = 'Accessories'"
-            >Accessories</v-btn
-          >
+          <v-btn class="filter-btn" @click="activeType = ''">All</v-btn>
+          <v-btn class="filter-btn" @click="activeType = 'Lanyard'">Lanyards</v-btn>
+          <v-btn class="filter-btn" @click="activeType = 'Uniform'">Uniforms</v-btn>
+          <v-btn class="filter-btn" @click="activeType = 'Accessories'">Accessories</v-btn>
         </div>
 
         <!-- Merchandise Display -->
         <v-container class="mt-3">
           <v-row>
             <v-col
-              cols="12"
-              md="4"
               v-for="item in filteredMerchandise"
               :key="item.id"
-              class="mt-3"
+              cols="12"
+              md="4"
+              class="mb-4"
             >
-              <v-card @click="openDetailModal(item)">
-                <v-img :src="item.image" height="200px"></v-img>
+              <v-card @click="openDetailModal(item)" class="product-card">
+                <v-img :src="item.image" height="200px" class="product-img"></v-img>
                 <v-card-title>{{ item.name }}</v-card-title>
                 <v-card-subtitle>{{ item.desc }}</v-card-subtitle>
                 <v-card-text>
@@ -170,39 +169,22 @@ onMounted(async () => {
             <v-card-subtitle>{{ selectedMerchandise?.desc }}</v-card-subtitle>
             <v-card-text>
               <v-img :src="selectedMerchandise?.image" height="200px"></v-img>
-              <div>
-                <strong>Price:</strong> ₱{{ selectedMerchandise?.price }}
-              </div>
-              <div>
-                <strong>Department:</strong>
-                {{ selectedMerchandise?.college_name }}
-              </div>
-              <div>
-                <strong>Available Quantity:</strong>
-                {{ selectedMerchandise?.availableQuantity }}
-              </div>
+              <div><strong>Price:</strong> ₱{{ selectedMerchandise?.price }}</div>
+              <div><strong>Department:</strong> {{ selectedMerchandise?.college_name }}</div>
+              <div><strong>Available Quantity:</strong> {{ selectedMerchandise?.availableQuantity }}</div>
               <div class="d-flex align-center">
-                <v-btn icon @click="decreaseQuantity"
-                  ><v-icon>mdi-minus</v-icon></v-btn
-                >
-                <v-text-field
-                  label="Quantity"
-                  v-model="quantity"
-                  type="number"
-                  min="1"
-                  class="mx-2"
-                  readonly
-                ></v-text-field>
-                <v-btn icon @click="increaseQuantity"
-                  ><v-icon>mdi-plus</v-icon></v-btn
-                >
+                <v-btn icon @click="decreaseQuantity">
+                  <v-icon>mdi-minus</v-icon>
+                </v-btn>
+                <v-text-field label="Quantity" v-model="quantity" type="number" min="1" class="mx-2" readonly />
+                <v-btn icon @click="increaseQuantity">
+                  <v-icon>mdi-plus</v-icon>
+                </v-btn>
               </div>
               <div><strong>Total Price:</strong> ₱{{ totalPrice }}</div>
             </v-card-text>
             <v-card-actions>
-              <v-btn color="primary" @click="confirmPurchase"
-                >Confirm Purchase</v-btn
-              >
+              <v-btn color="primary" @click="confirmPurchase">Confirm Purchase</v-btn>
               <v-btn text @click="isDetailModalOpen = false">Cancel</v-btn>
             </v-card-actions>
           </v-card>
@@ -213,10 +195,58 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.v-card-subtitle {
-  max-height: 50px;
-  overflow-y: auto;
-  white-space: normal;
-  overflow-wrap: break-word;
+/* Custom styles for hover effects and transitions */
+.product-card {
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product-img {
+  border-radius: 8px;
+}
+
+/* Filter Button styles */
+.filter-btn {
+  background-color: #000000;
+  color: white;
+  font-weight: bold;
+  padding: 8px 20px;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+.filter-btn:hover {
+  background-color: #3b3633;
+}
+
+/* Modal styles */
+.v-dialog .v-card {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.v-card-title, .v-card-subtitle {
+  font-weight: bold;
+}
+
+.v-btn {
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    margin-bottom: 20px;
+  }
+
+  .filter-btn {
+    padding: 6px 15px;
+  }
+}
+
 </style>
+

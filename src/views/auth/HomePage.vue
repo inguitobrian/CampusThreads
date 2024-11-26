@@ -2,10 +2,10 @@
 import AppLayout from '@/components/layout/AppLayout.vue'
 
 const items = [
-  { src: 'public/pexels-daiangan-102129.jpg' },
+  { src: 'public/bb5c7a2ae83123e155fddf6d11040816.jpg' },
   { src: 'public/DJI_0016 (1).jpg' },
-  { src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg' },
-  { src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg' },
+  { src: 'public/55b172c9edee65f683757cb9d49e6b8a.jpg' },
+  { src: 'public/bbc2ba5d1153d0f86705527cc838b68b.jpg' },
 ]
 
 import { ref } from 'vue'
@@ -81,7 +81,7 @@ const shopItems = [
   },
   {
     name: 'Department Lanyard',
-    image: 'public/86b0588cda7de732293e10ac99e6b7d2.jpg',
+    image: 'public/c5b9fc3dca0f741158fdb98153f4d147.jpg',
   },
   {
     name: 'Campus Accessory',
@@ -166,7 +166,7 @@ const shopItems = [
           </v-col>
 
           <v-col cols="4">
-            <v-parallax height="600" src="public/pexels-eben-15404590.jpg">
+            <v-parallax height="600" src="public/6f4546573663396395810e296542e2ad.jpg">
               <v-overlay>
                 <template v-slot:activator="{ props }">
                   <v-container

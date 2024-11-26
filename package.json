@@ -11,8 +11,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.45.6",
     "@mdi/js": "^7.4.47",
+    "@supabase/supabase-js": "^2.46.1",
     "dotenv": "^16.4.5",
     "openai": "^4.71.1",
     "pinia": "^2.2.4",

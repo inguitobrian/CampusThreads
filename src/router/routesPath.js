@@ -16,6 +16,7 @@ import CegsPage from '@/views/auth/CegsPage.vue'
 import ChassPage from '@/views/auth/ChassPage.vue'
 import CmnsPage from '@/views/auth/CmnsPage.vue'
 import CofesPage from '@/views/auth/CofesPage.vue'
+import AboutUs from '@/views/auth/AboutUs.vue'
 
 export const routes = [
   {
@@ -122,5 +123,12 @@ export const routes = [
     path: '/:catchAll(.*)',
     name: 'not-found',
     component: NotFoundView,
+  },
+
+  {
+    path: '/about',
+    name: 'About',
+    component: AboutUs, 
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },
   },
 ]

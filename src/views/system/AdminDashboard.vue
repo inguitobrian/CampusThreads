@@ -339,4 +339,27 @@ onMounted(() => {
 .admin-container {
   padding-top: 40px;
 }
+.register-container {
+  background: linear-gradient(135deg, #6ff665, #99fd85);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+}
+
+.radio-option {
+  margin: 0.5rem 0;
+}
+
+.text-primary {
+  color: #003366 !important;
+}
+
+.text-center {
+  text-align: center;
+}
 </style>
