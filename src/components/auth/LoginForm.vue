@@ -45,7 +45,7 @@ const onSubmit = async () => {
         formAction.value.formStatus = 403
       } else {
         formAction.value.formSuccessMessage = 'Successfully Logged In as Admin.'
-        router.replace('/admin')
+        router.replace('/')
       }
     } else {
       // Handle Student or LSG login

@@ -17,6 +17,7 @@ const fullName = ref('')
 const userEmail = ref('')
 const profilePicture = ref(null) // To store the user's profile picture URL
 const isLSGAccount = ref(false) // To check if the user has an 'LSG' role
+const isAdminAccount = ref(false)
 
 // Fetch user data on component mount
 onMounted(async () => {
@@ -33,6 +34,9 @@ onMounted(async () => {
     // Check if the user has an 'LSG' role from metadata
     if (role === 'LSG') {
       isLSGAccount.value = true
+    }
+    if (role === 'Admin') {
+      isAdminAccount.value = true
     }
   }
 })
@@ -118,6 +122,17 @@ const onLogout = async () => {
           to="/stocks"
         >
           Manage Merchandise
+        </v-btn>
+
+        <v-divider class="my-1"></v-divider>
+
+        <v-btn
+          v-if="isAdminAccount"
+          prepend-icon="mdi-account-multiple"
+          variant="plain"
+          to="/admin"
+        >
+          Manage Users
         </v-btn>
 
         <v-divider class="my-1"></v-divider>

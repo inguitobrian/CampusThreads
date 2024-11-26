@@ -20,12 +20,24 @@ const formAction = ref({
   ...formActionDefault,
 })
 const refVForm = ref()
+const avatarText = ref('') // Fallback for avatar initials
 const imgPreview = ref(
-  authStore.userData?.image_url || '/images/img-profile.png',
+  authStore.userData?.image_url || null, // Use null as a fallback
 )
 
 // Modal visibility state
 const isModalVisible = ref(false)
+
+// Generate avatar text based on user data
+onMounted(() => {
+  authStore.getUserInformation()
+  const userData = authStore.userData
+  if (userData) {
+    avatarText.value =
+      (userData.firstname?.charAt(0) || '') +
+      (userData.lastname?.charAt(0) || '')
+  }
+})
 
 // Function to handle file change and show image preview
 const onPreview = async event => {
@@ -36,7 +48,7 @@ const onPreview = async event => {
 
 // Function to reset preview if file-input clear is clicked
 const onPreviewReset = () => {
-  imgPreview.value = authStore.userData?.image_url || '/images/img-profile.png'
+  imgPreview.value = authStore.userData?.image_url || null // Reset to default or null
 }
 
 // Submit Functionality
@@ -62,7 +74,6 @@ const onFormSubmit = () => {
     if (valid) onSubmit()
   })
 }
-
 // Fetch user information when the component mounts
 onMounted(() => {
   authStore.getUserInformation()
@@ -80,15 +91,33 @@ onMounted(() => {
     <v-row class="d-flex justify-center">
       <!-- Profile Image Display -->
       <v-col cols="12" sm="6" md="4" lg="3" class="d-flex justify-center pa-0">
-        <v-img
-          class="mx-auto rounded-circle"
-          :src="imgPreview"
-          alt="Profile Picture Preview"
-          cover
-          aspect-ratio="1"
-          max-width="80%"
-          height="90%"
-        ></v-img>
+        <div
+          class="mx-auto d-flex justify-center align-center rounded-circle"
+          style="aspect-ratio: 1; width: 80%; height: 90%; overflow: hidden"
+        >
+          <!-- Show Profile Picture if available -->
+          <v-img
+            v-if="imgPreview"
+            class="rounded-circle"
+            :src="imgPreview"
+            alt="Profile Picture Preview"
+            cover
+          ></v-img>
+
+          <!-- Otherwise, show initials -->
+          <div
+            v-else
+            class="text-h3 font-weight-bold d-flex justify-center align-center"
+            style="
+              color: white;
+              background-color: #d32f2f;
+              width: 100%;
+              height: 100%;
+            "
+          >
+            {{ avatarText }}
+          </div>
+        </div>
       </v-col>
 
       <!-- User Info Below Image -->
