@@ -197,27 +197,7 @@ function prevSet() {
       </v-main>
     </v-app>
   </v-responsive>
-  <v-footer class="d-footer" padless>
-  <v-container class="text-center">
-    <v-row align="center" justify="center">
-      <!-- Center Column: Links in a single line -->
-      <v-col cols="12" md="12">
-        <span style="color: black; font-size: 14px; margin-right: 20px;">Privacy Policy</span>
-        <span style="color: black; font-size: 14px; margin-right: 20px;">Terms of Service</span>
-        <span style="color: black; font-size: 14px; margin-right: 20px;">FAQs</span>
-        <span style="color: black; font-size: 14px; margin-right: 20px;">Feedback</span>
-      </v-col>
-    </v-row>
-
-    <!-- Bottom Row: Website Name -->
-    <v-row>
-      <v-col class="text-center" cols="12">
-        <span style="color: black; font-size: 14px;"><b>© 2024 CampusThreads. All Rights Reserved.</b></span>
-      </v-col>
-    </v-row>
-  </v-container>
-
-</v-footer>
+  
 </template>
 </AppLayout>
 </template>

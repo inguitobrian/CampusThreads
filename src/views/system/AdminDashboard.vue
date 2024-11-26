@@ -243,7 +243,7 @@ onMounted(fetchColleges)
 
 <style scoped>
 .register-container {
-  background: linear-gradient(135deg, #6ff665, #99fd85);
+  background: url('public/b0d3f002f96041057dac44c842294bc4.gif') no-repeat center center / cover;
   min-height: 100vh;
   display: flex;
   align-items: center;

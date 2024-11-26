@@ -108,6 +108,29 @@ onMounted(() => {
           <slot name="content"></slot>
         </v-container>
       </v-main>
+      
+      <!-- Footer -->
+      <v-footer class="footer">
+        <v-container>
+          <v-row justify="space-between">
+            <!-- Left-aligned text -->
+            <v-col cols="12" sm="6" class="text-center text-sm-start">
+              <span>&copy; 2024 CampusThreads. All Rights Reserved.</span>
+            </v-col>
+
+            <!-- Right-aligned links in a single line -->
+            <v-col cols="12" sm="6" class="text-center text-sm-end">
+              <a href="/privacy-policy" class="footer-link">Privacy Policy</a>
+              <span class="footer-divider">|</span>
+              <a href="/terms-of-service" class="footer-link">Terms of Service</a>
+              <span class="footer-divider">|</span>
+              <a href="/faqs" class="footer-link">FAQs</a>
+              <span class="footer-divider">|</span>
+              <a href="/feedback" class="footer-link">Feedback</a>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-footer>
     </v-app>
   </v-responsive>
 </template>
@@ -121,7 +144,31 @@ onMounted(() => {
 }
 
 .footer {
-  background: linear-gradient(135deg, #d0ebde, #b0ebc3); /* Purple gradient */
-  padding: 20px 0;
+  background: linear-gradient(135deg, #111703, #2e3b1f); /* Gradient background */
+  color: #f0f0f0; /* High contrast text color */
+  padding: 16px 0; /* Comfortable padding */
+  font-size: 0.9rem; /* Readable font size */
+  position: relative; /* Ensures the footer appears at the bottom of the content */
+  width: 100%;
+}
+
+.footer-link {
+  color: #f0f0f0; /* Text color */
+  text-decoration: none; /* Remove underline */
+  margin: 0 8px; /* Space between links */
+}
+
+.footer-link:hover {
+  color: #c9d7b6; /* Slight hover effect */
+}
+
+.footer-divider {
+  color: #f0f0f0; /* Divider color matching the text */
+  margin: 0 4px; /* Space around dividers */
+}
+
+.v-main {
+  min-height: 100vh; /* Ensures the main content fills the screen */
+ 
 }
 </style>
