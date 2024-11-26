@@ -1,6 +1,15 @@
 <script setup>
 import AppLayout from '@/components/layout/AppLayout.vue';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router'; // Importing the useRouter hook
+
+// Create a router instance
+const router = useRouter();
+
+// Function to navigate to the home page when the "Explore More" button is clicked
+const navigateToHome = () => {
+  router.push('/'); // This will navigate to the home route
+};
 </script>
 
 <template>
@@ -70,7 +79,8 @@ import { ref } from 'vue';
               is designed for comfort and durability, making it easy to show off your school spirit. Join the CampusThread
               community today and wear your pride with style!
             </p>
-            <button class="explore-btn">EXPLORE MORE</button>
+            <!-- Button with click event to navigate home -->
+            <button class="explore-btn" @click="navigateToHome">EXPLORE MORE</button>
           </div>
         </div>
       </div>
