@@ -11,23 +11,24 @@ const authStore = useAuthUserStore()
 // Form action state to handle processing
 const formAction = ref({ formProcess: false })
 
-// Watch user data from auth store
-const userInfo = ref(authStore.userData)
+// Reactive properties for user information
 const avatarText = ref('')
 const fullName = ref('')
 const userEmail = ref('')
-const isLSGAccount = ref(false) // To store if user has 'LSG' role
+const profilePicture = ref(null) // To store the user's profile picture URL
+const isLSGAccount = ref(false) // To check if the user has an 'LSG' role
 
 // Fetch user data on component mount
 onMounted(async () => {
-  await authStore.getUserInformation() // Fetch user info from store
+  await authStore.getUserInformation() // Fetch user info from the store
 
   if (authStore.userData) {
-    const { firstname, lastname, email, role } = authStore.userData
+    const { firstname, lastname, email, role, image_url } = authStore.userData
     avatarText.value =
       `${firstname.charAt(0)}${lastname.charAt(0)}`.toUpperCase()
     fullName.value = `${firstname} ${lastname}`
     userEmail.value = email
+    profilePicture.value = image_url || null // Use the profile picture URL if available
 
     // Check if the user has an 'LSG' role from metadata
     if (role === 'LSG') {
@@ -36,7 +37,7 @@ onMounted(async () => {
   }
 })
 
-// Logout Functionality
+// Logout functionality
 const onLogout = async () => {
   formAction.value.formProcess = true
 
@@ -49,7 +50,7 @@ const onLogout = async () => {
   }
 
   formAction.value.formProcess = false
-  authStore.$reset() // Reset user data in store
+  authStore.$reset() // Reset user data in the store
   router.replace('/login')
 }
 </script>
@@ -59,7 +60,15 @@ const onLogout = async () => {
     <!-- Activator Button with Avatar -->
     <template #activator="{ props }">
       <v-btn icon v-bind="props">
-        <v-avatar color="red-darken-4" size="large">
+        <!-- Show Profile Picture if available -->
+        <v-avatar
+          v-if="profilePicture"
+          :image="profilePicture"
+          color="red-darken-4"
+          size="large"
+        />
+        <!-- Otherwise, show initials -->
+        <v-avatar v-else color="red-darken-4" size="large">
           <span class="text-h5">{{ avatarText }}</span>
         </v-avatar>
       </v-btn>
@@ -72,20 +81,35 @@ const onLogout = async () => {
         <v-list>
           <v-list-item :subtitle="userEmail" :title="fullName">
             <template #prepend>
-              <v-avatar color="red-darken-4" size="large">
+              <!-- Show Profile Picture in Menu if available -->
+              <v-avatar
+                v-if="profilePicture"
+                :image="profilePicture"
+                color="red-darken-4"
+                size="large"
+              />
+              <!-- Otherwise, show initials -->
+              <v-avatar v-else color="red-darken-4" size="large">
                 <span class="text-h5">{{ avatarText }}</span>
               </v-avatar>
             </template>
           </v-list-item>
         </v-list>
 
-        <v-divider class="my-3"></v-divider>
+        <v-divider class="my-1"></v-divider>
 
         <!-- Account Settings Button -->
         <v-btn prepend-icon="mdi-wrench" variant="plain" to="/settings">
           Account Settings
         </v-btn>
-        <v-divider class="my-3"></v-divider>
+        <v-divider class="my-1"></v-divider>
+
+        <!-- Orders Button -->
+        <v-btn prepend-icon="mdi-cart-arrow-down" variant="plain" to="/orders">
+          My Orders
+        </v-btn>
+        <v-divider class="my-1"></v-divider>
+
         <!-- Conditionally Render "Manage Merchandise" Button based on role -->
         <v-btn
           v-if="isLSGAccount"
@@ -96,7 +120,7 @@ const onLogout = async () => {
           Manage Merchandise
         </v-btn>
 
-        <v-divider class="my-3"></v-divider>
+        <v-divider class="my-1"></v-divider>
 
         <!-- Logout Button -->
         <v-btn
@@ -120,6 +144,6 @@ const onLogout = async () => {
 }
 
 .v-btn {
-  font-weight: 500;
+  font-weight: 200;
 }
 </style>

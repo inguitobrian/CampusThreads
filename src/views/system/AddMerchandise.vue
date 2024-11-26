@@ -1,65 +1,70 @@
 <template>
-  <v-container>
-    <v-row class="justify-center">
-      <v-col cols="12" md="8">
-        <h1 class="text-center">Add Merchandise</h1>
+  <AppLayout>
+    <template #content>
+      <v-container>
+        <v-row class="justify-center">
+          <v-col cols="12" md="8">
+            <h1 class="text-center">Add Merchandise</h1>
 
-        <!-- Form to Add Merchandise -->
-        <v-form v-model="formValid">
-          <v-select
-            v-model="merchItem.type"
-            :items="merchTypes"
-            label="Merchandise Type"
-            :rules="[rules.required]"
-            outlined
-          ></v-select>
+            <!-- Form to Add Merchandise -->
+            <v-form v-model="formValid">
+              <v-select
+                v-model="merchItem.type"
+                :items="merchTypes"
+                label="Merchandise Type"
+                :rules="[rules.required]"
+                outlined
+              ></v-select>
 
-          <v-text-field
-            v-model="merchItem.name"
-            label="Merchandise Name"
-            :rules="[rules.required]"
-            outlined
-          ></v-text-field>
+              <v-text-field
+                v-model="merchItem.name"
+                label="Merchandise Name"
+                :rules="[rules.required]"
+                outlined
+              ></v-text-field>
 
-          <v-textarea
-            v-model="merchItem.desc"
-            label="Description"
-            :rules="[rules.required]"
-            outlined
-          ></v-textarea>
+              <v-textarea
+                v-model="merchItem.desc"
+                label="Description"
+                :rules="[rules.required]"
+                outlined
+              ></v-textarea>
 
-          <v-text-field
-            v-model="merchItem.price"
-            label="Price"
-            :rules="[rules.required, rules.isNumber]"
-            outlined
-            type="number"
-          ></v-text-field>
+              <v-text-field
+                v-model="merchItem.price"
+                label="Price"
+                :rules="[rules.required, rules.isNumber]"
+                outlined
+                type="number"
+              ></v-text-field>
 
-          <v-file-input
-            v-model="file"
-            label="Upload Image"
-            @change="uploadImage"
-            :rules="[rules.required]"
-            outlined
-          ></v-file-input>
+              <v-file-input
+                v-model="file"
+                label="Upload Image"
+                @change="uploadImage"
+                :rules="[rules.required]"
+                outlined
+              ></v-file-input>
 
-          <v-btn
-            :disabled="!formValid || isUploading"
-            color="primary"
-            @click="handleAddMerchandise"
-          >
-            Add Merchandise
-          </v-btn>
-        </v-form>
-      </v-col>
-    </v-row>
-  </v-container>
+              <v-btn
+                :disabled="!formValid || isUploading"
+                color="primary"
+                @click="handleAddMerchandise"
+              >
+                Add Merchandise
+              </v-btn>
+            </v-form>
+          </v-col>
+        </v-row>
+      </v-container>
+    </template>
+  </AppLayout>
 </template>
 
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
 import { supabase } from '@/utils/supabase.js'
+import AppLayout from '@/components/layout/AppLayout.vue'
 
 // Reactive state and refs
 const merchTypes = ['Lanyard', 'Uniform', 'Accessories']
