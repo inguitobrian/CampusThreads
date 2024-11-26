@@ -6,10 +6,10 @@ const theme = ref('light');
 const drawer = ref(false);
 
 const images = [
-  { src: 'public/b438a2cb928c528ee494e31b275d8f06.jpg', price: '₱350', name: 'College Tee' },
-  { src: 'public/b0ac2c12da0c00691252ef81e3f9d4b1.jpg', price: '₱500', name: 'Outfits' },
-  { src: 'public/a8433f3083b769da094ddb1d81408e6b.jpg', price: '₱50', name: 'Accessories' },
-  { src: 'public/86b0588cda7de732293e10ac99e6b7d2.jpg', price: '₱100', name: 'Lanyard' },
+  { src: 'public/e98b82627662e62ab553b39ebe51174a.jpg', price: '₱350', name: 'College Tee' },
+  { src: 'public/45573a304bbfe6132dbac1cf25da78fd.jpg', price: '₱500', name: 'Outfits' },
+  { src: 'public/ef74f22d91a1496a8c3c6223eb56c80f.jpg', price: '₱50', name: 'Accessories' },
+  { src: 'public/df92d76bfd8fa56352d2b916bfb4b973.jpg', price: '₱100', name: 'Lanyard' },
 ]
 const modalVisible = ref(false)
 const selectedImage = ref({})
@@ -74,7 +74,7 @@ function prevSet() {
         <v-container fluid>
           <v-row>
             <v-col cols="6">
-              <v-parallax height="500" src="public/fa157f04dc5f874ebddd2f56382dd64b.jpg">
+              <v-parallax height="500" src="public/df92d76bfd8fa56352d2b916bfb4b973.jpg">
                 <v-overlay>
                   <template v-slot:activator="{ props }">
                     <v-container v-bind="props" class="fill-height d-flex flex-column justify-space-between align-start">
@@ -93,7 +93,7 @@ function prevSet() {
             </v-col>
 
             <v-col cols="6">
-              <v-parallax height="500" src="public/pexels-eben-15404590.jpg">
+              <v-parallax height="500" src="public/e98b82627662e62ab553b39ebe51174a.jpg">
                 <v-overlay>
                   <template v-slot:activator="{ props }">
                     <v-container v-bind="props" class="fill-height d-flex flex-column justify-space-between align-start">
@@ -258,12 +258,6 @@ function prevSet() {
   padding: 15px 30px;
   border-radius: 10px;
 }
-
-.e-footer {
-  background: linear-gradient(135deg, #f9e36b, #1e3d58); /* Light yellow to dark blue gradient */
-  padding: 20px 0;
-}
-
 
 .v-btn {
   margin: 5px;

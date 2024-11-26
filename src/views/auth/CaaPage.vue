@@ -7,22 +7,22 @@ const drawer = ref(false)
 
 const images = [
   {
-    src: 'public/b438a2cb928c528ee494e31b275d8f06.jpg',
-    price: '₱350',
+    src: 'public/c5edc5c5d954cb7071e3ae0d03a1cc39.jpg',
+    price: '₱300',
     name: 'College Tee',
   },
   {
-    src: 'public/b0ac2c12da0c00691252ef81e3f9d4b1.jpg',
-    price: '₱500',
+    src: 'public/10c890b6ae753178741d818cd4125c02.jpg',
+    price: '₱100',
     name: 'Outfits',
   },
   {
-    src: 'public/a8433f3083b769da094ddb1d81408e6b.jpg',
+    src: 'public/697dc3a2bbf914ee70e25bc5e05fbb5e.jpg',
     price: '₱50',
     name: 'Accessories',
   },
   {
-    src: 'public/86b0588cda7de732293e10ac99e6b7d2.jpg',
+    src: 'public/6f025c53f15a6f1bf55f9036b9ac2971.jpg',
     price: '₱100',
     name: 'Lanyard',
   },
@@ -70,7 +70,7 @@ function prevSet() {
 <template>
   <AppLayout>
     <template #content>
-      <!-- Main Content -->
+      <!-- Main Content --> 
       <v-main>
         <v-container fluid>
           <!-- Banner Image -->
@@ -93,7 +93,7 @@ function prevSet() {
               <v-col cols="6">
                 <v-parallax
                   height="500"
-                  src="public/fa157f04dc5f874ebddd2f56382dd64b.jpg"
+                  src="public/6f025c53f15a6f1bf55f9036b9ac2971.jpg"
                 >
                   <v-overlay>
                     <template v-slot:activator="{ props }">
@@ -133,7 +133,7 @@ function prevSet() {
                 </v-parallax>
               </v-col>
               <v-col cols="6">
-                <v-parallax height="500" src="public/pexels-eben-15404590.jpg">
+                <v-parallax height="500" src="public/c5edc5c5d954cb7071e3ae0d03a1cc39.jpg">
                   <v-overlay>
                     <template v-slot:activator="{ props }">
                       <v-container
@@ -318,6 +318,7 @@ function prevSet() {
 </template>
 
 <style scoped>
+
 .bg-login {
   background-color: #71885a;
 }
@@ -335,29 +336,6 @@ function prevSet() {
   .v-input__control
   .v-input__slot {
   color: #63794e;
-}
-
-.nav-bar {
-  min-height: 64px;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-}
-
-.nav-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.search-bar {
-  min-width: 300px;
-  max-width: 500px;
-  margin-right: 20px;
-}
-
-.search-bar {
-  min-height: 40px;
 }
 .image-overlay {
   position: relative;
@@ -382,10 +360,6 @@ function prevSet() {
   border-radius: 10px;
 }
 
-.g-footer {
-  background: linear-gradient(135deg, #ad9c17, #d8be3c); /* Purple gradient */
-  padding: 20px 0;
-}
 
 .v-btn {
   margin: 5px;

@@ -6,10 +6,10 @@ const theme = ref('light')
 const drawer = ref(false) // for the navigation drawer on mobile screens
 
 const images = [
-  { src: 'public/b438a2cb928c528ee494e31b275d8f06.jpg', price: '₱350', name: 'College Tee' },
-  { src: 'public/b0ac2c12da0c00691252ef81e3f9d4b1.jpg', price: '₱500', name: 'Outfits' },
-  { src: 'public/a8433f3083b769da094ddb1d81408e6b.jpg', price: '₱50', name: 'Accessories' },
-  { src: 'public/86b0588cda7de732293e10ac99e6b7d2.jpg', price: '₱100', name: 'Lanyard' },
+  { src: 'public/60021bf5a0f962a9fc216210115f6f39.jpg', price: '₱300', name: 'College Tee' },
+  { src: 'public/98deeb92647a284e11d7816c06267f46.jpg', price: '₱500', name: 'Outfits' },
+  { src: 'public/e158a34db2154a56c253f00efa4ad045.jpg', price: '₱50', name: 'Accessories' },
+  { src: 'public/eeac53e78be701a0ab7686ce6b927179.jpg', price: '₱100', name: 'Lanyard' },
 ]
 const modalVisible = ref(false)
 const selectedImage = ref({})
@@ -74,7 +74,7 @@ function prevSet() {
           <v-container fluid>
             <v-row>
               <v-col cols="6">
-                <v-parallax height="500" src="public/fa157f04dc5f874ebddd2f56382dd64b.jpg">
+                <v-parallax height="500" src="public/eeac53e78be701a0ab7686ce6b927179.jpg">
                   <v-overlay>
                     <template v-slot:activator="{ props }">
                       <v-container v-bind="props" class="fill-height d-flex flex-column justify-space-between align-start">
@@ -93,7 +93,7 @@ function prevSet() {
               </v-col>
 
               <v-col cols="6">
-                <v-parallax height="500" src="public/pexels-eben-15404590.jpg">
+                <v-parallax height="500" src="public/60021bf5a0f962a9fc216210115f6f39.jpg">
                   <v-overlay>
                     <template v-slot:activator="{ props }">
                       <v-container v-bind="props" class="fill-height d-flex flex-column justify-space-between align-start">
@@ -260,11 +260,6 @@ function prevSet() {
   background-color: rgba(236, 60, 60, 0.3); /* Darker background for contrast */
   padding: 15px 30px;
   border-radius: 10px;
-}
-
-.d-footer {
-  background: linear-gradient(135deg, #9a0000, #f74b4b); /* Purple gradient */
-  padding: 20px 0;
 }
 
 .v-btn {

@@ -6,10 +6,10 @@ const theme = ref('light');
 const drawer = ref(false);
 
 const images = [
-  { src: 'public/b438a2cb928c528ee494e31b275d8f06.jpg', price: '₱350', name: 'College Tee' },
-  { src: 'public/b0ac2c12da0c00691252ef81e3f9d4b1.jpg', price: '₱500', name: 'Outfits' },
-  { src: 'public/a8433f3083b769da094ddb1d81408e6b.jpg', price: '₱50', name: 'Accessories' },
-  { src: 'public/86b0588cda7de732293e10ac99e6b7d2.jpg', price: '₱100', name: 'Lanyard' },
+  { src: 'public/6b31e097902ce3e77726f039b2b12b6f.jpg', price: '₱300', name: 'College Tee' },
+  { src: 'public/cdd39d50d8903cee9504adfe6d34527e.jpg', price: '₱150', name: 'Outfits' },
+  { src: 'public/ed5eda429b93026688e470d387f69496.jpg', price: '₱50', name: 'Accessories' },
+  { src: 'public/662e1da6960c94df95d5925d1538ae97.jpg', price: '₱100', name: 'Lanyard' },
 ]
 const modalVisible = ref(false)
 const selectedImage = ref({})
@@ -72,7 +72,7 @@ function prevSet() {
           <v-container fluid>
             <v-row>
               <v-col cols="6">
-                <v-parallax height="500" src="public/fa157f04dc5f874ebddd2f56382dd64b.jpg">
+                <v-parallax height="500" src="public/6b31e097902ce3e77726f039b2b12b6f.jpg">
                   <v-overlay>
                     <template v-slot:activator="{ props }">
                       <v-container v-bind="props" class="fill-height d-flex flex-column justify-space-between align-start">
@@ -91,7 +91,7 @@ function prevSet() {
               </v-col>
 
               <v-col cols="6">
-                <v-parallax height="500" src="public/pexels-eben-15404590.jpg">
+                <v-parallax height="500" src="public/662e1da6960c94df95d5925d1538ae97.jpg">
                   <v-overlay>
                     <template v-slot:activator="{ props }">
                       <v-container v-bind="props" class="fill-height d-flex flex-column justify-space-between align-start">
