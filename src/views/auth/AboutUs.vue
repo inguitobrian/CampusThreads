@@ -1,132 +1,132 @@
 <script setup>
 import AppLayout from '@/components/layout/AppLayout.vue';
-import { ref } from 'vue'
-
-// Example data for the team members
-const teamMembers = ref([
-  {
-    name: 'John Doe',
-    role: 'CEO & Founder',
-    image: 'https://via.placeholder.com/150',
-    description: 'John is the visionary behind CampusThreads, focusing on creating a seamless campus community.'
-  },
-  {
-    name: 'Jane Smith',
-    role: 'CTO & Co-Founder',
-    image: 'https://via.placeholder.com/150',
-    description: 'Jane oversees all technical aspects of CampusThreads, ensuring smooth platform functionality.'
-  },
-  {
-    name: 'Emily Johnson',
-    role: 'Lead Developer',
-    image: 'https://via.placeholder.com/150',
-    description: 'Emily is responsible for the front-end development and ensuring a responsive user experience.'
-  },
-  {
-    name: 'David Brown',
-    role: 'Marketing & Outreach',
-    image: 'https://via.placeholder.com/150',
-    description: 'David manages the platform\'s marketing and user engagement strategies.'
-  }
-])
+import { ref } from 'vue';
 
 </script>
 <template>
-    <AppLayout>
+  <AppLayout>
 <template #content>
-  <v-container fluid>
-    <v-row>
-      <!-- Page Title -->
-      <v-col cols="12">
-        <v-typography variant="h3" class="text-center">
-          About CampusThreads
-        </v-typography>
-      </v-col>
+  <div class="about-us container">
+    <!-- Left Section: Images and Ratings -->
+    <div class="left">
+      <div class="image-container">
+        <img src="https://via.placeholder.com/300x400" alt="Product Image 1" />
+      </div>
+      <div class="image-container">
+        <img src="https://via.placeholder.com/300x400" alt="Product Image 2" />
+      </div>
+    </div>
 
-      <!-- About Section -->
-      <v-col cols="12" md="8" class="mx-auto">
-        <v-card class="pa-4" elevation="2">
-          <v-card-title>Welcome to CampusThreads</v-card-title>
-          <v-card-text>
-            CampusThreads is a platform designed to connect students, faculty, and staff across universities. Our mission is to provide a seamless way for students to engage with each other, stay updated on campus events, and foster a stronger sense of community.
-          </v-card-text>
-        </v-card>
-      </v-col>
+    <!-- Right Section: Text Content -->
+    <div class="right">
+      <div class="stats">
+        <h2>1,000+</h2>
+        <p>Sales in July 2024 with 5-star ratings and happy clients.</p>
+        
+      </div>
 
-      <!-- Mission Section -->
-      <v-col cols="12" md="8" class="mx-auto">
-        <v-card class="pa-4" elevation="2">
-          <v-card-title>Our Mission</v-card-title>
-          <v-card-text>
-            At CampusThreads, we believe that a connected campus is a thriving campus. Our mission is to create a space where students can engage, collaborate, and grow together—whether it's sharing resources, finding study groups, or just connecting with new people.
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <!-- Team Section -->
-      <v-col cols="12">
-        <v-typography variant="h4" class="text-center">Meet Our Team</v-typography>
-        <v-row>
-          <v-col
-            v-for="(member, index) in teamMembers"
-            :key="index"
-            cols="12" sm="6" md="3"
-            class="d-flex justify-center mb-4"
-          >
-            <v-card class="text-center" :elevation="4" width="250">
-              <v-img :src="member.image" aspect-ratio="1" contain class="rounded-circle"></v-img>
-              <v-card-title class="font-weight-bold">{{ member.name }}</v-card-title>
-              <v-card-subtitle>{{ member.role }}</v-card-subtitle>
-              <v-card-text>{{ member.description }}</v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-col>
-
-      <!-- Technology Stack Section -->
-      <v-col cols="12" md="8" class="mx-auto">
-        <v-card class="pa-4" elevation="2">
-          <v-card-title>Our Technology Stack</v-card-title>
-          <v-card-text>
-            We use modern technologies to build and maintain CampusThreads. Our tech stack includes:
-            <ul>
-              <li>Frontend: Vue.js, Vuetify</li>
-              <li>Backend: Node.js, Express</li>
-              <li>Database: MongoDB</li>
-              <li>Hosting: Vercel, Heroku</li>
-            </ul>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <!-- Contact Information Section -->
-      <v-col cols="12" md="8" class="mx-auto">
-        <v-card class="pa-4" elevation="2">
-          <v-card-title>Contact Us</v-card-title>
-          <v-card-text>
-            Have any questions? Reach out to us via email at <strong>support@campusthreads.com</strong>.
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+      <div class="about-text">
+        <h3>CampusThreads</h3>
+        <h1>ABOUT US</h1>
+        <p>
+          Welcome to <b>CampusThread</b>, your go-to destination for university merchandise! We offer stylish apparel and accessories that celebrate your campus pride. Whether you're a student, alumni, or faculty, our collection is designed for comfort and durability, making it easy to show off your school spirit. Join the CampusThread community today and wear your pride with style!
+        </p>
+        <button class="explore-btn">EXPLORE MORE</button>
+      </div>
+    </div>
+  </div>
 </template>
 </AppLayout>
 </template>
 
 <style scoped>
-.text-center {
-  text-align: center;
+/* General styles */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
 }
 
-.v-card {
-  background-color: #fafafa;
+/* Left section styles */
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.v-img {
-  max-width: 150px;
-  height: 150px;
-  object-fit: cover;
-  margin: 0 auto;
+.image-container img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Right section styles */
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stats h2 {
+  color: #6a0dad;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.stats p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.avatars {
+  display: flex;
+  gap: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.about-text h3 {
+  color: #6a0dad;
+  font-size: 18px;
+  margin: 0;
+}
+
+.about-text h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.about-text p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.explore-btn {
+  background: #6a0dad;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+.explore-btn:hover {
+  background: #8b00ff;
 }
 </style>
