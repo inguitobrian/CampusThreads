@@ -47,9 +47,21 @@ onMounted(() => {
           class="d-block"
         ></v-app-bar-nav-icon>
 
+        <v-img
+          src="/Campusthreads.png"
+          alt="Custom Logo"
+          max-width="40px"
+          contain
+        ></v-img>
+
         <v-toolbar-title
-          style="color: white; font-family: 'Montserrat', sans-serif"
-          >CampusThreads</v-toolbar-title
+          class="pa-0 ma-2"
+          style="
+            color: white;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 500;
+          "
+          >CampusThreads.</v-toolbar-title
         >
 
         <v-spacer></v-spacer>
@@ -71,7 +83,12 @@ onMounted(() => {
           <v-list-item @click="menuVisible = !menuVisible">
             <v-icon left class="mr-2">mdi-school</v-icon>
             <v-list-item-content>Colleges</v-list-item-content>
-            <v-icon :style="{ transform: menuVisible ? 'rotate(180deg)' : 'rotate(0deg)' }">mdi-chevron-down</v-icon>
+            <v-icon
+              :style="{
+                transform: menuVisible ? 'rotate(180deg)' : 'rotate(0deg)',
+              }"
+              >mdi-chevron-down</v-icon
+            >
           </v-list-item>
 
           <!-- Dropdown menu for colleges -->
@@ -108,7 +125,7 @@ onMounted(() => {
           <slot name="content"></slot>
         </v-container>
       </v-main>
-      
+
       <!-- Footer -->
       <v-footer class="footer">
         <v-container>
@@ -122,7 +139,9 @@ onMounted(() => {
             <v-col cols="12" sm="6" class="text-center text-sm-end">
               <a href="/privacy-policy" class="footer-link">Privacy Policy</a>
               <span class="footer-divider">|</span>
-              <a href="/terms-of-service" class="footer-link">Terms of Service</a>
+              <a href="/terms-of-service" class="footer-link"
+                >Terms of Service</a
+              >
               <span class="footer-divider">|</span>
               <a href="/faqs" class="footer-link">FAQs</a>
               <span class="footer-divider">|</span>
@@ -144,7 +163,11 @@ onMounted(() => {
 }
 
 .footer {
-  background: linear-gradient(135deg, #111703, #2e3b1f); /* Gradient background */
+  background: linear-gradient(
+    135deg,
+    #111703,
+    #2e3b1f
+  ); /* Gradient background */
   color: #f0f0f0; /* High contrast text color */
   padding: 16px 0; /* Comfortable padding */
   font-size: 0.9rem; /* Readable font size */
@@ -169,6 +192,5 @@ onMounted(() => {
 
 .v-main {
   min-height: 100vh; /* Ensures the main content fills the screen */
- 
 }
 </style>

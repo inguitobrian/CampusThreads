@@ -32,9 +32,9 @@ const selectedDepartment = ref('') // To hold the selected department
           >
             <div class="d-flex align-center justify-center" style="gap: 10px">
               <v-img
-                src="/i_logo.png"
+                src="/Campusthreads.png"
                 alt="Custom Logo"
-                max-width="40px"
+                max-width="60px"
                 contain
               ></v-img>
 
@@ -46,7 +46,14 @@ const selectedDepartment = ref('') // To hold the selected department
               </v-card-title>
             </div>
 
-            <v-card-text class="bg-surface-white mx-8 pt-8 text-center">
+            <v-card-text
+              class="bg-surface-white mx-8 pt-8 text-center"
+              style="
+                color: #40513b;
+                font-family: 'Manrope', sans-serif;
+                font-weight: 600;
+              "
+            >
               Sign Up to your CampusThreads Account
             </v-card-text>
 
