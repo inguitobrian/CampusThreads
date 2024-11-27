@@ -166,7 +166,10 @@ const shopItems = [
           </v-col>
 
           <v-col cols="4">
-            <v-parallax height="600" src="public/6f4546573663396395810e296542e2ad.jpg">
+            <v-parallax
+              height="600"
+              src="public/6f4546573663396395810e296542e2ad.jpg"
+            >
               <v-overlay>
                 <template v-slot:activator="{ props }">
                   <v-container
@@ -335,7 +338,10 @@ const shopItems = [
       <v-container fluid>
         <v-row>
           <v-col
-            cols="3"
+            cols="12"
+            sm="6"
+            md="4"
+            lg="3"
             v-for="(card, index) in cards.slice(0, 4)"
             :key="index"
           >
@@ -368,7 +374,10 @@ const shopItems = [
 
         <v-row justify="center">
           <v-col
-            cols="3"
+            cols="12"
+            sm="6"
+            md="4"
+            lg="3"
             v-for="(card, index) in cards.slice(4, 7)"
             :key="index"
           >
@@ -408,7 +417,14 @@ const shopItems = [
       </v-container>
 
       <v-row class="text-center">
-        <v-col cols="3" v-for="(item, index) in shopItems" :key="index">
+        <v-col
+          cols="12"
+          sm="6"
+          md="3"
+          lg="3"
+          v-for="(item, index) in shopItems"
+          :key="index"
+        >
           <v-img
             :src="item.image"
             height="250px"

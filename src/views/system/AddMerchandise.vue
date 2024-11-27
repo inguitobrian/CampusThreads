@@ -137,21 +137,41 @@ const handleAddMerchandise = () => {
   }
 }
 
-// Add merchandise to database
 const addMerchandise = async () => {
   if (!merchItem.college_id || !formValid.value || !imageUrl.value) {
     console.error('Missing required fields.')
     return
   }
 
-  const { data, error } = await supabase
+  // Insert into 'merchandises' table
+  const { data: merchandiseData, error: merchandiseError } = await supabase
     .from('merchandises')
     .insert([{ ...merchItem, image: imageUrl.value }])
+    .select('id') // Select the ID of the newly inserted merchandise
 
-  if (error) {
-    console.error('Error adding merchandise:', error.message)
-  } else {
-    resetForm()
+  if (merchandiseError) {
+    console.error('Error adding merchandise:', merchandiseError.message)
+    return
+  }
+
+  if (merchandiseData && merchandiseData.length > 0) {
+    const merchandiseId = merchandiseData[0].id
+
+    // Insert into 'stocks_in' table
+    const { error: stocksError } = await supabase.from('stocks_in').insert([
+      {
+        merchandise_id: merchandiseId,
+        name: merchItem.name,
+        quantity: 0, // Default quantity, update as needed
+      },
+    ])
+
+    if (stocksError) {
+      console.error('Error adding to stocks_in:', stocksError.message)
+    } else {
+      console.log('Merchandise and stocks_in entry added successfully!')
+      resetForm()
+    }
   }
 }
 

@@ -133,10 +133,18 @@ onMounted(async () => {
 
         <!-- Filter Buttons -->
         <div class="text-center d-flex justify-center gap-4">
-          <v-btn class="filter-btn" @click="activeType = ''">All</v-btn>
-          <v-btn class="filter-btn" @click="activeType = 'Lanyard'">Lanyards</v-btn>
-          <v-btn class="filter-btn" @click="activeType = 'Uniform'">Uniforms</v-btn>
-          <v-btn class="filter-btn" @click="activeType = 'Accessories'">Accessories</v-btn>
+          <v-btn class="filter-btn all" @click="activeType = ''">All</v-btn>
+          <v-btn class="filter-btn lanyard" @click="activeType = 'Lanyard'"
+            >Lanyards</v-btn
+          >
+          <v-btn class="filter-btn uniform" @click="activeType = 'Uniform'"
+            >Uniforms</v-btn
+          >
+          <v-btn
+            class="filter-btn accessories"
+            @click="activeType = 'Accessories'"
+            >Accessories</v-btn
+          >
         </div>
 
         <!-- Merchandise Display -->
@@ -150,7 +158,11 @@ onMounted(async () => {
               class="mb-4"
             >
               <v-card @click="openDetailModal(item)" class="product-card">
-                <v-img :src="item.image" height="200px" class="product-img"></v-img>
+                <v-img
+                  :src="item.image"
+                  height="200px"
+                  class="product-img"
+                ></v-img>
                 <v-card-title>{{ item.name }}</v-card-title>
                 <v-card-subtitle>{{ item.desc }}</v-card-subtitle>
                 <v-card-text>
@@ -169,14 +181,29 @@ onMounted(async () => {
             <v-card-subtitle>{{ selectedMerchandise?.desc }}</v-card-subtitle>
             <v-card-text>
               <v-img :src="selectedMerchandise?.image" height="200px"></v-img>
-              <div><strong>Price:</strong> ₱{{ selectedMerchandise?.price }}</div>
-              <div><strong>Department:</strong> {{ selectedMerchandise?.college_name }}</div>
-              <div><strong>Available Quantity:</strong> {{ selectedMerchandise?.availableQuantity }}</div>
+              <div>
+                <strong>Price:</strong> ₱{{ selectedMerchandise?.price }}
+              </div>
+              <div>
+                <strong>Department:</strong>
+                {{ selectedMerchandise?.college_name }}
+              </div>
+              <div>
+                <strong>Available Quantity:</strong>
+                {{ selectedMerchandise?.availableQuantity }}
+              </div>
               <div class="d-flex align-center">
                 <v-btn icon @click="decreaseQuantity">
                   <v-icon>mdi-minus</v-icon>
                 </v-btn>
-                <v-text-field label="Quantity" v-model="quantity" type="number" min="1" class="mx-2" readonly />
+                <v-text-field
+                  label="Quantity"
+                  v-model="quantity"
+                  type="number"
+                  min="1"
+                  class="mx-2"
+                  readonly
+                />
                 <v-btn icon @click="increaseQuantity">
                   <v-icon>mdi-plus</v-icon>
                 </v-btn>
@@ -184,7 +211,9 @@ onMounted(async () => {
               <div><strong>Total Price:</strong> ₱{{ totalPrice }}</div>
             </v-card-text>
             <v-card-actions>
-              <v-btn color="primary" @click="confirmPurchase">Confirm Purchase</v-btn>
+              <v-btn color="primary" @click="confirmPurchase"
+                >Confirm Purchase</v-btn
+              >
               <v-btn text @click="isDetailModalOpen = false">Cancel</v-btn>
             </v-card-actions>
           </v-card>
@@ -198,7 +227,9 @@ onMounted(async () => {
 /* Custom styles for hover effects and transitions */
 .product-card {
   border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .product-card:hover {
@@ -212,16 +243,33 @@ onMounted(async () => {
 
 /* Filter Button styles */
 .filter-btn {
-  background-color: #000000;
-  color: white;
+  color: #40513b;
   font-weight: bold;
   padding: 8px 20px;
   border-radius: 20px;
   transition: background-color 0.3s;
 }
 
+/* Specific colors for each button */
+.filter-btn.all {
+  background-color: #f1d2a9; /* Light yellow */
+}
+
+.filter-btn.lanyard {
+  background-color: #f4f5a7; /* Light green */
+}
+
+.filter-btn.uniform {
+  background-color: #a7e0f4; /* Light blue */
+}
+
+.filter-btn.accessories {
+  background-color: #c6a9f4; /* Light purple */
+}
+
+/* Hover effects for each button */
 .filter-btn:hover {
-  background-color: #3b3633;
+  opacity: 0.8;
 }
 
 /* Modal styles */
@@ -230,7 +278,8 @@ onMounted(async () => {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.v-card-title, .v-card-subtitle {
+.v-card-title,
+.v-card-subtitle {
   font-weight: bold;
 }
 
@@ -247,6 +296,4 @@ onMounted(async () => {
     padding: 6px 15px;
   }
 }
-
 </style>
-
