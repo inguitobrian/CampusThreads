@@ -17,6 +17,7 @@ import ChassPage from '@/views/auth/ChassPage.vue'
 import CmnsPage from '@/views/auth/CmnsPage.vue'
 import CofesPage from '@/views/auth/CofesPage.vue'
 import AboutUs from '@/views/auth/AboutUs.vue'
+import PaymentController from '@/views/system/order-history/PaymentController.vue'
 
 export const routes = [
   {
@@ -65,6 +66,12 @@ export const routes = [
     name: 'orders',
     component: OrderHistory,
     meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
+  },
+  {
+    path: '/pay',
+    name: 'payment',
+    component: PaymentController,
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] }, // Restrict access based on roles
   },
   {
     path: '/forbidden',
@@ -128,7 +135,7 @@ export const routes = [
   {
     path: '/about',
     name: 'About',
-    component: AboutUs, 
-    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },
+    component: AboutUs,
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
   },
 ]

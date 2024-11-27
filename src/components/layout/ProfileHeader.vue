@@ -132,7 +132,7 @@ const onLogout = async () => {
           variant="plain"
           to="/admin"
         >
-          Manage Users
+          Register an LSG Account
         </v-btn>
 
         <v-divider class="my-1"></v-divider>

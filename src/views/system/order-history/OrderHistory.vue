@@ -1,10 +1,8 @@
-<!-- OrderHistory.vue -->
-
 <template>
   <AppLayout>
     <template #content>
       <v-container>
-        <h2 class="text-center mb-4">Your Order History</h2>
+        <h1 class="text-center mb-4">My Orders</h1>
 
         <v-container>
           <!-- Loading Indicator -->
@@ -54,11 +52,7 @@
               v-for="order in userOrders"
               :key="order.id"
             >
-              <v-card
-                class="order-card"
-                outlined
-                @click="openOrderDetails(order)"
-              >
+              <v-card class="order-card" outlined>
                 <v-img
                   :src="order.image"
                   alt="Merchandise Image"
@@ -81,12 +75,17 @@
                     {{ formatDate(order.created_at) }}
                   </p>
                 </v-card-text>
+                <v-card-actions>
+                  <v-btn color="primary" @click="payForOrder(order)"
+                    >Pay Now</v-btn
+                  >
+                </v-card-actions>
               </v-card>
             </v-col>
           </v-row>
 
           <p v-else-if="!loading && !error" class="text-center">
-            No purchases found.
+            No Orders found.
           </p>
 
           <!-- Pagination -->
@@ -99,37 +98,6 @@
             @input="fetchUserOrders"
           ></v-pagination>
         </v-container>
-
-        <!-- Order Detail Dialog -->
-        <v-dialog v-model="dialog" max-width="500px">
-          <v-card>
-            <v-card-title>{{ selectedOrder?.merchandise_name }}</v-card-title>
-            <v-card-subtitle class="text-body-2">
-              Order ID: {{ selectedOrder?.id }}
-            </v-card-subtitle>
-            <v-card-text>
-              <v-img
-                :src="selectedOrder?.image"
-                alt="Merchandise Image"
-                class="order-detail-image"
-                contain
-              ></v-img>
-              <p><strong>Quantity:</strong> {{ selectedOrder?.qty }}</p>
-              <p>
-                <strong>Total Price:</strong>
-                {{ selectedOrder?.formattedPrice }}
-              </p>
-              <p>
-                <strong>Order Date:</strong>
-                {{ selectedOrder ? formatDate(selectedOrder.created_at) : '' }}
-              </p>
-            </v-card-text>
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="primary" @click="dialog = false">Close</v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
       </v-container>
     </template>
   </AppLayout>
@@ -137,8 +105,11 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { supabase } from '@/utils/supabase.js'
 import AppLayout from '@/components/layout/AppLayout.vue'
+
+const router = useRouter()
 
 const userOrders = ref([])
 const id = ref(null)
@@ -147,8 +118,6 @@ const error = ref(false)
 const errorMessage = ref('')
 const page = ref(1)
 const totalPages = ref(1)
-const dialog = ref(false)
-const selectedOrder = ref(null)
 
 const formatDate = date => {
   return new Date(date).toLocaleDateString('en-PH', {
@@ -156,11 +125,6 @@ const formatDate = date => {
     month: 'long',
     day: 'numeric',
   })
-}
-
-const openOrderDetails = order => {
-  selectedOrder.value = order
-  dialog.value = true
 }
 
 const fetchUserOrders = async () => {
@@ -175,10 +139,11 @@ const fetchUserOrders = async () => {
     } = await supabase
       .from('transactions')
       .select(
-        `id, qty, created_at, merchandise:merchandises(id, name, price, image)`,
+        `id, qty, created_at, status, merchandise:merchandises(id, name, price, image)`,
         { count: 'exact' },
       )
       .eq('user_id', id.value)
+      .neq('status', 'paid') // Exclude paid orders
       .range((page.value - 1) * 10, page.value * 10 - 1)
 
     if (fetchError) {
@@ -205,6 +170,34 @@ const fetchUserOrders = async () => {
     alert('You must be logged in to view your order history.')
   }
   loading.value = false
+}
+
+const payForOrder = async order => {
+  try {
+    // Redirect to the payment page with the order details
+    const { id, merchandise_name, formattedPrice } = order
+    const encodedOrder = encodeURIComponent(
+      JSON.stringify({ id, merchandise_name, formattedPrice }),
+    )
+    const paymentUrl = `/pay?order=${encodedOrder}`
+
+    // Open the payment page in a new tab
+    window.open(paymentUrl, '_blank')
+    // Simulate updating the order status after successful payment
+    const { error: updateError } = await supabase
+      .from('transactions')
+      .update({ status: 'paid' }) // Update the status to 'paid'
+      .eq('id', id)
+
+    if (updateError) {
+      console.error('Error updating order status:', updateError.message)
+    } else {
+      // Refresh the order list
+      await fetchUserOrders()
+    }
+  } catch (error) {
+    console.error('Error initiating payment:', error.message)
+  }
 }
 
 const fetchUserId = async () => {
@@ -257,12 +250,5 @@ onMounted(async () => {
 
 .pagination {
   justify-content: center;
-}
-
-.order-detail-image {
-  height: 100px;
-  object-fit: contain;
-  margin-bottom: 1rem;
-  border-radius: 4px;
 }
 </style>
