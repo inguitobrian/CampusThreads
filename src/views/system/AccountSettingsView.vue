@@ -97,7 +97,7 @@ const updatePassword = async () => {
           :form-error-message="formAction.formErrorMessage"
         />
         <v-card class="mb-5" title="Profile Information">
-          <v-card-text>
+          <v-card-text class="mb-5">
             <ProfilePicture></ProfilePicture>
           </v-card-text>
         </v-card>
@@ -212,6 +212,8 @@ const updatePassword = async () => {
                   </v-col>
                 </v-row>
                 <v-btn
+                  rounded
+                  elevation="8"
                   class="update-password-btn"
                   color="light-green-darken-4"
                   size="large"

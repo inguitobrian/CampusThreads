@@ -124,8 +124,6 @@ const onLogout = async () => {
           Manage Merchandise
         </v-btn>
 
-        <v-divider class="my-1"></v-divider>
-
         <v-btn
           v-if="isAdminAccount"
           prepend-icon="mdi-account-multiple"

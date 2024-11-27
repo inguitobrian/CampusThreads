@@ -75,10 +75,20 @@
                     {{ formatDate(order.created_at) }}
                   </p>
                 </v-card-text>
+
                 <v-card-actions>
-                  <v-btn color="primary" @click="payForOrder(order)"
-                    >Pay Now</v-btn
+                  <v-btn
+                    rounded
+                    style="
+                      background-color: #33691e;
+                      color: white;
+                      font-family: Arial, sans-serif;
+                      font-size: 16px;
+                    "
+                    @click="payForOrder(order)"
                   >
+                    Pay Now
+                  </v-btn>
                 </v-card-actions>
               </v-card>
             </v-col>

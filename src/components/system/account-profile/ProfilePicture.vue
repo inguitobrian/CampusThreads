@@ -154,6 +154,8 @@ onMounted(() => {
 
         <!-- Update Button -->
         <v-btn
+          rounded
+          elevation="8"
           class="mt-3 mb-3"
           type="submit"
           color="light-green-darken-4"
