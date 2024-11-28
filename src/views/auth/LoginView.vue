@@ -44,11 +44,18 @@ const isAdmin = ref(false)
               padding: 20px; /* Optional: Add padding to ensure content does not touch edges */
             "
           >
-            <div class="d-flex align-center justify-center" style="gap: 5px">
+            <div
+              cols="12"
+              sm="6"
+              md="4"
+              lg="3"
+              class="d-flex align-center justify-center"
+              style="gap: 5px"
+            >
               <v-img
                 src="/Campusthreads.png"
                 alt="Custom Logo"
-                max-width="60px"
+                style="max-width: 80px; width: 100%; height: auto"
                 contain
               ></v-img>
               <v-card-title

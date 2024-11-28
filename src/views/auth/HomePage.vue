@@ -259,18 +259,27 @@ const shopItems = [
         </h1>
       </v-container>
       <v-parallax
+        elevation-10
+        class="mb-10"
+        rounded
         src="public/pexels-pavel-danilyuk-6461397.jpg"
-        height="600"
+        height="auto"
         style="margin-top: 20px"
       >
         <v-row class="fill-height d-flex align-center text-white px-8">
-          <v-col cols="6" class="d-flex flex-column justify-center">
+          <v-col
+            cols="12"
+            sm="6"
+            md="4"
+            lg="3"
+            class="d-flex flex-column justify-center"
+          >
             <h1 class="text-h2 font-weight-bold mb-4" style="color: white">
               <span style="color: #ffcc00">CampusThreads</span>
             </h1>
             <h2
               class="text-h4 font-weight-regular mb-6"
-              style="line-height: 1.5; color: white"
+              style="line-height: 1.3; color: white"
             >
               With <span style="color: #ffcc00">CampusThreads</span>, you can
               create & showcase custom merchandise for your
@@ -294,47 +303,42 @@ const shopItems = [
             </v-btn>
           </v-col>
 
-          <v-col cols="6" class="d-flex justify-center align-center">
+          <v-col class="d-flex justify-center align-center">
             <v-img
               src="public\1eace6f4f286927833a35f8e45cc92bc (1).gif"
-              max-width="100%"
-              max-height="400"
+              width="100%"
+              max-height="500"
               contain
             ></v-img>
           </v-col>
         </v-row>
       </v-parallax>
 
-      <v-container
-        fluid
-        class="mt-4 d-flex justify-center align-center"
-        style="height: 50vh"
-      >
-        <v-col cols="12" class="text-center">
-          <h1 class="text-h3 font-weight-bold mb-2" style="color: #537346">
-            College Departments
-          </h1>
-          <p class="text-body-1 mb-4" style="font-size: 1.2rem; color: #333">
-            Discover merchandise from all our colleges. Browse unique
-            <br />items from each department and show your school spirit!
-          </p>
-          <v-btn
-            outlined
-            rounded
-            class="text-none"
-            to="merchs"
-            style="
-              color: #537346;
-              font-weight: bold;
-              border-color: #537346;
-              padding: 8px 20px;
-              width: 180px;
-            "
-          >
-            View Merchandise
-          </v-btn>
-        </v-col>
-      </v-container>
+      <v-col cols="12" class="text-center">
+        <h1 class="text-h3 font-weight-bold mb-2" style="color: #537346">
+          College Departments
+        </h1>
+        <p class="text-body-1 mb-4" style="font-size: 1.2rem; color: #333">
+          Discover merchandise from all our colleges. Browse unique
+          <br />items from each department and show your school spirit!
+        </p>
+        <v-btn
+          outlined
+          rounded
+          class="text-none mb-8"
+          to="merchs"
+          style="
+            color: #537346;
+            font-weight: bold;
+            border-color: #537346;
+            padding: 8px 20px;
+            width: 180px;
+          "
+        >
+          View Merchandise
+        </v-btn>
+      </v-col>
+
       <v-container fluid>
         <v-row>
           <v-col
@@ -370,9 +374,7 @@ const shopItems = [
               </v-expand-transition>
             </v-card>
           </v-col>
-        </v-row>
 
-        <v-row justify="center">
           <v-col
             cols="12"
             sm="6"
