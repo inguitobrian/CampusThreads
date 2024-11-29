@@ -1,15 +1,15 @@
 <script setup>
-import AppLayout from '@/components/layout/AppLayout.vue';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router'; // Importing the useRouter hook
+import AppLayout from '@/components/layout/AppLayout.vue'
+import { ref } from 'vue'
+import { useRouter } from 'vue-router' // Importing the useRouter hook
 
 // Create a router instance
-const router = useRouter();
+const router = useRouter()
 
 // Function to navigate to the home page when the "Explore More" button is clicked
 const navigateToHome = () => {
-  router.push('/'); // This will navigate to the home route
-};
+  router.push('/') // This will navigate to the home route
+}
 </script>
 
 <template>
@@ -20,7 +20,10 @@ const navigateToHome = () => {
         <div class="left">
           <div class="image-card">
             <div class="image-container">
-              <img src="/public/e1de153b-7355-4bd9-be85-9f8b19003941.jpeg" alt="Image 1" />
+              <img
+                src="/public/e1de153b-7355-4bd9-be85-9f8b19003941.jpeg"
+                alt="Image 1"
+              />
             </div>
             <div class="card-info">
               <h4>Brian Inguito</h4>
@@ -28,10 +31,18 @@ const navigateToHome = () => {
             </div>
             <!-- Social Media Icons Inside the Card -->
             <div class="social-icons">
-              <a href="https://facebook.com" target="_blank" class="social-icon">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                class="social-icon"
+              >
                 <i class="fab fa-facebook"></i>
               </a>
-              <a href="https://instagram.com" target="_blank" class="social-icon">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                class="social-icon"
+              >
                 <i class="fab fa-instagram"></i>
               </a>
               <a href="https://github.com" target="_blank" class="social-icon">
@@ -50,10 +61,18 @@ const navigateToHome = () => {
             </div>
             <!-- Social Media Icons Inside the Card -->
             <div class="social-icons">
-              <a href="https://facebook.com" target="_blank" class="social-icon">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                class="social-icon"
+              >
                 <i class="fab fa-facebook"></i>
               </a>
-              <a href="https://instagram.com" target="_blank" class="social-icon">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                class="social-icon"
+              >
                 <i class="fab fa-instagram"></i>
               </a>
               <a href="https://github.com" target="_blank" class="social-icon">
@@ -74,13 +93,17 @@ const navigateToHome = () => {
             <h3>CampusThreads</h3>
             <h1>ABOUT US</h1>
             <p>
-              Welcome to <b>CampusThread</b>, your go-to destination for university merchandise! We offer stylish apparel
-              and accessories that celebrate your campus pride. Whether you're a student, alumni, or faculty, our collection
-              is designed for comfort and durability, making it easy to show off your school spirit. Join the CampusThread
-              community today and wear your pride with style!
+              Welcome to <b>CampusThread</b>, your go-to destination for
+              university merchandise! We offer stylish apparel and accessories
+              that celebrate your campus pride. Whether you're a student,
+              alumni, or faculty, our collection is designed for comfort and
+              durability, making it easy to show off your school spirit. Join
+              the CampusThread community today and wear your pride with style!
             </p>
             <!-- Button with click event to navigate home -->
-            <button class="explore-btn" @click="navigateToHome">EXPLORE MORE</button>
+            <button class="explore-btn" @click="navigateToHome">
+              EXPLORE MORE
+            </button>
           </div>
         </div>
       </div>
@@ -138,7 +161,7 @@ const navigateToHome = () => {
 
 .card-info {
   padding: 10px;
-  background-color: #6a0dad;
+  background-color: #40513b;
   color: #fff;
   text-align: center;
 }
@@ -164,12 +187,12 @@ const navigateToHome = () => {
 
 .social-icon {
   font-size: 20px;
-  color: #6a0dad;
+  color: #40513b;
   transition: color 0.3s ease;
 }
 
 .social-icon:hover {
-  color: #8b00ff;
+  color: #40513b;
 }
 
 /* Right section styles */
@@ -181,7 +204,7 @@ const navigateToHome = () => {
 }
 
 .stats h2 {
-  color: #6a0dad;
+  color: #40513b;
   font-size: 36px;
   font-weight: bold;
   margin: 0;
@@ -193,7 +216,7 @@ const navigateToHome = () => {
 }
 
 .about-text h3 {
-  color: #6a0dad;
+  color: #40513b;
   font-size: 18px;
   margin: 0;
 }
@@ -211,7 +234,7 @@ const navigateToHome = () => {
 }
 
 .explore-btn {
-  background: #6a0dad;
+  background: #40513b;
   color: #fff;
   border: none;
   padding: 10px 20px;

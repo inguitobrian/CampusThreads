@@ -359,7 +359,7 @@ const shopItems = [
               <v-card-subtitle>{{ card.subtitle }}</v-card-subtitle>
 
               <v-card-actions>
-                <v-btn :to="card.link" text color="orange-lighten-2"
+                <v-btn :to="card.link" text style="color: #40513b"
                   >Explore</v-btn
                 >
                 <v-spacer></v-spacer>
@@ -393,7 +393,7 @@ const shopItems = [
               <v-card-subtitle>{{ card.subtitle }}</v-card-subtitle>
 
               <v-card-actions>
-                <v-btn :to="card.link" text color="orange-lighten-2"
+                <v-btn :to="card.link" text style="color: #40513b"
                   >Explore</v-btn
                 >
                 <v-spacer></v-spacer>

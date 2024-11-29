@@ -96,6 +96,7 @@
 
           <p v-else-if="!loading && !error" class="text-center">
             No Orders found.
+            <a href="/merchs" class="shop-now-link">Shop now</a>
           </p>
 
           <!-- Pagination -->
@@ -260,5 +261,16 @@ onMounted(async () => {
 
 .pagination {
   justify-content: center;
+}
+
+.shop-now-link {
+  margin-left: 2px;
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.shop-now-link:hover {
+  text-decoration: underline;
 }
 </style>
