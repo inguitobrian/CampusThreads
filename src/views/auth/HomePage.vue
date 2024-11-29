@@ -99,7 +99,7 @@ const shopItems = [
   <AppLayout>
     <template #content>
       <WelcomeUsers />
-      <v-carousel :show-arrows="false">
+      <v-carousel :show-arrows="false" :cycle="true" :interval="4000">
         <v-carousel-item
           v-for="(item, i) in items"
           :key="i"
@@ -122,6 +122,7 @@ const shopItems = [
           </v-container>
         </v-carousel-item>
       </v-carousel>
+
       <v-container class="text-center mt-8">
         <h1 class="text-h4 font-weight-bold mb-4" style="font-size: 2rem">
           "Wear Your School Spirit, Share Your Pride"

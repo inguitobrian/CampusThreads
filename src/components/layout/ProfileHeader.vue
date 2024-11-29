@@ -60,26 +60,26 @@ const onLogout = async () => {
 </script>
 
 <template>
-  <v-menu min-width="200px" rounded>
+  <v-menu min-width="240px" rounded offset-y>
     <!-- Activator Button with Avatar -->
     <template #activator="{ props }">
-      <v-btn icon v-bind="props">
+      <v-btn icon v-bind="props" class="avatar-btn">
         <!-- Show Profile Picture if available -->
         <v-avatar
           v-if="profilePicture"
           :image="profilePicture"
-          color="red-darken-4"
+          color="indigo darken-4"
           size="large"
         />
         <!-- Otherwise, show initials -->
-        <v-avatar v-else color="red-darken-4" size="large">
+        <v-avatar v-else color="indigo darken-4" size="large">
           <span class="text-h5">{{ avatarText }}</span>
         </v-avatar>
       </v-btn>
     </template>
 
     <!-- Menu Content -->
-    <v-card class="mt-1">
+    <v-card class="mt-1" elevation="10">
       <v-card-text>
         <!-- User Information -->
         <v-list>
@@ -89,11 +89,11 @@ const onLogout = async () => {
               <v-avatar
                 v-if="profilePicture"
                 :image="profilePicture"
-                color="red-darken-4"
+                color="indigo darken-4"
                 size="large"
               />
               <!-- Otherwise, show initials -->
-              <v-avatar v-else color="red-darken-4" size="large">
+              <v-avatar v-else color="indigo darken-4" size="large">
                 <span class="text-h5">{{ avatarText }}</span>
               </v-avatar>
             </template>
@@ -103,13 +103,23 @@ const onLogout = async () => {
         <v-divider class="my-1"></v-divider>
 
         <!-- Account Settings Button -->
-        <v-btn prepend-icon="mdi-wrench" variant="plain" to="/settings">
+        <v-btn
+          prepend-icon="mdi-wrench"
+          variant="outlined"
+          class="menu-button"
+          to="/settings"
+        >
           Account Settings
         </v-btn>
         <v-divider class="my-1"></v-divider>
 
         <!-- Orders Button -->
-        <v-btn prepend-icon="mdi-cart-arrow-down" variant="plain" to="/orders">
+        <v-btn
+          prepend-icon="mdi-cart-arrow-down"
+          variant="outlined"
+          class="menu-button"
+          to="/orders"
+        >
           My Orders
         </v-btn>
         <v-divider class="my-1"></v-divider>
@@ -118,7 +128,8 @@ const onLogout = async () => {
         <v-btn
           v-if="isLSGAccount"
           prepend-icon="mdi-tshirt-crew"
-          variant="plain"
+          variant="outlined"
+          class="menu-button"
           to="/stocks"
         >
           Manage Merchandise
@@ -127,7 +138,8 @@ const onLogout = async () => {
         <v-btn
           v-if="isAdminAccount"
           prepend-icon="mdi-account-multiple"
-          variant="plain"
+          variant="outlined"
+          class="menu-button"
           to="/admin"
         >
           Register an LSG Account
@@ -138,10 +150,11 @@ const onLogout = async () => {
         <!-- Logout Button -->
         <v-btn
           prepend-icon="mdi-logout"
-          variant="plain"
+          variant="outlined"
           @click="onLogout"
           :loading="formAction.formProcess"
           :disabled="formAction.formProcess"
+          class="menu-button logout-btn"
         >
           Logout
         </v-btn>
@@ -151,12 +164,55 @@ const onLogout = async () => {
 </template>
 
 <style scoped>
-/* Optional Styling for Avatar and Menu */
+/* Avatar Button Styling */
+.avatar-btn {
+  transition: transform 0.3s ease;
+}
+.avatar-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Menu styling */
+.v-card {
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+.v-card-text {
+  padding: 15px;
+}
+
+/* Button Styling */
+.menu-button {
+  width: 100%;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-button:hover {
+  background-color: #4caf50;
+  color: white;
+}
+
+.logout-btn {
+  background-color: #f44336;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Avatar Text */
 .v-avatar {
   font-weight: bold;
 }
 
-.v-btn {
-  font-weight: 200;
+/* Divider */
+.v-divider {
+  border-color: #cfd8dc;
 }
 </style>
