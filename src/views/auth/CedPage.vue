@@ -1,22 +1,39 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import AppLayout from '@/components/layout/AppLayout.vue'
+import MerchandiseCollege from '@/components/layout/MerchandiseCollege.vue'
 
-const theme = ref('light');
-const drawer = ref(false);
+const theme = ref('light')
+const drawer = ref(false)
 
 const images = [
-  { src: 'public/e98b82627662e62ab553b39ebe51174a.jpg', price: '₱350', name: 'College Tee' },
-  { src: 'public/45573a304bbfe6132dbac1cf25da78fd.jpg', price: '₱500', name: 'Outfits' },
-  { src: 'public/ef74f22d91a1496a8c3c6223eb56c80f.jpg', price: '₱50', name: 'Accessories' },
-  { src: 'public/df92d76bfd8fa56352d2b916bfb4b973.jpg', price: '₱100', name: 'Lanyard' },
+  {
+    src: 'public/e98b82627662e62ab553b39ebe51174a.jpg',
+    price: '₱350',
+    name: 'College Tee',
+  },
+  {
+    src: 'public/45573a304bbfe6132dbac1cf25da78fd.jpg',
+    price: '₱500',
+    name: 'Outfits',
+  },
+  {
+    src: 'public/ef74f22d91a1496a8c3c6223eb56c80f.jpg',
+    price: '₱50',
+    name: 'Accessories',
+  },
+  {
+    src: 'public/df92d76bfd8fa56352d2b916bfb4b973.jpg',
+    price: '₱100',
+    name: 'Lanyard',
+  },
 ]
 const modalVisible = ref(false)
 const selectedImage = ref({})
 const quantity = ref(1) // Initial quantity set to 1
 
 // Function to open the modal and set the selected image
-const openModal = (image) => {
+const openModal = image => {
   selectedImage.value = image
   modalVisible.value = true
   quantity.value = 1 // Reset quantity when opening the modal
@@ -24,7 +41,9 @@ const openModal = (image) => {
 
 // Function for "Buy Now" button action
 const buyNow = () => {
-  alert(`You are purchasing ${quantity.value} ${selectedImage.value.name}(s) for ${selectedImage.value.price} each.`)
+  alert(
+    `You are purchasing ${quantity.value} ${selectedImage.value.name}(s) for ${selectedImage.value.price} each.`,
+  )
   // Implement logic for the "Buy Now" action, e.g., add to cart or checkout
 }
 
@@ -38,166 +57,259 @@ const decrementQuantity = () => {
     quantity.value -= 1
   }
 }
-const currentSet = ref(0);
+const currentSet = ref(0)
 
 function nextSet() {
-  currentSet.value = (currentSet.value + 1) % images.length;
+  currentSet.value = (currentSet.value + 1) % images.length
 }
 
 function prevSet() {
-  currentSet.value = (currentSet.value - 1 + images.length) % images.length;
+  currentSet.value = (currentSet.value - 1 + images.length) % images.length
 }
 </script>
 
 <template>
   <AppLayout>
-   <template #content>
+    <template #content>
+      <v-responsive class="border rounded">
+        <v-app
+          :theme="theme"
+          style="
+            background: linear-gradient(to right, #add8e6, #fdfd96);
+            font-family: 'Roboto', sans-serif;
+          "
+        >
+          <!-- Main Content -->
+          <v-main>
+            <v-container fluid>
+              <v-img
+                src="public/pexels-manelandsean-17328274.jpg"
+                height="400px"
+                cover
+              >
+                <div class="e-text">College of Education</div>
+              </v-img>
 
-  <v-responsive class="border rounded">
-    <v-app
-      :theme="theme"
-      style="background: linear-gradient(to right, #add8e6, #fdfd96); font-family: 'Roboto', sans-serif"
-    >
-      <!-- Main Content -->
-      <v-main>
-        <v-container fluid>
-        <v-img src="public/pexels-manelandsean-17328274.jpg" height="400px" cover>
-          <div class="e-text">College of Education</div>
-        </v-img>
+              <v-container>
+                <h1
+                  class="text-h4 font-weight-bold"
+                  style="font-size: 2rem; text-align: left; padding-top: 50px"
+                >
+                  Featured
+                </h1>
+              </v-container>
 
-        <v-container>
-            <h1 class="text-h4 font-weight-bold" style="font-size: 2rem; text-align: left; padding-top:50px;">
-              Featured
-            </h1>
-          </v-container>
+              <v-container fluid>
+                <v-row>
+                  <v-col cols="6">
+                    <v-parallax
+                      height="500"
+                      src="public/df92d76bfd8fa56352d2b916bfb4b973.jpg"
+                    >
+                      <v-overlay>
+                        <template v-slot:activator="{ props }">
+                          <v-container
+                            v-bind="props"
+                            class="fill-height d-flex flex-column justify-space-between align-start"
+                          >
+                            <h2
+                              class="text-h4"
+                              style="
+                                writing-mode: vertical-rl;
+                                text-orientation: mixed;
+                                color: white;
+                                font-weight: bold;
+                                margin-left: 20px;
+                                margin-top: 200px;
+                              "
+                            >
+                              LANYARDS
+                            </h2>
+                            <v-btn
+                              outlined
+                              class="text-none"
+                              style="
+                                margin-left: 20px;
+                                margin-bottom: 20px;
+                                color: black;
+                                border-color: black;
+                              "
+                            >
+                              Shop Now
+                              <v-icon right>mdi-arrow-right</v-icon>
+                            </v-btn>
+                          </v-container>
+                        </template>
+                      </v-overlay>
+                    </v-parallax>
+                  </v-col>
 
-        <v-container fluid>
-          <v-row>
-            <v-col cols="6">
-              <v-parallax height="500" src="public/df92d76bfd8fa56352d2b916bfb4b973.jpg">
-                <v-overlay>
-                  <template v-slot:activator="{ props }">
-                    <v-container v-bind="props" class="fill-height d-flex flex-column justify-space-between align-start">
-                      <h2 class="text-h4" 
-                          style="writing-mode: vertical-rl; text-orientation: mixed; color: white; font-weight: bold; margin-left: 20px; margin-top: 200px;">
-                        LANYARDS
-                      </h2>
-                      <v-btn outlined class="text-none" style="margin-left: 20px; margin-bottom: 20px; color: black; border-color: black;">
-                        Shop Now
-                        <v-icon right>mdi-arrow-right</v-icon>
-                      </v-btn>
-                    </v-container>
-                  </template>
-                </v-overlay>
-              </v-parallax>
-            </v-col>
+                  <v-col cols="6">
+                    <v-parallax
+                      height="500"
+                      src="public/e98b82627662e62ab553b39ebe51174a.jpg"
+                    >
+                      <v-overlay>
+                        <template v-slot:activator="{ props }">
+                          <v-container
+                            v-bind="props"
+                            class="fill-height d-flex flex-column justify-space-between align-start"
+                          >
+                            <h2
+                              class="text-h4"
+                              style="
+                                writing-mode: vertical-rl;
+                                text-orientation: mixed;
+                                color: white;
+                                font-weight: bold;
+                                margin-left: 20px;
+                                margin-top: 200px;
+                              "
+                            >
+                              UNIFORMS
+                            </h2>
+                            <v-btn
+                              outlined
+                              class="text-none"
+                              style="
+                                margin-left: 20px;
+                                margin-bottom: 20px;
+                                color: black;
+                                border-color: black;
+                              "
+                            >
+                              Shop Now
+                              <v-icon right>mdi-arrow-right</v-icon>
+                            </v-btn>
+                          </v-container>
+                        </template>
+                      </v-overlay>
+                    </v-parallax>
+                  </v-col>
+                </v-row>
+              </v-container>
+              <v-container class="text-center mt-8">
+                <h1
+                  class="text-h4 font-weight-bold mb-4"
+                  style="font-size: 2rem"
+                >
+                  "Nurture, inspire, and lead—wear merch that celebrates your
+                  path in education."
+                </h1>
+                <p
+                  class="text-body-1"
+                  style="
+                    font-size: 1rem;
+                    font-weight: bold;
+                    max-width: 900px;
+                    margin: 0 auto;
+                  "
+                >
+                  "For those who ignite learning—show your university spirit
+                  with pride."
+                </p>
+              </v-container>
+              <v-responsive
+                class="video-fullscreen"
+                aspect-ratio="1/1"
+                style="height: 100vh"
+              >
+                <video
+                  autoplay
+                  loop
+                  playsinline
+                  controls
+                  style="width: 100%; height: 100%; object-fit: cover"
+                >
+                  <source
+                    src="\videos\465051289_9085493988152168_3587781794123977083_n.mp4"
+                  />
+                  Your browser does not support the video tag.
+                </video>
+              </v-responsive>
+              <v-container class="text-left mt-8">
+                <h1
+                  class="text-h4 font-weight-bold mb-4"
+                  style="font-size: 2rem; text-align: left"
+                >
+                  Don’t miss
+                </h1>
+                <p
+                  class="text-body-1"
+                  style="
+                    font-size: 1rem;
+                    font-weight: bold;
+                    max-width: 900px;
+                    margin: 0;
+                    text-align: left;
+                  "
+                >
+                  "This is your chance—don’t miss out on the must-have merch of
+                  the season!"
+                </p>
+              </v-container>
 
-            <v-col cols="6">
-              <v-parallax height="500" src="public/e98b82627662e62ab553b39ebe51174a.jpg">
-                <v-overlay>
-                  <template v-slot:activator="{ props }">
-                    <v-container v-bind="props" class="fill-height d-flex flex-column justify-space-between align-start">
-                      <h2 class="text-h4" 
-                          style="writing-mode: vertical-rl; text-orientation: mixed; color: white; font-weight: bold; margin-left: 20px; margin-top: 200px;">
-                        UNIFORMS
-                      </h2>
-                      <v-btn outlined class="text-none" style="margin-left: 20px; margin-bottom: 20px; color: black; border-color: black;">
-                        Shop Now
-                        <v-icon right>mdi-arrow-right</v-icon>
-                      </v-btn>
-                    </v-container>
-                  </template>
-                </v-overlay>
-              </v-parallax>
-            </v-col>
-          </v-row>
-        </v-container>
-        <v-container class="text-center mt-8">
-          <h1 class="text-h4 font-weight-bold mb-4" style="font-size: 2rem;">
-            "Nurture, inspire, and lead—wear merch that celebrates your path in education."
-          </h1>
-          <p class="text-body-1" style="font-size: 1rem; font-weight: bold; max-width: 900px; margin: 0 auto;">
-            "For those who ignite learning—show your university spirit with pride."
-          </p>
-        </v-container>
-        <v-responsive class="video-fullscreen" aspect-ratio="1/1" style="height: 100vh;">
-            <video autoplay loop playsinline controls style="width: 100%; height: 100%; object-fit: cover;">
-              <source src="\videos\465051289_9085493988152168_3587781794123977083_n.mp4">
-              Your browser does not support the video tag.
-            </video>
-        </v-responsive>
-        <v-container class="text-left mt-8">
-            <h1 class="text-h4 font-weight-bold mb-4" style="font-size: 2rem; text-align: left;">
-              Don’t miss
-            </h1>
-            <p class="text-body-1" style="font-size: 1rem; font-weight: bold; max-width: 900px; margin: 0; text-align: left;">
-              "This is your chance—don’t miss out on the must-have merch of the season!"
-            </p>
-          </v-container>
+              <v-container>
+                <v-row>
+                  <!-- Product Cards -->
+                  <v-col
+                    v-for="(image, index) in images"
+                    :key="index"
+                    cols="6"
+                    md="3"
+                  >
+                    <v-card
+                      class="mx-auto product-card"
+                      outlined
+                      @click="openModal(image)"
+                    >
+                      <v-img :src="image.src" height="300px" cover>
+                        <template v-slot:placeholder>
+                          <v-row
+                            class="fill-height"
+                            align="center"
+                            justify="center"
+                          >
+                            <v-spinner></v-spinner>
+                          </v-row>
+                        </template>
+                        <!-- Overlay with Product Name and Price -->
+                        <div class="product-overlay">
+                          <span class="product-name">{{ image.name }}</span>
+                        </div>
+                      </v-img>
+                    </v-card>
+                  </v-col>
+                </v-row>
 
-          <v-container>
-    <v-row>
-      <!-- Product Cards -->
-      <v-col v-for="(image, index) in images" :key="index" cols="6" md="3">
-        <v-card class="mx-auto product-card" outlined @click="openModal(image)">
-          <v-img :src="image.src" height="300px" cover>
-            <template v-slot:placeholder>
-              <v-row class="fill-height" align="center" justify="center">
-                <v-spinner></v-spinner>
-              </v-row>
-            </template>
-            <!-- Overlay with Product Name and Price -->
-            <div class="product-overlay">
-              <span class="product-name">{{ image.name }}</span>
-              <span class="product-price">{{ image.price }}</span>
-            </div>
-          </v-img>
-        </v-card>
-      </v-col>
-    </v-row>
+                <!-- Modal for displaying the image in full size -->
+                <v-dialog v-model="modalVisible" max-width="800px">
+                  <v-card class="e-card">
+                    <!-- Large Image -->
+                    <v-img
+                      :src="selectedImage.src"
+                      height="500px"
+                      class="d-flex align-center justify-center"
+                      contain
+                    ></v-img>
 
-    <!-- Modal for displaying the image in full size -->
-    <v-dialog v-model="modalVisible" max-width="800px">
-      <v-card class="e-card">
-        <!-- Large Image -->
-        <v-img :src="selectedImage.src" height="500px" class="d-flex align-center justify-center" contain></v-img>
-        
-        <!-- Product Info -->
-        <v-card-title class="text-center text-white">
-          <span class="product-name">{{ selectedImage.name }}</span>
-        </v-card-title>
-        <v-card-subtitle class="text-center text-white">
-          <span class="product-price">{{ selectedImage.price }}</span>
-        </v-card-subtitle>
-
-        <!-- Quantity Selector -->
-        <v-card-subtitle class="text-center text-white">
-          <v-row justify="center" align="center">
-            <v-btn icon @click="decrementQuantity">
-              <v-icon>mdi-minus</v-icon>
-            </v-btn>
-            <v-text-field v-model="quantity" type="number" min="1" class="quantity-input" outlined dense></v-text-field>
-            <v-btn icon @click="incrementQuantity">
-              <v-icon>mdi-plus</v-icon>
-            </v-btn>
-          </v-row>
-        </v-card-subtitle>
-
-        <!-- Buy Now Button -->
-        <v-card-actions class="d-flex justify-end">
-          <v-btn class="e-btn" @click="buyNow">Buy Now</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-container>
-        </v-container>
-      </v-main>
-    </v-app>
-  </v-responsive>
-  
-</template>
+                    <!-- Product Info -->
+                    <v-card-title class="text-center text-white">
+                      <span class="product-name">{{ selectedImage.name }}</span>
+                    </v-card-title>
+                  </v-card>
+                </v-dialog>
+              </v-container>
+              <div>
+                <MerchandiseCollege :collegeId="6" collegeName="CED College" />
+              </div>
+            </v-container>
+          </v-main>
+        </v-app>
+      </v-responsive>
+    </template>
   </AppLayout>
-  </template>
+</template>
 
 <style>
 .bg-login {
@@ -330,7 +442,11 @@ function prevSet() {
 }
 
 .e-card {
-  background: linear-gradient(135deg, #f9e36b, #1e3d58); /* Lighter yellow to darker blue */
+  background: linear-gradient(
+    135deg,
+    #f9e36b,
+    #1e3d58
+  ); /* Lighter yellow to darker blue */
   color: white;
   border-radius: 10px;
 }
@@ -345,7 +461,11 @@ function prevSet() {
 }
 
 .v-btn.e-btn {
-  background: linear-gradient(45deg, #f9e36b, #1e3d58); /* Lighter yellow to darker blue */
+  background: linear-gradient(
+    45deg,
+    #f9e36b,
+    #1e3d58
+  ); /* Lighter yellow to darker blue */
   color: white;
   font-weight: bold;
   border-radius: 5px;
@@ -354,9 +474,12 @@ function prevSet() {
 }
 
 .v-btn.e-btn:hover {
-  background: linear-gradient(45deg, #1e3d58, #f9e36b); /* Reverse gradient on hover */
+  background: linear-gradient(
+    45deg,
+    #1e3d58,
+    #f9e36b
+  ); /* Reverse gradient on hover */
 }
-
 
 /* Quantity Input Styles */
 .quantity-input {

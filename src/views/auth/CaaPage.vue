@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import AppLayout from '@/components/layout/AppLayout.vue'
+import MerchandiseCollege from '@/components/layout/MerchandiseCollege.vue'
 
 const theme = ref('light')
 const drawer = ref(false)
@@ -70,7 +71,7 @@ function prevSet() {
 <template>
   <AppLayout>
     <template #content>
-      <!-- Main Content --> 
+      <!-- Main Content -->
       <v-main>
         <v-container fluid>
           <!-- Banner Image -->
@@ -133,7 +134,10 @@ function prevSet() {
                 </v-parallax>
               </v-col>
               <v-col cols="6">
-                <v-parallax height="500" src="public/c5edc5c5d954cb7071e3ae0d03a1cc39.jpg">
+                <v-parallax
+                  height="500"
+                  src="public/c5edc5c5d954cb7071e3ae0d03a1cc39.jpg"
+                >
                   <v-overlay>
                     <template v-slot:activator="{ props }">
                       <v-container
@@ -258,7 +262,6 @@ function prevSet() {
                     <!-- Overlay with Product Name and Price -->
                     <div class="product-overlay">
                       <span class="product-name">{{ image.name }}</span>
-                      <span class="product-price">{{ image.price }}</span>
                     </div>
                   </v-img>
                 </v-card>
@@ -280,37 +283,12 @@ function prevSet() {
                 <v-card-title class="text-center text-white">
                   <span class="product-name">{{ selectedImage.name }}</span>
                 </v-card-title>
-                <v-card-subtitle class="text-center text-white">
-                  <span class="product-price">{{ selectedImage.price }}</span>
-                </v-card-subtitle>
-
-                <!-- Quantity Selector -->
-                <v-card-subtitle class="text-center text-white">
-                  <v-row justify="center" align="center">
-                    <v-btn icon @click="decrementQuantity">
-                      <v-icon>mdi-minus</v-icon>
-                    </v-btn>
-                    <v-text-field
-                      v-model="quantity"
-                      type="number"
-                      min="1"
-                      class="quantity-input"
-                      outlined
-                      dense
-                    ></v-text-field>
-                    <v-btn icon @click="incrementQuantity">
-                      <v-icon>mdi-plus</v-icon>
-                    </v-btn>
-                  </v-row>
-                </v-card-subtitle>
-
-                <!-- Buy Now Button -->
-                <v-card-actions class="d-flex justify-end">
-                  <v-btn class="btn" @click="buyNow">Buy Now</v-btn>
-                </v-card-actions>
               </v-card>
             </v-dialog>
           </v-container>
+          <div>
+            <MerchandiseCollege :collegeId="4" collegeName="CAA College" />
+          </div>
         </v-container>
       </v-main>
     </template>
@@ -318,7 +296,6 @@ function prevSet() {
 </template>
 
 <style scoped>
-
 .bg-login {
   background-color: #71885a;
 }
@@ -359,7 +336,6 @@ function prevSet() {
   padding: 15px 30px;
   border-radius: 10px;
 }
-
 
 .v-btn {
   margin: 5px;
