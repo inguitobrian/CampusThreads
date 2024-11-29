@@ -36,6 +36,7 @@ const passwordData = ref({
 const visible = ref(false)
 const reenter = ref(false)
 const refVForm = ref()
+const snackbar = ref(false)
 
 // Fetch user information on component mount
 onMounted(async () => {
@@ -81,6 +82,7 @@ const updatePassword = async () => {
     formAction.value.formErrorMessage = error.message
   } else {
     formAction.value.formSuccessMessage = 'Password updated successfully.'
+    snackbar.value = true
   }
 
   formAction.value.formProcess = false
@@ -92,10 +94,6 @@ const updatePassword = async () => {
   <AppLayout>
     <template #content>
       <v-container>
-        <AlertNotification
-          :form-success-message="formAction.formSuccessMessage"
-          :form-error-message="formAction.formErrorMessage"
-        />
         <v-card class="mb-5" title="Profile Information">
           <v-card-text class="mb-5">
             <ProfilePicture></ProfilePicture>
@@ -220,8 +218,6 @@ const updatePassword = async () => {
                   type="submit"
                   prepend-icon="mdi-account-key"
                   block
-                  :disabled="formAction.formProcess"
-                  :loading="formAction.formProcess"
                 >
                   Update Password
                 </v-btn>
@@ -229,12 +225,41 @@ const updatePassword = async () => {
             </v-container>
           </v-card>
         </div>
+
+        <!-- Snackbar Overlay -->
+        <v-overlay v-model="snackbar" class="snackbar-overlay">
+          <v-card
+            class="centered-snackbar"
+            color="light-green-darken-4"
+            elevation="10"
+          >
+            <v-card-text>
+              <h2>Password Updated Successfully!</h2>
+            </v-card-text>
+            <v-card-actions class="justify-center">
+              <v-btn color="white" @click="snackbar = false">OK</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-overlay>
       </v-container>
     </template>
   </AppLayout>
 </template>
 
 <style scoped>
+.snackbar-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
+}
+
+.centered-snackbar {
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+}
 .settings-wrapper {
   display: flex;
   justify-content: center;

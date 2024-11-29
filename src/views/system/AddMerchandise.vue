@@ -57,6 +57,22 @@
           </v-col>
         </v-row>
       </v-container>
+
+      <!-- Overlay with Centered Snackbar -->
+      <v-overlay v-model="snackbar" class="snackbar-overlay">
+        <v-card
+          class="centered-snackbar"
+          color="light-green-darken-4"
+          elevation="10"
+        >
+          <v-card-text>
+            <h2>Merchandise Successfully Added!</h2>
+          </v-card-text>
+          <v-card-actions class="justify-center">
+            <v-btn color="white" @click="snackbar = false">OK</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-overlay>
     </template>
   </AppLayout>
 </template>
@@ -79,6 +95,7 @@ const file = ref(null)
 const imageUrl = ref(null)
 const formValid = ref(false)
 const isUploading = ref(false)
+const snackbar = ref(false) // Snackbar visibility
 const user = ref(null)
 
 // Validation rules
@@ -143,11 +160,10 @@ const addMerchandise = async () => {
     return
   }
 
-  // Insert into 'merchandises' table
   const { data: merchandiseData, error: merchandiseError } = await supabase
     .from('merchandises')
     .insert([{ ...merchItem, image: imageUrl.value }])
-    .select('id') // Select the ID of the newly inserted merchandise
+    .select('id')
 
   if (merchandiseError) {
     console.error('Error adding merchandise:', merchandiseError.message)
@@ -157,12 +173,11 @@ const addMerchandise = async () => {
   if (merchandiseData && merchandiseData.length > 0) {
     const merchandiseId = merchandiseData[0].id
 
-    // Insert into 'stocks_in' table
     const { error: stocksError } = await supabase.from('stocks_in').insert([
       {
         merchandise_id: merchandiseId,
         name: merchItem.name,
-        quantity: 0, // Default quantity, update as needed
+        quantity: 0,
       },
     ])
 
@@ -170,6 +185,7 @@ const addMerchandise = async () => {
       console.error('Error adding to stocks_in:', stocksError.message)
     } else {
       console.log('Merchandise and stocks_in entry added successfully!')
+      snackbar.value = true // Show snackbar
       resetForm()
     }
   }
@@ -195,7 +211,17 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.text-center {
+.snackbar-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
+}
+
+.centered-snackbar {
+  width: 300px;
+  padding: 20px;
   text-align: center;
+  border-radius: 12px;
 }
 </style>

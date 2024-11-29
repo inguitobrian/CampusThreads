@@ -259,7 +259,7 @@ const shopItems = [
         </h1>
       </v-container>
       <v-parallax
-        elevation-10
+        elevation-18
         class="mb-10"
         rounded
         src="public/pexels-pavel-danilyuk-6461397.jpg"

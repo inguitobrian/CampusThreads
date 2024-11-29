@@ -6,8 +6,14 @@ import { formActionDefault } from '@/utils/supabase.js'
 import { imageValidator, requiredValidator } from '@/utils/validators'
 import { fileExtract } from '@/utils/helpers'
 
+defineProps({
+  snackbar: Boolean,
+})
+
 // Use Pinia Store
 const authStore = useAuthUserStore()
+
+const snackbar = ref(false) // Snackbar visibility
 
 // Load Variables
 const formDataDefault = {
@@ -62,12 +68,11 @@ const onSubmit = async () => {
     formAction.value.formStatus = error.status
   } else if (data) {
     formAction.value.formSuccessMessage = 'Successfully Updated Profile Image.' // Add Success Message
-    isModalVisible.value = true // Show success modal
+    snackbar.value = true // Show snackbar
   }
 
   formAction.value.formProcess = false // Turn off processing
 }
-
 // Trigger Validators
 const onFormSubmit = () => {
   refVForm.value?.validate().then(({ valid }) => {
@@ -169,16 +174,34 @@ onMounted(() => {
     </v-row>
   </v-form>
 
-  <!-- Modal for Success Notification -->
-  <v-dialog v-model="isModalVisible" max-width="400">
-    <v-card>
-      <v-card-title class="text-h6 font-weight-bold">Success</v-card-title>
-      <v-card-text>Profile picture updated successfully!</v-card-text>
-      <v-card-actions>
-        <v-btn color="primary" text @click="isModalVisible = false">
-          Close
-        </v-btn>
+  <v-overlay v-model="snackbar" class="snackbar-overlay">
+    <v-card
+      class="centered-snackbar"
+      color="light-green-darken-4"
+      elevation="10"
+    >
+      <v-card-text>
+        <h2>Profile Picture Updated!</h2>
+      </v-card-text>
+      <v-card-actions class="justify-center">
+        <v-btn color="white" @click="snackbar = false">OK</v-btn>
       </v-card-actions>
     </v-card>
-  </v-dialog>
+  </v-overlay>
 </template>
+
+<style scoped>
+.snackbar-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
+}
+
+.centered-snackbar {
+  width: 300px;
+  text-align: center;
+  border-radius: 12px;
+  padding: 16px;
+}
+</style>
