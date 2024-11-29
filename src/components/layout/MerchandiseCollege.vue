@@ -59,10 +59,18 @@
           <div><strong>Total Price:</strong> ₱{{ totalPrice }}</div>
         </v-card-text>
         <v-card-actions>
-          <v-btn color="primary" @click="confirmPurchase"
-            >Confirm Purchase</v-btn
+          <v-btn
+            style="color: #40513b"
+            @click="confirmPurchase"
+            class="font-weight-bold"
+            >Add to Orders</v-btn
           >
-          <v-btn text @click="isDetailModalOpen = false">Cancel</v-btn>
+          <v-btn
+            text
+            @click="isDetailModalOpen = false"
+            class="font-weight-medium"
+            >Cancel</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>

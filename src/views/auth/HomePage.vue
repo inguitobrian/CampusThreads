@@ -1,5 +1,6 @@
 <script setup>
 import AppLayout from '@/components/layout/AppLayout.vue'
+import WelcomeUsers from '@/components/layout/WelcomeUsers.vue'
 
 const items = [
   { src: 'public/bb5c7a2ae83123e155fddf6d11040816.jpg' },
@@ -97,6 +98,7 @@ const shopItems = [
 <template>
   <AppLayout>
     <template #content>
+      <WelcomeUsers />
       <v-carousel :show-arrows="false">
         <v-carousel-item
           v-for="(item, i) in items"
