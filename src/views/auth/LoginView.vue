@@ -15,9 +15,10 @@ const isAdmin = ref(false)
             <v-img
               src="/loginimage.svg"
               alt="Login Image"
-              class="pa-2"
+              class="pa-2 animated-image"
               cover
             ></v-img>
+
             <span
               class="text-h5"
               style="color: #40513b; margin-top: 20px; text-align: center"
@@ -83,3 +84,21 @@ const isAdmin = ref(false)
     </template>
   </AppLayout>
 </template>
+
+<style scoped>
+.animated-image {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+</style>

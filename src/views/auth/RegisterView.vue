@@ -69,7 +69,12 @@ const selectedDepartment = ref('') // To hold the selected department
         </v-col>
         <v-col cols="12" md="6" class="d-flex justify-center align-center">
           <v-col cols="12" md="10" class="d-flex flex-column">
-            <v-img src="/pana.svg" alt="Login Image" class="pa-2" cover></v-img>
+            <v-img
+              src="/pana.svg"
+              alt="Login Image"
+              class="pa-2 animated-image"
+              cover
+            ></v-img>
             <span
               class="text-h5"
               style="color: #40513b; margin-top: 20px; text-align: center"
@@ -83,3 +88,21 @@ const selectedDepartment = ref('') // To hold the selected department
     </template>
   </AppLayout>
 </template>
+
+<style scoped>
+.animated-image {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+</style>

@@ -27,7 +27,7 @@ const navigateToHome = () => {
             </div>
             <div class="card-info">
               <h4>Brian Inguito</h4>
-              <p>Full Stack Developer</p>
+              <p>UI/UX Designer / Frontend</p>
             </div>
             <!-- Social Media Icons Inside the Card -->
             <div class="social-icons">

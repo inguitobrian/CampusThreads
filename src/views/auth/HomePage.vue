@@ -140,6 +140,7 @@ const shopItems = [
         <v-row>
           <v-col cols="4">
             <v-parallax
+              gradient="to top right, rgba(0, 0, 0, 0.3), rgba(25, 32, 72, 0.7)"
               height="600"
               src="public/fa157f04dc5f874ebddd2f56382dd64b.jpg"
             >
@@ -170,6 +171,7 @@ const shopItems = [
 
           <v-col cols="4">
             <v-parallax
+              gradient="to top right, rgba(0, 0, 0, 0.3), rgba(25, 32, 72, 0.7)"
               height="600"
               src="public/6f4546573663396395810e296542e2ad.jpg"
             >
@@ -199,6 +201,7 @@ const shopItems = [
           </v-col>
           <v-col cols="4">
             <v-parallax
+              gradient="to top right, rgba(0, 0, 0, 0.3), rgba(25, 32, 72, 0.7)"
               height="600"
               src="public\a8433f3083b769da094ddb1d81408e6b.jpg"
             >

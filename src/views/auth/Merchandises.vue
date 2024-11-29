@@ -132,7 +132,7 @@ onMounted(async () => {
         <h2 class="text-center mb-4">College Merchandises</h2>
 
         <!-- Filter Buttons -->
-        <div class="text-center d-flex justify-center gap-4">
+        <v-col cols="12" class="text-center d-flex justify-center gap-4">
           <v-btn class="filter-btn all" @click="activeType = ''">All</v-btn>
           <v-btn class="filter-btn lanyard" @click="activeType = 'Lanyard'"
             >Lanyards</v-btn
@@ -145,7 +145,7 @@ onMounted(async () => {
             @click="activeType = 'Accessories'"
             >Accessories</v-btn
           >
-        </div>
+        </v-col>
 
         <!-- Merchandise Display -->
         <v-container class="mt-3">
