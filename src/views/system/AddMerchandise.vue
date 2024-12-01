@@ -4,56 +4,69 @@
       <v-container>
         <v-row class="justify-center">
           <v-col cols="12" md="8">
-            <h1 class="text-center">Add Merchandise</h1>
-
-            <!-- Form to Add Merchandise -->
-            <v-form v-model="formValid">
-              <v-select
-                v-model="merchItem.type"
-                :items="merchTypes"
-                label="Merchandise Type"
-                :rules="[rules.required]"
-                outlined
-              ></v-select>
-
-              <v-text-field
-                v-model="merchItem.name"
-                label="Merchandise Name"
-                :rules="[rules.required]"
-                outlined
-              ></v-text-field>
-
-              <v-textarea
-                v-model="merchItem.desc"
-                label="Description"
-                :rules="[rules.required]"
-                outlined
-              ></v-textarea>
-
-              <v-text-field
-                v-model="merchItem.price"
-                label="Price"
-                :rules="[rules.required, rules.isNumber]"
-                outlined
-                type="number"
-              ></v-text-field>
-
-              <v-file-input
-                v-model="file"
-                label="Upload Image"
-                @change="uploadImage"
-                :rules="[rules.required]"
-                outlined
-              ></v-file-input>
-
-              <v-btn
-                :disabled="!formValid || isUploading"
-                color="primary"
-                @click="handleAddMerchandise"
-              >
+            <v-card elevation="10" class="py-6 px-8">
+              <h1 class="text-center title-with-icon">
+                <v-icon class="mr-2" color="primary">mdi-plus-box</v-icon>
                 Add Merchandise
-              </v-btn>
-            </v-form>
+              </h1>
+
+              <!-- Form to Add Merchandise -->
+              <v-form v-model="formValid">
+                <v-select
+                  v-model="merchItem.type"
+                  :items="merchTypes"
+                  label="Merchandise Type"
+                  :rules="[rules.required]"
+                  outlined
+                  prepend-inner-icon="mdi-tag"
+                ></v-select>
+
+                <v-text-field
+                  v-model="merchItem.name"
+                  label="Merchandise Name"
+                  :rules="[rules.required]"
+                  outlined
+                  prepend-inner-icon="mdi-cart"
+                ></v-text-field>
+
+                <v-textarea
+                  v-model="merchItem.desc"
+                  label="Description"
+                  :rules="[rules.required]"
+                  outlined
+                  prepend-inner-icon="mdi-text-box-multiple"
+                ></v-textarea>
+
+                <v-text-field
+                  v-model="merchItem.price"
+                  label="Price"
+                  :rules="[rules.required, rules.isNumber]"
+                  outlined
+                  prepend-inner-icon="mdi-currency-usd"
+                  type="number"
+                ></v-text-field>
+
+                <v-file-input
+                  v-model="file"
+                  label="Upload Image"
+                  @change="uploadImage"
+                  :rules="[rules.required]"
+                  outlined
+                  prepend-inner-icon="mdi-cloud-upload"
+                ></v-file-input>
+
+                <v-btn
+                  :disabled="!formValid || isUploading"
+                  color="primary"
+                  @click="handleAddMerchandise"
+                  elevation="2"
+                  class="animated-button"
+                >
+                  <v-icon left>mdi-check-circle</v-icon>
+                  Add Merchandise
+                </v-btn>
+              </v-form>
+            </v-card>
           </v-col>
         </v-row>
       </v-container>
@@ -61,15 +74,18 @@
       <!-- Overlay with Centered Snackbar -->
       <v-overlay v-model="snackbar" class="snackbar-overlay">
         <v-card
-          class="centered-snackbar"
+          class="centered-snackbar animated-snackbar"
           color="light-green-darken-4"
           elevation="10"
         >
-          <v-card-text>
-            <h2>Merchandise Successfully Added!</h2>
+          <v-card-text class="d-flex flex-column align-center">
+            <v-icon size="56" color="white">mdi-check-circle-outline</v-icon>
+            <h2 class="mt-2">Merchandise Successfully Added!</h2>
           </v-card-text>
           <v-card-actions class="justify-center">
-            <v-btn color="white" @click="snackbar = false">OK</v-btn>
+            <v-btn color="white" @click="snackbar = false">
+              OK
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-overlay>
@@ -82,7 +98,6 @@ import { reactive, ref, onMounted } from 'vue'
 import { supabase } from '@/utils/supabase.js'
 import AppLayout from '@/components/layout/AppLayout.vue'
 
-// Reactive state and refs
 const merchTypes = ['Lanyard', 'Uniform', 'Accessories']
 const merchItem = reactive({
   college_id: '',
@@ -95,16 +110,14 @@ const file = ref(null)
 const imageUrl = ref(null)
 const formValid = ref(false)
 const isUploading = ref(false)
-const snackbar = ref(false) // Snackbar visibility
+const snackbar = ref(false)
 const user = ref(null)
 
-// Validation rules
 const rules = {
   required: value => !!value || 'This field is required',
   isNumber: value => !isNaN(parseFloat(value)) || 'Price must be a number',
 }
 
-// Fetch user data
 const fetchUser = async () => {
   const { data, error } = await supabase.auth.getUser()
   if (error) {
@@ -115,7 +128,6 @@ const fetchUser = async () => {
   }
 }
 
-// Upload image to Supabase storage
 const uploadImage = async event => {
   const selectedFile = event.target.files[0]
   if (!selectedFile) return
@@ -145,7 +157,6 @@ const uploadImage = async event => {
   }
 }
 
-// Handle adding merchandise
 const handleAddMerchandise = () => {
   if (imageUrl.value) {
     addMerchandise()
@@ -185,13 +196,12 @@ const addMerchandise = async () => {
       console.error('Error adding to stocks_in:', stocksError.message)
     } else {
       console.log('Merchandise and stocks_in entry added successfully!')
-      snackbar.value = true // Show snackbar
+      snackbar.value = true
       resetForm()
     }
   }
 }
 
-// Reset form fields
 const resetForm = () => {
   file.value = null
   imageUrl.value = null
@@ -204,24 +214,54 @@ const resetForm = () => {
   })
 }
 
-// Lifecycle hook
 onMounted(() => {
   fetchUser()
 })
 </script>
 
 <style scoped>
+.title-with-icon {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animated-button {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.animated-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
 .snackbar-overlay {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .centered-snackbar {
-  width: 300px;
+  width: 350px;
   padding: 20px;
   text-align: center;
   border-radius: 12px;
+}
+
+.animated-snackbar {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 </style>
