@@ -116,6 +116,7 @@ function prevSet() {
                           LANYARDS
                         </h2>
                         <v-btn
+                          to="/merchs"
                           outlined
                           class="text-none"
                           style="
@@ -159,6 +160,7 @@ function prevSet() {
                         </h2>
                         <v-btn
                           outlined
+                          to="/merchs"
                           class="text-none"
                           style="
                             margin-left: 20px;

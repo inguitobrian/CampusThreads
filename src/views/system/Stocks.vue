@@ -298,7 +298,9 @@ onMounted(() => {
         <v-row class="mb-5">
           <v-col class="text-center">
             <h1 class="text-h4 font-weight-bold">Manage Stocks</h1>
-            <p class="text-body-1">Easily manage and monitor your merchandise inventory.</p>
+            <p class="text-body-1">
+              Easily manage and monitor your merchandise inventory.
+            </p>
           </v-col>
         </v-row>
 
@@ -307,7 +309,9 @@ onMounted(() => {
           <v-col cols="12" md="10">
             <v-card elevation="3" class="pa-4">
               <v-card-title>
-                <span class="text-h6 font-weight-bold">Merchandise Inventory</span>
+                <span class="text-h6 font-weight-bold"
+                  >Merchandise Inventory</span
+                >
                 <v-spacer></v-spacer>
                 <router-link to="/addmerch">
                   <v-btn color="primary" large>
@@ -339,7 +343,9 @@ onMounted(() => {
                     <v-icon color="red" title="Delete">mdi-delete</v-icon>
                   </v-btn>
                   <v-btn icon @click="openStockDialog(item.id)">
-                    <v-icon color="green" title="Add Stock">mdi-plus-circle</v-icon>
+                    <v-icon color="green" title="Add Stock"
+                      >mdi-plus-circle</v-icon
+                    >
                   </v-btn>
                 </template>
               </v-data-table>
@@ -445,8 +451,13 @@ body {
   color: #333;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #3f51b5;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #40513b;
 }
 
 /* Card Styling */
@@ -459,7 +470,7 @@ h1, h2, h3, h4, h5, h6 {
 .v-card-title {
   font-weight: bold;
   font-size: 1.2rem;
-  color: #3f51b5;
+  color: #40513b;
   border-bottom: 1px solid #e0e0e0;
 }
 
@@ -475,7 +486,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .v-data-table th {
-  background-color: #3f51b5;
+  background-color: #40513b;
   color: white;
   font-weight: bold;
 }
@@ -498,21 +509,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .v-btn.primary {
-  background-color: #3f51b5;
+  background-color: #40513b;
   color: white;
 }
 
 .v-btn.primary:hover {
-  background-color: #2c3b93;
+  background-color: #40513b;
 }
 
 .v-btn.text {
-  color: #3f51b5;
+  color: #40513b;
 }
 
 .v-btn.icon {
   background-color: transparent;
-  color: #3f51b5;
+  color: #40513b;
 }
 
 .v-btn.icon:hover {
@@ -544,7 +555,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Input Fields */
-.v-text-field, .v-textarea {
+.v-text-field,
+.v-textarea {
   font-size: 0.9rem;
   border-radius: 8px;
 }
@@ -577,7 +589,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1rem;
   }
 
-  .v-data-table th, .v-data-table td {
+  .v-data-table th,
+  .v-data-table td {
     font-size: 0.9rem;
   }
 }
