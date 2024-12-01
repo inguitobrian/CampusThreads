@@ -14,45 +14,53 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import axios from 'axios'
 
 const router = useRouter()
 const route = useRoute()
 
 const createPaymentLink = async order => {
-  const AUTH_PAY = 'sk_test_15chmAX2kkA3B2DRmVYxizaZ' // Replace with your actual secret key
-  const options = {
-    method: 'POST',
+  const AUTH_PAY = 'sk_test_15chmAX2kkA3B2DRmVYxizaZ' //KEY SA PAYMONGO
+
+  const config = {
     headers: {
-      accept: 'application/json',
-      'content-type': 'application/json',
-      authorization: `Basic ${btoa(AUTH_PAY)}`,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${btoa(AUTH_PAY)}`,
     },
-    body: JSON.stringify({
-      data: {
-        attributes: {
-          amount: Math.round(
-            parseFloat(order.formattedPrice.replace(/[₱,]/g, '')) * 100,
-          ), // Convert PHP to centavos
-          description: `Payment for ${order.merchandise_name}`,
-          remarks: `Order ID: ${order.id}`,
-        },
+  }
+
+  const payload = {
+    data: {
+      attributes: {
+        amount: Math.round(
+          parseFloat(order.formattedPrice.replace(/[₱,]/g, '')) * 100,
+        ), // Convert PHP to centavos
+        description: `Payment for ${order.merchandise_name}`,
+        remarks: `Order ID: ${order.id}`,
       },
-    }),
+    },
   }
 
   try {
-    const response = await fetch('https://api.paymongo.com/v1/links', options)
-    const data = await response.json()
+    const response = await axios.post(
+      'https://api.paymongo.com/v1/links',
+      payload,
+      config,
+    )
 
-    if (data?.data?.attributes?.checkout_url) {
-      window.location.href = data.data.attributes.checkout_url // Redirect to payment page
+    if (response.data?.data?.attributes?.checkout_url) {
+      window.location.href = response.data.data.attributes.checkout_url // Redirect to payment page
     } else {
-      console.error('Failed to get checkout URL:', data)
+      console.error('Failed to get checkout URL:', response.data)
       alert('Failed to create payment link. Please try again.')
       router.back()
     }
   } catch (error) {
-    console.error('Error creating payment link:', error.message)
+    console.error(
+      'Error creating payment link:',
+      error.response?.data || error.message,
+    )
     alert('There was an error processing your payment.')
     router.back()
   }

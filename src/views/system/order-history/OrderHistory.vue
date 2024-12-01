@@ -110,6 +110,8 @@
           ></v-pagination>
         </v-container>
       </v-container>
+
+      <PaidOrders></PaidOrders>
     </template>
   </AppLayout>
 </template>
@@ -119,6 +121,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { supabase } from '@/utils/supabase.js'
 import AppLayout from '@/components/layout/AppLayout.vue'
+import PaidOrders from '@/components/layout/PaidOrders.vue'
 
 const router = useRouter()
 
