@@ -18,7 +18,7 @@
             <v-card-subtitle>{{ item.desc }}</v-card-subtitle>
             <v-card-text>
               <strong>Price:</strong> ₱{{ item.price }} <br />
-              <strong>Department:</strong> {{ item.college_name }}
+              <strong>College:</strong> {{ item.college_name }}
             </v-card-text>
           </v-card>
         </v-col>
@@ -34,7 +34,7 @@
           <v-img :src="selectedMerchandise?.image" height="200px"></v-img>
           <div><strong>Price:</strong> ₱{{ selectedMerchandise?.price }}</div>
           <div>
-            <strong>Department:</strong> {{ selectedMerchandise?.college_name }}
+            <strong>College:</strong> {{ selectedMerchandise?.college_name }}
           </div>
           <div>
             <strong>Available Quantity:</strong>
