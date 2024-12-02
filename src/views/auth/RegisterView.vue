@@ -39,7 +39,7 @@ const selectedDepartment = ref('') // To hold the selected department
               style="gap: 5px"
             >
               <v-img
-                src="/public/Campusthreads.png"
+                src="/Campusthreads.png"
                 alt="Custom Logo"
                 style="max-width: 80px; width: 100%; height: auto"
                 contain
@@ -77,7 +77,7 @@ const selectedDepartment = ref('') // To hold the selected department
         <v-col cols="12" md="6" class="d-flex justify-center align-center">
           <v-col cols="12" md="10" class="d-flex flex-column">
             <v-img
-              src="/public/pana.svg"
+              src="/pana.svg"
               alt="Login Image"
               class="pa-2 animated-image"
               cover

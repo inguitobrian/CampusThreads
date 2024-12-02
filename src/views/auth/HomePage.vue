@@ -3,10 +3,10 @@ import AppLayout from '@/components/layout/AppLayout.vue'
 import WelcomeUsers from '@/components/layout/WelcomeUsers.vue'
 
 const items = [
-  { src: '/public/bb5c7a2ae83123e155fddf6d11040816.jpg' },
-  { src: '/public/DJI_0016 (1).jpg' },
-  { src: '/public/55b172c9edee65f683757cb9d49e6b8a.jpg' },
-  { src: '/public/bbc2ba5d1153d0f86705527cc838b68b.jpg' },
+  { src: '/bb5c7a2ae83123e155fddf6d11040816.jpg' },
+  { src: '/DJI_0016 (1).jpg' },
+  { src: '/55b172c9edee65f683757cb9d49e6b8a.jpg' },
+  { src: '/bbc2ba5d1153d0f86705527cc838b68b.jpg' },
 ]
 
 import { ref } from 'vue'
@@ -15,7 +15,7 @@ const cards = [
   {
     title: 'College of Computing and Information Sciences',
     subtitle: 'IT, CS, IS',
-    image: '/public/pexels-kubrangle-15247433.jpg',
+    image: '/pexels-kubrangle-15247433.jpg',
     description:
       'Gain expertise in software development, data science, and cybersecurity, preparing you for impactful careers in tech.',
     link: '/ccis',
@@ -23,7 +23,7 @@ const cards = [
   {
     title: 'College of Mathematics and Natural Science',
     subtitle: 'MATH, APPLIEDMATH, PHYSICS, CHEMISTRY',
-    image: '/public/pexels-pixabay-256490.jpg',
+    image: '/pexels-pixabay-256490.jpg',
     description:
       'Discover the principles of natural sciences and advanced mathematics, building a foundation for research and analysis.',
     link: '/cmns',
@@ -31,7 +31,7 @@ const cards = [
   {
     title: 'College of Forestry and Environmental Science',
     subtitle: 'ES, FORESTRY, AGROFORESTRY',
-    image: '/public/pexels-ivan-drazic-20457695-20385805.jpg',
+    image: '/pexels-ivan-drazic-20457695-20385805.jpg',
     description:
       'Develop skills in sustainable forestry and environmental management to protect ecosystems and resources.',
     link: '/cofes',
@@ -39,7 +39,7 @@ const cards = [
   {
     title: 'College of Education',
     subtitle: 'ELEM, ENG, SCIENCE, MATH, FIL',
-    image: '/public/pexels-manelandsean-17328274.jpg',
+    image: '/pexels-manelandsean-17328274.jpg',
     description:
       'Equip yourself with essential teaching skills and knowledge to inspire and educate future generations.',
     link: '/ced',
@@ -47,7 +47,7 @@ const cards = [
   {
     title: 'College of Engineering and Geo-Sciences',
     subtitle: 'GE, CE, ECE, GEOL, ME',
-    image: '/public/pexels-karinarud-11964281.jpg',
+    image: '/pexels-karinarud-11964281.jpg',
     description:
       'Master engineering principles and geoscience knowledge to solve complex environmental and infrastructural challenges.',
     link: '/cegs',
@@ -55,7 +55,7 @@ const cards = [
   {
     title: 'College of Agriculture and Agri-Industries',
     subtitle: 'AGRI, AGRITECH',
-    image: '/public/pexels-uraw-12512732.jpg',
+    image: '/pexels-uraw-12512732.jpg',
     description:
       'Explore agricultural sciences and technology, advancing skills in sustainable farming and food production.',
     link: '/caa',
@@ -63,7 +63,7 @@ const cards = [
   {
     title: 'College of Humanities and Social Sciences',
     subtitle: 'SW, PSYCH, SOCIO',
-    image: '/public/pexels-george-pak-7972506.jpg',
+    image: '/pexels-george-pak-7972506.jpg',
     description:
       'Engage with diverse perspectives in humanities and social sciences, fostering critical thinking and cultural understanding.',
     link: '/chass',
@@ -78,19 +78,19 @@ const toggleShow = index => {
 const shopItems = [
   {
     name: 'University Exclusive Outfit',
-    image: '/public/b0ac2c12da0c00691252ef81e3f9d4b1.jpg ',
+    image: '/b0ac2c12da0c00691252ef81e3f9d4b1.jpg ',
   },
   {
     name: 'Department Lanyard',
-    image: '/public/c5b9fc3dca0f741158fdb98153f4d147.jpg',
+    image: '/c5b9fc3dca0f741158fdb98153f4d147.jpg',
   },
   {
     name: 'Campus Accessory',
-    image: '/public/c8d902f304580e3a65c358a71c0cd760.png',
+    image: '/c8d902f304580e3a65c358a71c0cd760.png',
   },
   {
     name: 'Department Tees',
-    image: '/public/b438a2cb928c528ee494e31b275d8f06.jpg',
+    image: '/b438a2cb928c528ee494e31b275d8f06.jpg',
   },
 ]
 </script>
@@ -142,7 +142,7 @@ const shopItems = [
             <v-parallax
               gradient="to top right, rgba(0, 0, 0, 0.3), rgba(25, 32, 72, 0.7)"
               height="600"
-              src="/public/fa157f04dc5f874ebddd2f56382dd64b.jpg"
+              src="/fa157f04dc5f874ebddd2f56382dd64b.jpg"
             >
               <v-overlay>
                 <template v-slot:activator="{ props }">
@@ -173,7 +173,7 @@ const shopItems = [
             <v-parallax
               gradient="to top right, rgba(0, 0, 0, 0.3), rgba(25, 32, 72, 0.7)"
               height="600"
-              src="/public/6f4546573663396395810e296542e2ad.jpg"
+              src="/6f4546573663396395810e296542e2ad.jpg"
             >
               <v-overlay>
                 <template v-slot:activator="{ props }">
@@ -203,7 +203,7 @@ const shopItems = [
             <v-parallax
               gradient="to top right, rgba(0, 0, 0, 0.3), rgba(25, 32, 72, 0.7)"
               height="600"
-              src="/public/a8433f3083b769da094ddb1d81408e6b.jpg"
+              src="/a8433f3083b769da094ddb1d81408e6b.jpg"
             >
               <v-overlay>
                 <template v-slot:activator="{ props }">
@@ -268,7 +268,7 @@ const shopItems = [
         elevation-18
         class="mb-10"
         rounded
-        src="/public/pexels-pavel-danilyuk-6461397.jpg"
+        src="/pexels-pavel-danilyuk-6461397.jpg"
         height="auto"
         style="margin-top: 20px"
       >
@@ -311,7 +311,7 @@ const shopItems = [
 
           <v-col class="d-flex justify-center align-center">
             <v-img
-              src="/public/1eace6f4f286927833a35f8e45cc92bc (1).gif"
+              src="/1eace6f4f286927833a35f8e45cc92bc (1).gif"
               width="100%"
               max-height="500"
               contain
