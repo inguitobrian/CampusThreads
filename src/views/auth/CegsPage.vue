@@ -8,22 +8,22 @@ const drawer = ref(false) // for the navigation drawer on mobile screens
 
 const images = [
   {
-    src: 'public/60021bf5a0f962a9fc216210115f6f39.jpg',
+    src: '/60021bf5a0f962a9fc216210115f6f39.jpg',
     price: '₱300',
     name: 'College Tee',
   },
   {
-    src: 'public/98deeb92647a284e11d7816c06267f46.jpg',
+    src: '/98deeb92647a284e11d7816c06267f46.jpg',
     price: '₱500',
     name: 'Outfits',
   },
   {
-    src: 'public/e158a34db2154a56c253f00efa4ad045.jpg',
+    src: '/e158a34db2154a56c253f00efa4ad045.jpg',
     price: '₱50',
     name: 'Accessories',
   },
   {
-    src: 'public/eeac53e78be701a0ab7686ce6b927179.jpg',
+    src: '/eeac53e78be701a0ab7686ce6b927179.jpg',
     price: '₱100',
     name: 'Lanyard',
   },
@@ -83,7 +83,7 @@ function prevSet() {
           <v-main>
             <v-container fluid>
               <v-img
-                src="public/pexels-karinarud-11964281.jpg"
+                src="/pexels-karinarud-11964281.jpg"
                 height="400px"
                 cover
               >
@@ -105,7 +105,7 @@ function prevSet() {
                   <v-col cols="6">
                     <v-parallax
                       height="500"
-                      src="public/eeac53e78be701a0ab7686ce6b927179.jpg"
+                      src="/eeac53e78be701a0ab7686ce6b927179.jpg"
                     >
                       <v-overlay>
                         <template v-slot:activator="{ props }">
@@ -149,7 +149,7 @@ function prevSet() {
                   <v-col cols="6">
                     <v-parallax
                       height="500"
-                      src="public/60021bf5a0f962a9fc216210115f6f39.jpg"
+                      src="/60021bf5a0f962a9fc216210115f6f39.jpg"
                     >
                       <v-overlay>
                         <template v-slot:activator="{ props }">
