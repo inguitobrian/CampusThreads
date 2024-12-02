@@ -8,22 +8,22 @@ const drawer = ref(false)
 
 const images = [
   {
-    src: 'public/c5edc5c5d954cb7071e3ae0d03a1cc39.jpg',
+    src: '/c5edc5c5d954cb7071e3ae0d03a1cc39.jpg',
     price: '₱300',
     name: 'College Tee',
   },
   {
-    src: 'public/10c890b6ae753178741d818cd4125c02.jpg',
+    src: '/10c890b6ae753178741d818cd4125c02.jpg',
     price: '₱100',
     name: 'Outfits',
   },
   {
-    src: 'public/697dc3a2bbf914ee70e25bc5e05fbb5e.jpg',
+    src: '/697dc3a2bbf914ee70e25bc5e05fbb5e.jpg',
     price: '₱50',
     name: 'Accessories',
   },
   {
-    src: 'public/6f025c53f15a6f1bf55f9036b9ac2971.jpg',
+    src: '/6f025c53f15a6f1bf55f9036b9ac2971.jpg',
     price: '₱100',
     name: 'Lanyard',
   },
@@ -75,7 +75,7 @@ function prevSet() {
       <v-main>
         <v-container fluid>
           <!-- Banner Image -->
-          <v-img src="public/pexels-uraw-12512732.jpg" height="400px" cover>
+          <v-img src="/pexels-uraw-12512732.jpg" height="400px" cover>
             <div class="g-text">College of Agriculture and Agri-Industries</div>
           </v-img>
 
@@ -94,7 +94,7 @@ function prevSet() {
               <v-col cols="6">
                 <v-parallax
                   height="500"
-                  src="public/6f025c53f15a6f1bf55f9036b9ac2971.jpg"
+                  src="/6f025c53f15a6f1bf55f9036b9ac2971.jpg"
                 >
                   <v-overlay>
                     <template v-slot:activator="{ props }">
@@ -137,7 +137,7 @@ function prevSet() {
               <v-col cols="6">
                 <v-parallax
                   height="500"
-                  src="public/c5edc5c5d954cb7071e3ae0d03a1cc39.jpg"
+                  src="/c5edc5c5d954cb7071e3ae0d03a1cc39.jpg"
                 >
                   <v-overlay>
                     <template v-slot:activator="{ props }">
