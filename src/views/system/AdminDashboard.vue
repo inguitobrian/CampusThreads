@@ -292,7 +292,7 @@ onMounted(() => {
                     { text: 'Name', align: 'start', value: 'fullName' },
                     { text: 'Email', value: 'email' },
                     { text: 'Role', value: 'role' },
-                    { text: 'College', value: 'college_name' },
+
                     { text: 'Time', value: 'created_at' },
                   ]"
                   :items="users"
@@ -303,7 +303,7 @@ onMounted(() => {
                       <td>{{ props.item.fullName }}</td>
                       <td>{{ props.item.email }}</td>
                       <td>{{ props.item.role }}</td>
-                      <td>{{ props.item.college_name }}</td>
+
                       <td>{{ props.item.created_at }}</td>
                       <td>
                         <v-btn
