@@ -7,6 +7,8 @@ import {
 } from '@/utils/validators'
 import AlertNotification from '@/components/common/AlertNotification.vue'
 import { supabase } from '@/utils/supabase.js'
+import AppLayout from '@/components/layout/AppLayout.vue'
+import ProfilePicture from '@/components/system/account-profile/ProfilePicture.vue'
 
 const formActionDefault = {
   formProcess: false,
@@ -34,6 +36,7 @@ const passwordData = ref({
 const visible = ref(false)
 const reenter = ref(false)
 const refVForm = ref()
+const snackbar = ref(false)
 
 // Fetch user information on component mount
 onMounted(async () => {
@@ -79,6 +82,7 @@ const updatePassword = async () => {
     formAction.value.formErrorMessage = error.message
   } else {
     formAction.value.formSuccessMessage = 'Password updated successfully.'
+    snackbar.value = true
   }
 
   formAction.value.formProcess = false
@@ -87,128 +91,223 @@ const updatePassword = async () => {
 </script>
 
 <template>
-  <AlertNotification
-    :form-success-message="formAction.formSuccessMessage"
-    :form-error-message="formAction.formErrorMessage"
-  />
+  <AppLayout>
+    <template #content>
+      <v-container>
+        <v-card class="mb-5" title="Profile Information">
+          <v-card-text class="mb-5">
+            <ProfilePicture></ProfilePicture>
+          </v-card-text>
+        </v-card>
 
-  <!-- Account Settings Card -->
-  <v-card class="p-5">
-    <v-container>
-      <h2 class="mb-4">Account Settings</h2>
+        <!-- Account Settings Card -->
+        <div class="settings-wrapper">
+          <v-card class="settings-card">
+            <v-container>
+              <h2 class="settings-title">Account Settings</h2>
 
-      <!-- Profile Information Section -->
-      <v-divider />
-      <h3 class="mt-5 mb-3 font-weight-bold text-subtitle-1">
-        <v-icon left color="primary">mdi-account-circle</v-icon>
-        Profile Information
-      </h3>
-      <v-row>
-        <v-col cols="12" sm="6">
-          <v-text-field
-            v-model="userInfo.firstname"
-            label="First Name"
-            disabled
-          />
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-text-field
-            v-model="userInfo.lastname"
-            label="Last Name"
-            disabled
-          />
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-text-field v-model="userInfo.email" label="Email" disabled />
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-text-field
-            v-model="userInfo.account_id"
-            label="Account ID"
-            disabled
-          />
-        </v-col>
-        <!-- Conditionally display Department field if role is LSG -->
-        <v-col cols="12" sm="6" v-if="userInfo.role === 'LSG'">
-          <v-text-field
-            v-model="userInfo.college_name"
-            label="Department"
-            disabled
-          />
-        </v-col>
-        <v-col cols="12" sm="6">
-          <v-text-field
-            v-model="userInfo.number"
-            label="Phone Number"
-            disabled
-          />
-        </v-col>
-        <v-col cols="12">
-          <v-text-field v-model="userInfo.role" label="Role" disabled />
-        </v-col>
-      </v-row>
+              <!-- Profile Information Section -->
+              <v-divider />
+              <h3 class="section-title">
+                <v-icon left color="primary">mdi-account-circle</v-icon>
+                Profile Information
+              </h3>
+              <v-row>
+                <v-col cols="12" sm="6">
+                  <v-text-field
+                    v-model="userInfo.firstname"
+                    label="First Name"
+                    disabled
+                    prepend-inner-icon="mdi-account"
+                  />
+                </v-col>
+                <v-col cols="12" sm="6">
+                  <v-text-field
+                    v-model="userInfo.lastname"
+                    label="Last Name"
+                    disabled
+                    prepend-inner-icon="mdi-account"
+                  />
+                </v-col>
+                <v-col cols="12" sm="6">
+                  <v-text-field
+                    v-model="userInfo.email"
+                    label="Email"
+                    disabled
+                    prepend-inner-icon="mdi-email-outline"
+                  />
+                </v-col>
+                <v-col cols="12" sm="6">
+                  <v-text-field
+                    v-model="userInfo.account_id"
+                    label="Account ID"
+                    disabled
+                    prepend-inner-icon="mdi-card-account-details-outline"
+                  />
+                </v-col>
+                <!-- Conditionally display Department field if role is LSG -->
+                <v-col cols="12" sm="6" v-if="userInfo.role === 'LSG'">
+                  <v-text-field
+                    v-model="userInfo.college_name"
+                    label="College"
+                    disabled
+                    prepend-inner-icon="mdi-office-building"
+                  />
+                </v-col>
+                <v-col cols="12" sm="6">
+                  <v-text-field
+                    v-model="userInfo.number"
+                    label="Phone Number"
+                    disabled
+                    prepend-inner-icon="mdi-phone"
+                  />
+                </v-col>
+                <v-col cols="12">
+                  <v-text-field
+                    v-model="userInfo.role"
+                    label="Role"
+                    disabled
+                    prepend-inner-icon="mdi-account-cog-outline"
+                  />
+                </v-col>
+              </v-row>
 
-      <!-- Security Section -->
-      <v-divider class="my-5" />
-      <h3 class="mt-3 font-weight-bold text-subtitle-1">
-        <v-icon left color="primary">mdi-lock</v-icon>
-        Security
-      </h3>
-      <v-form ref="refVForm" @submit.prevent="onPasswordUpdate">
-        <v-row>
-          <v-col cols="12" sm="6">
-            <v-text-field
-              v-model="passwordData.password"
-              :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-              :type="visible ? 'text' : 'password'"
-              label="New Password"
-              prepend-inner-icon="mdi-lock-outline"
-              @click:append-inner="visible = !visible"
-              :rules="[requiredValidator, passwordValidator]"
-            />
-          </v-col>
-          <v-col cols="12" sm="6">
-            <v-text-field
-              v-model="passwordData.password_confirmation"
-              :append-inner-icon="reenter ? 'mdi-eye-off' : 'mdi-eye'"
-              :type="reenter ? 'text' : 'password'"
-              label="Re-enter Password"
-              prepend-inner-icon="mdi-lock-outline"
-              @click:append-inner="reenter = !reenter"
-              :rules="[
-                requiredValidator,
-                confirmedValidator(
-                  passwordData.password_confirmation,
-                  passwordData.password,
-                ),
-              ]"
-            />
-          </v-col>
-        </v-row>
-        <v-btn
-          class="mt-4 mb-3 font-weight-bold"
-          color="primary"
-          size="large"
-          type="submit"
-          prepend-icon="mdi-account-key"
-          block
-          :disabled="formAction.formProcess"
-          :loading="formAction.formProcess"
-        >
-          Update Password
-        </v-btn>
-      </v-form>
-    </v-container>
-  </v-card>
+              <!-- Security Section -->
+              <v-divider class="my-5" />
+              <h3 class="section-title">
+                <v-icon left color="primary">mdi-lock</v-icon>
+                Security
+              </h3>
+              <v-form ref="refVForm" @submit.prevent="onPasswordUpdate">
+                <v-row>
+                  <v-col cols="12" sm="6">
+                    <v-text-field
+                      v-model="passwordData.password"
+                      :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+                      :type="visible ? 'text' : 'password'"
+                      label="New Password"
+                      prepend-inner-icon="mdi-lock-outline"
+                      @click:append-inner="visible = !visible"
+                      :rules="[requiredValidator, passwordValidator]"
+                    />
+                  </v-col>
+                  <v-col cols="12" sm="6">
+                    <v-text-field
+                      v-model="passwordData.password_confirmation"
+                      :append-inner-icon="reenter ? 'mdi-eye-off' : 'mdi-eye'"
+                      :type="reenter ? 'text' : 'password'"
+                      label="Re-enter Password"
+                      prepend-inner-icon="mdi-lock-outline"
+                      @click:append-inner="reenter = !reenter"
+                      :rules="[
+                        requiredValidator,
+                        confirmedValidator(
+                          passwordData.password_confirmation,
+                          passwordData.password,
+                        ),
+                      ]"
+                    />
+                  </v-col>
+                </v-row>
+                <v-btn
+                  rounded
+                  elevation="8"
+                  class="update-password-btn"
+                  color="light-green-darken-4"
+                  size="large"
+                  type="submit"
+                  prepend-icon="mdi-account-key"
+                  block
+                >
+                  Update Password
+                </v-btn>
+              </v-form>
+            </v-container>
+          </v-card>
+        </div>
+
+        <!-- Snackbar Overlay -->
+        <v-overlay v-model="snackbar" class="snackbar-overlay">
+          <v-card
+            class="centered-snackbar"
+            color="light-green-darken-4"
+            elevation="10"
+          >
+            <v-card-text>
+              <h2>Password Updated Successfully!</h2>
+            </v-card-text>
+            <v-card-actions class="justify-center">
+              <v-btn color="white" @click="snackbar = false">OK</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-overlay>
+      </v-container>
+    </template>
+  </AppLayout>
 </template>
 
 <style scoped>
-h2,
-h3 {
-  font-family: 'Roboto', sans-serif;
-  color: #333;
+.snackbar-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
 }
-.text-subtitle-1 {
-  font-weight: 500;
+
+.centered-snackbar {
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+}
+.settings-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.settings-card {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.settings-title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.update-password-btn {
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+.v-text-field {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .settings-card {
+    padding: 15px;
+  }
+
+  .settings-title {
+    font-size: 20px;
+  }
 }
 </style>

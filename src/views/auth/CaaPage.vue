@@ -1,28 +1,29 @@
 <script setup>
 import { ref } from 'vue'
 import AppLayout from '@/components/layout/AppLayout.vue'
+import MerchandiseCollege from '@/components/layout/MerchandiseCollege.vue'
 
 const theme = ref('light')
 const drawer = ref(false)
 
 const images = [
   {
-    src: 'public/b438a2cb928c528ee494e31b275d8f06.jpg',
-    price: '₱350',
+    src: 'public/c5edc5c5d954cb7071e3ae0d03a1cc39.jpg',
+    price: '₱300',
     name: 'College Tee',
   },
   {
-    src: 'public/b0ac2c12da0c00691252ef81e3f9d4b1.jpg',
-    price: '₱500',
+    src: 'public/10c890b6ae753178741d818cd4125c02.jpg',
+    price: '₱100',
     name: 'Outfits',
   },
   {
-    src: 'public/a8433f3083b769da094ddb1d81408e6b.jpg',
+    src: 'public/697dc3a2bbf914ee70e25bc5e05fbb5e.jpg',
     price: '₱50',
     name: 'Accessories',
   },
   {
-    src: 'public/86b0588cda7de732293e10ac99e6b7d2.jpg',
+    src: 'public/6f025c53f15a6f1bf55f9036b9ac2971.jpg',
     price: '₱100',
     name: 'Lanyard',
   },
@@ -93,7 +94,7 @@ function prevSet() {
               <v-col cols="6">
                 <v-parallax
                   height="500"
-                  src="public/fa157f04dc5f874ebddd2f56382dd64b.jpg"
+                  src="public/6f025c53f15a6f1bf55f9036b9ac2971.jpg"
                 >
                   <v-overlay>
                     <template v-slot:activator="{ props }">
@@ -115,6 +116,7 @@ function prevSet() {
                           LANYARDS
                         </h2>
                         <v-btn
+                          to="/merchs"
                           outlined
                           class="text-none"
                           style="
@@ -133,7 +135,10 @@ function prevSet() {
                 </v-parallax>
               </v-col>
               <v-col cols="6">
-                <v-parallax height="500" src="public/pexels-eben-15404590.jpg">
+                <v-parallax
+                  height="500"
+                  src="public/c5edc5c5d954cb7071e3ae0d03a1cc39.jpg"
+                >
                   <v-overlay>
                     <template v-slot:activator="{ props }">
                       <v-container
@@ -155,6 +160,7 @@ function prevSet() {
                         </h2>
                         <v-btn
                           outlined
+                          to="/merchs"
                           class="text-none"
                           style="
                             margin-left: 20px;
@@ -258,7 +264,6 @@ function prevSet() {
                     <!-- Overlay with Product Name and Price -->
                     <div class="product-overlay">
                       <span class="product-name">{{ image.name }}</span>
-                      <span class="product-price">{{ image.price }}</span>
                     </div>
                   </v-img>
                 </v-card>
@@ -280,37 +285,12 @@ function prevSet() {
                 <v-card-title class="text-center text-white">
                   <span class="product-name">{{ selectedImage.name }}</span>
                 </v-card-title>
-                <v-card-subtitle class="text-center text-white">
-                  <span class="product-price">{{ selectedImage.price }}</span>
-                </v-card-subtitle>
-
-                <!-- Quantity Selector -->
-                <v-card-subtitle class="text-center text-white">
-                  <v-row justify="center" align="center">
-                    <v-btn icon @click="decrementQuantity">
-                      <v-icon>mdi-minus</v-icon>
-                    </v-btn>
-                    <v-text-field
-                      v-model="quantity"
-                      type="number"
-                      min="1"
-                      class="quantity-input"
-                      outlined
-                      dense
-                    ></v-text-field>
-                    <v-btn icon @click="incrementQuantity">
-                      <v-icon>mdi-plus</v-icon>
-                    </v-btn>
-                  </v-row>
-                </v-card-subtitle>
-
-                <!-- Buy Now Button -->
-                <v-card-actions class="d-flex justify-end">
-                  <v-btn class="g-btn" @click="buyNow">Buy Now</v-btn>
-                </v-card-actions>
               </v-card>
             </v-dialog>
           </v-container>
+          <div>
+            <MerchandiseCollege :collegeId="4" collegeName="CAA College" />
+          </div>
         </v-container>
       </v-main>
     </template>
@@ -336,29 +316,6 @@ function prevSet() {
   .v-input__slot {
   color: #63794e;
 }
-
-.nav-bar {
-  min-height: 64px;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-}
-
-.nav-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.search-bar {
-  min-width: 300px;
-  max-width: 500px;
-  margin-right: 20px;
-}
-
-.search-bar {
-  min-height: 40px;
-}
 .image-overlay {
   position: relative;
 }
@@ -380,11 +337,6 @@ function prevSet() {
   ); /* Darker background for contrast */
   padding: 15px 30px;
   border-radius: 10px;
-}
-
-.g-footer {
-  background: linear-gradient(135deg, #ad9c17, #d8be3c); /* Purple gradient */
-  padding: 20px 0;
 }
 
 .v-btn {
@@ -472,7 +424,7 @@ function prevSet() {
   font-size: 18px;
 }
 
-.v-btn.g-btn {
+.v-btn.btn {
   background: linear-gradient(45deg, #c4ab0a, #ddda3f);
   color: white;
   font-weight: bold;
@@ -481,7 +433,7 @@ function prevSet() {
   padding: 10px 20px;
 }
 
-.v-btn.g-btn:hover {
+.v-btn.btn:hover {
   background: linear-gradient(45deg, #ddda3f, #c4ab0a);
 }
 

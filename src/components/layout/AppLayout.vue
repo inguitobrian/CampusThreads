@@ -5,7 +5,7 @@ import ProfileHeader from './ProfileHeader.vue'
 
 const theme = ref('light')
 const isLoggedIn = ref(false)
-const drawer = ref(false) // for the navigation drawer on mobile screens
+const drawer = ref(false) // for the navigation drawer on mobile and large screens
 
 // List of departments for dropdown
 const departments = ref([
@@ -17,6 +17,9 @@ const departments = ref([
   { name: 'COFES', route: '/cofes' },
   { name: 'CAA', route: '/caa' },
 ])
+
+// Manage dropdown visibility
+const menuVisible = ref(false)
 
 // Get Authentication status from supabase
 const getLoggedStatus = async () => {
@@ -35,82 +38,82 @@ onMounted(() => {
       :theme="theme"
       style="background-color: #e1ebdc; font-family: 'Roboto', sans-serif"
     >
-      <!-- App Bar -->
+      <!-- App Bar with Hamburger Icon for Mobile and Large Screen -->
       <v-app-bar :style="{ backgroundColor: '#111703' }" class="px-3 nav-bar">
-        <!-- Mobile View: Hamburger Icon -->
+        <!-- Mobile and Desktop View: Hamburger Icon -->
         <v-app-bar-nav-icon
           @click="drawer = !drawer"
           style="color: white"
-          class="d-lg-none"
+          class="d-block"
         ></v-app-bar-nav-icon>
 
-        <!-- Toolbar Title -->
+        <v-img
+          src="/Campusthreads.png"
+          alt="Custom Logo"
+          max-width="40px"
+          contain
+        ></v-img>
+
         <v-toolbar-title
-          style="color: white; font-family: 'Montserrat', sans-serif"
-          >CampusThreads</v-toolbar-title
+          class="pa-0 ma-2"
+          style="
+            color: white;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 500;
+          "
+          >CampusThreads.</v-toolbar-title
         >
 
         <v-spacer></v-spacer>
 
-        <!-- Desktop View: Nav Buttons -->
-        <div class="d-none d-lg-flex nav-buttons">
-          <v-btn text style="color: white" to="/home">Home</v-btn>
+        <!-- Profile Header only for logged-in users -->
+        <ProfileHeader v-if="isLoggedIn"></ProfileHeader>
+      </v-app-bar>
 
-          <!-- Departments Dropdown -->
-          <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
-              <v-btn text v-bind="attrs" v-on="on" style="color: white"
-                >Departments</v-btn
-              >
-            </template>
-            <v-list>
+      <!-- Mobile Navigation Drawer (Hamburger Menu Content) -->
+      <v-navigation-drawer v-model="drawer" app temporary>
+        <v-list dense>
+          <!-- Home Link with Icon -->
+          <v-list-item link to="/">
+            <v-icon left class="mr-2">mdi-home</v-icon>
+            <v-list-item-content>Home</v-list-item-content>
+          </v-list-item>
+
+          <!-- Colleges Dropdown -->
+          <v-list-item @click="menuVisible = !menuVisible">
+            <v-icon left class="mr-2">mdi-school</v-icon>
+            <v-list-item-content>Colleges</v-list-item-content>
+            <v-icon
+              :style="{
+                transform: menuVisible ? 'rotate(180deg)' : 'rotate(0deg)',
+              }"
+              >mdi-chevron-down</v-icon
+            >
+          </v-list-item>
+
+          <!-- Dropdown menu for colleges -->
+          <v-slide-y-transition>
+            <v-list v-if="menuVisible" dense>
               <v-list-item
                 v-for="(dept, index) in departments"
                 :key="index"
                 :to="dept.route"
+                link
               >
                 <v-list-item-content>{{ dept.name }}</v-list-item-content>
               </v-list-item>
             </v-list>
-          </v-menu>
+          </v-slide-y-transition>
 
-          <v-btn text style="color: white">Shop all</v-btn>
-          <v-btn text style="color: white">About</v-btn>
-          <v-text-field
-            class="mx-4 search-bar"
-            style="color: white"
-            prepend-inner-icon="mdi-magnify"
-            placeholder="Search"
-            hide-details
-            dense
-            solo
-          ></v-text-field>
-        </div>
-
-        <ProfileHeader v-if="isLoggedIn"></ProfileHeader>
-      </v-app-bar>
-
-      <!-- Mobile Navigation Drawer -->
-      <v-navigation-drawer v-model="drawer" app temporary>
-        <v-list dense>
-          <v-list-item link to="/home">
-            <v-list-item-content>Home</v-list-item-content>
-          </v-list-item>
-
-          <v-subheader>Departments</v-subheader>
-          <v-list-item
-            v-for="(dept, index) in departments"
-            :key="index"
-            :to="dept.route"
-          >
-            <v-list-item-content>{{ dept.name }}</v-list-item-content>
-          </v-list-item>
-
+          <!-- Shop All Link with Icon -->
           <v-list-item link to="/merchs">
+            <v-icon left class="mr-2">mdi-cart</v-icon>
             <v-list-item-content>Shop all</v-list-item-content>
           </v-list-item>
 
-          <v-list-item link>
+          <!-- About Link with Icon -->
+          <v-list-item link to="/about">
+            <v-icon left class="mr-2">mdi-information</v-icon>
             <v-list-item-content>About</v-list-item-content>
           </v-list-item>
         </v-list>
@@ -123,32 +126,26 @@ onMounted(() => {
         </v-container>
       </v-main>
 
-      <v-footer class="footer" padless>
-        <v-container class="text-center">
-          <v-row align="center" justify="center">
-            <!-- Center Column: Links in a single line -->
-            <v-col cols="12" md="12">
-              <span style="color: black; font-size: 14px; margin-right: 20px"
-                >Privacy Policy</span
-              >
-              <span style="color: black; font-size: 14px; margin-right: 20px"
-                >Terms of Service</span
-              >
-              <span style="color: black; font-size: 14px; margin-right: 20px"
-                >FAQs</span
-              >
-              <span style="color: black; font-size: 14px; margin-right: 20px"
-                >Feedback</span
-              >
+      <!-- Footer -->
+      <v-footer class="footer">
+        <v-container>
+          <v-row justify="space-between">
+            <!-- Left-aligned text -->
+            <v-col cols="12" sm="6" class="text-center text-sm-start">
+              <span>&copy; 2024 CampusThreads. All Rights Reserved.</span>
             </v-col>
-          </v-row>
 
-          <!-- Bottom Row: Website Name -->
-          <v-row>
-            <v-col class="text-center" cols="12">
-              <span style="color: black; font-size: 14px"
-                ><b>© 2024 CampusThreads. All Rights Reserved.</b></span
+            <!-- Right-aligned links in a single line -->
+            <v-col cols="12" sm="6" class="text-center text-sm-end">
+              <a href="/privacy-policy" class="footer-link">Privacy Policy</a>
+              <span class="footer-divider">|</span>
+              <a href="/terms-of-service" class="footer-link"
+                >Terms of Service</a
               >
+              <span class="footer-divider">|</span>
+              <a href="/faqs" class="footer-link">FAQs</a>
+              <span class="footer-divider">|</span>
+              <a href="/feedback" class="footer-link">Feedback</a>
             </v-col>
           </v-row>
         </v-container>
@@ -157,26 +154,7 @@ onMounted(() => {
   </v-responsive>
 </template>
 
-<style>
-.bg-login {
-  background-color: #71885a;
-}
-
-.bg-student {
-  background-color: #8fa477;
-}
-
-.bg-admin {
-  background-color: #acbd99;
-}
-
-.v-input--selection-controls
-  .v-input--checkbox
-  .v-input__control
-  .v-input__slot {
-  color: #63794e;
-}
-
+<style scoped>
 .nav-bar {
   min-height: 64px;
   padding: 0 16px;
@@ -184,24 +162,35 @@ onMounted(() => {
   align-items: center;
 }
 
-.nav-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.search-bar {
-  min-width: 300px;
-  max-width: 500px;
-  margin-right: 20px;
-}
-
-.search-bar {
-  min-height: 40px;
-}
-
 .footer {
-  background: linear-gradient(135deg, #d0ebde, #b0ebc3); /* Purple gradient */
-  padding: 20px 0;
+  background: linear-gradient(
+    135deg,
+    #111703,
+    #2e3b1f
+  ); /* Gradient background */
+  color: #f0f0f0; /* High contrast text color */
+  padding: 16px 0; /* Comfortable padding */
+  font-size: 0.9rem; /* Readable font size */
+  position: relative; /* Ensures the footer appears at the bottom of the content */
+  width: 100%;
+}
+
+.footer-link {
+  color: #f0f0f0; /* Text color */
+  text-decoration: none; /* Remove underline */
+  margin: 0 8px; /* Space between links */
+}
+
+.footer-link:hover {
+  color: #c9d7b6; /* Slight hover effect */
+}
+
+.footer-divider {
+  color: #f0f0f0; /* Divider color matching the text */
+  margin: 0 4px; /* Space around dividers */
+}
+
+.v-main {
+  min-height: 100vh; /* Ensures the main content fills the screen */
 }
 </style>

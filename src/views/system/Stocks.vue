@@ -294,37 +294,41 @@ onMounted(() => {
   <AppLayout>
     <template #content>
       <v-container>
-        <v-row class="justify-center">
-          <v-col cols="12" md="10" lg="8">
-            <v-card class="elevation-3 mb-5">
-              <v-card-title class="text-h5 primary--text justify-center">
-                Manage Stocks
+        <!-- Header Section -->
+        <v-row class="mb-5">
+          <v-col class="text-center">
+            <h1 class="text-h4 font-weight-bold">Manage Stocks</h1>
+            <p class="text-body-1">
+              Easily manage and monitor your merchandise inventory.
+            </p>
+          </v-col>
+        </v-row>
+
+        <!-- Merchandise Inventory Table -->
+        <v-row justify="center">
+          <v-col cols="12" md="10">
+            <v-card elevation="3" class="pa-4">
+              <v-card-title>
+                <span class="text-h6 font-weight-bold"
+                  >Merchandise Inventory</span
+                >
+                <v-spacer></v-spacer>
+                <router-link to="/addmerch">
+                  <v-btn color="primary" large>
+                    <v-icon left>mdi-plus</v-icon>
+                    Add New Item
+                  </v-btn>
+                </router-link>
               </v-card-title>
 
-              <!-- Merchandise Inventory Table -->
               <v-data-table
                 :headers="headers"
                 :items="filteredMerchandiseList"
                 item-key="id"
                 class="elevation-1"
+                dense
+                hide-default-footer
               >
-                <template v-slot:top>
-                  <v-toolbar flat>
-                    <v-toolbar-title>Merchandise Inventory</v-toolbar-title>
-                    <v-spacer></v-spacer>
-                    <!-- Button to open Add Merchandise Form -->
-                    <router-link to="/addmerch">
-                      <v-btn
-                        color="primary"
-                        @click="openAddMerchandiseDialog"
-                        large
-                      >
-                        <v-icon left>mdi-plus</v-icon> Add Merchandise
-                      </v-btn>
-                    </router-link>
-                  </v-toolbar>
-                </template>
-
                 <template v-slot:item.quantity="{ item }">
                   <v-chip :color="item.quantity > 0 ? 'green' : 'red'" dark>
                     {{ item.quantity }}
@@ -333,110 +337,261 @@ onMounted(() => {
 
                 <template v-slot:item.actions="{ item }">
                   <v-btn icon @click="editMerchandise(item)">
-                    <v-icon color="orange">mdi-pencil</v-icon>
+                    <v-icon color="orange" title="Edit">mdi-pencil</v-icon>
                   </v-btn>
                   <v-btn icon @click="deleteMerchandise(item.id)">
-                    <v-icon color="red">mdi-delete</v-icon>
+                    <v-icon color="red" title="Delete">mdi-delete</v-icon>
                   </v-btn>
                   <v-btn icon @click="openStockDialog(item.id)">
-                    <v-icon color="green">mdi-plus-circle</v-icon>
+                    <v-icon color="green" title="Add Stock"
+                      >mdi-plus-circle</v-icon
+                    >
                   </v-btn>
                 </template>
               </v-data-table>
             </v-card>
-
-            <!-- Add Stock Modal -->
-            <!-- Add Stock Modal -->
-            <v-dialog v-model="showStockDialog" max-width="500px">
-              <v-card>
-                <v-card-title>Add Stock</v-card-title>
-                <v-card-text>
-                  <v-form v-model="formValid">
-                    <v-row align="center" justify="center">
-                      <v-btn
-                        icon
-                        @click="decreaseQuantity"
-                        :disabled="newStock.quantity <= 1"
-                      >
-                        <v-icon>mdi-minus</v-icon>
-                      </v-btn>
-
-                      <v-text-field
-                        v-model="newStock.quantity"
-                        label="Quantity"
-                        type="number"
-                        :rules="[rules.required, rules.isNumber]"
-                        outlined
-                        min="1"
-                        class="mx-2"
-                        style="width: 80px"
-                      ></v-text-field>
-
-                      <v-btn icon @click="increaseQuantity">
-                        <v-icon>mdi-plus</v-icon>
-                      </v-btn>
-                    </v-row>
-                  </v-form>
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="primary" @click="addStock">Add</v-btn>
-                  <v-btn @click="closeStockDialog">Cancel</v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
-
-            <!-- Edit Merchandise Modal -->
-            <v-dialog v-model="showEditDialog" max-width="500px">
-              <v-card>
-                <v-card-title>Edit Merchandise</v-card-title>
-                <v-card-text>
-                  <v-form v-model="formValid">
-                    <v-text-field
-                      v-model="editItem.name"
-                      label="Merchandise Name"
-                      :rules="[rules.required]"
-                      outlined
-                    ></v-text-field>
-
-                    <v-textarea
-                      v-model="editItem.desc"
-                      label="Description"
-                      :rules="[rules.required]"
-                      outlined
-                    ></v-textarea>
-
-                    <v-text-field
-                      v-model="editItem.price"
-                      label="Price"
-                      type="number"
-                      :rules="[rules.required, rules.isNumber]"
-                      outlined
-                    ></v-text-field>
-
-                    <v-select
-                      v-model="editItem.type"
-                      :items="merchTypes"
-                      label="Merchandise Type"
-                      :rules="[rules.required]"
-                      outlined
-                    ></v-select>
-                  </v-form>
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="primary" @click="updateMerchandise"
-                    >Update</v-btn
-                  >
-                  <v-btn @click="closeEditDialog">Cancel</v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
           </v-col>
         </v-row>
+
+        <!-- Add Stock Dialog -->
+        <v-dialog v-model="showStockDialog" max-width="400px">
+          <v-card>
+            <v-card-title class="primary--text">
+              <v-icon left>mdi-plus-circle</v-icon>
+              Add Stock
+            </v-card-title>
+            <v-card-text>
+              <v-form v-model="formValid">
+                <v-row align="center" justify="center">
+                  <v-btn
+                    icon
+                    @click="decreaseQuantity"
+                    :disabled="newStock.quantity <= 1"
+                  >
+                    <v-icon>mdi-minus</v-icon>
+                  </v-btn>
+
+                  <v-text-field
+                    v-model="newStock.quantity"
+                    label="Quantity"
+                    type="number"
+                    :rules="[rules.required, rules.isNumber]"
+                    outlined
+                    class="mx-3"
+                    style="width: 80px"
+                  ></v-text-field>
+
+                  <v-btn icon @click="increaseQuantity">
+                    <v-icon>mdi-plus</v-icon>
+                  </v-btn>
+                </v-row>
+              </v-form>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" @click="addStock">Add</v-btn>
+              <v-btn text @click="closeStockDialog">Cancel</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+
+        <!-- Edit Merchandise Dialog -->
+        <v-dialog v-model="showEditDialog" max-width="400px">
+          <v-card>
+            <v-card-title class="primary--text">
+              <v-icon left>mdi-pencil</v-icon>
+              Edit Merchandise
+            </v-card-title>
+            <v-card-text>
+              <v-form v-model="formValid">
+                <v-text-field
+                  v-model="editItem.name"
+                  label="Name"
+                  outlined
+                  :rules="[rules.required]"
+                ></v-text-field>
+                <v-textarea
+                  v-model="editItem.desc"
+                  label="Description"
+                  outlined
+                  :rules="[rules.required]"
+                ></v-textarea>
+                <v-text-field
+                  v-model="editItem.price"
+                  label="Price"
+                  type="number"
+                  outlined
+                  :rules="[rules.required, rules.isNumber]"
+                ></v-text-field>
+                <v-select
+                  v-model="editItem.type"
+                  :items="merchTypes"
+                  label="Type"
+                  outlined
+                  :rules="[rules.required]"
+                ></v-select>
+              </v-form>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" @click="updateMerchandise">Save</v-btn>
+              <v-btn text @click="closeEditDialog">Cancel</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-container>
     </template>
   </AppLayout>
 </template>
+<style scoped>
+/* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+}
 
-<style scoped></style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #40513b;
+}
+
+/* Card Styling */
+.v-card {
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.v-card-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #40513b;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.v-card-text {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Data Table Styling */
+.v-data-table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.v-data-table th {
+  background-color: #40513b;
+  color: white;
+  font-weight: bold;
+}
+
+.v-data-table tbody tr:hover {
+  background-color: #f0f4ff;
+}
+
+.v-chip {
+  border-radius: 16px;
+  font-weight: bold;
+}
+
+/* Button Styling */
+.v-btn {
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.v-btn.primary {
+  background-color: #40513b;
+  color: white;
+}
+
+.v-btn.primary:hover {
+  background-color: #40513b;
+}
+
+.v-btn.text {
+  color: #40513b;
+}
+
+.v-btn.icon {
+  background-color: transparent;
+  color: #40513b;
+}
+
+.v-btn.icon:hover {
+  background-color: #e8eaf6;
+}
+
+/* Icon Styling */
+.v-icon {
+  font-size: 1.2rem;
+}
+
+.v-icon[title] {
+  cursor: pointer;
+}
+
+/* Dialog Styling */
+.v-dialog .v-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+}
+
+.v-dialog .v-card-title {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.v-dialog .v-card-actions {
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Input Fields */
+.v-text-field,
+.v-textarea {
+  font-size: 0.9rem;
+  border-radius: 8px;
+}
+
+/* Add New Item Button */
+.router-link .v-btn {
+  font-size: 0.9rem;
+  padding: 0.7rem 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.router-link .v-btn v-icon {
+  margin-right: 8px;
+}
+
+/* Dialog Action Buttons */
+.v-dialog .v-btn {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .v-card-title {
+    font-size: 1rem;
+  }
+
+  .v-data-table th,
+  .v-data-table td {
+    font-size: 0.9rem;
+  }
+}
+</style>

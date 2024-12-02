@@ -15,9 +15,10 @@ const isAdmin = ref(false)
             <v-img
               src="/loginimage.svg"
               alt="Login Image"
-              class="pa-2"
+              class="pa-2 animated-image"
               cover
             ></v-img>
+
             <span
               class="text-h5"
               style="color: #40513b; margin-top: 20px; text-align: center"
@@ -32,8 +33,8 @@ const isAdmin = ref(false)
             class="text-center rounded-xl"
             elevation="24"
             style="
-              max-width: 400px;
-              height: 550px;
+              max-width: 600px;
+              height: auto;
               background: linear-gradient(
                 to top,
                 #b4cca9,
@@ -44,11 +45,18 @@ const isAdmin = ref(false)
               padding: 20px; /* Optional: Add padding to ensure content does not touch edges */
             "
           >
-            <div class="d-flex align-center justify-center" style="gap: 16px">
+            <div
+              cols="12"
+              sm="6"
+              md="4"
+              lg="3"
+              class="d-flex align-center justify-center"
+              style="gap: 5px"
+            >
               <v-img
-                src="/i_logo.png"
+                src="/Campusthreads.png"
                 alt="Custom Logo"
-                max-width="40px"
+                style="max-width: 80px; width: 100%; height: auto"
                 contain
               ></v-img>
               <v-card-title
@@ -59,7 +67,14 @@ const isAdmin = ref(false)
               </v-card-title>
             </div>
 
-            <v-card-text class="bg-surface-white mx-8 text-center">
+            <v-card-text
+              class="bg-surface-white mx-8 text-center"
+              style="
+                color: #40513b;
+                font-family: 'Manrope', sans-serif;
+                font-weight: 600;
+              "
+            >
               Securely log in to your CampusThreads account
             </v-card-text>
             <Loginform :is-admin="isAdmin"></Loginform>
@@ -69,3 +84,21 @@ const isAdmin = ref(false)
     </template>
   </AppLayout>
 </template>
+
+<style scoped>
+.animated-image {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+</style>

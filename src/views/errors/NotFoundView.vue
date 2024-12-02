@@ -39,7 +39,7 @@ onMounted(() => {
               class="mt-2"
               color="red-darken-4"
               prepend-icon="mdi-home"
-              to="/home"
+              to="/"
             >
               Back to {{ isLoggedIn ? 'HomePage' : 'Homepage' }}
             </v-btn>

@@ -16,6 +16,8 @@ import CegsPage from '@/views/auth/CegsPage.vue'
 import ChassPage from '@/views/auth/ChassPage.vue'
 import CmnsPage from '@/views/auth/CmnsPage.vue'
 import CofesPage from '@/views/auth/CofesPage.vue'
+import AboutUs from '@/views/auth/AboutUs.vue'
+import PaymentController from '@/views/system/order-history/PaymentController.vue'
 
 export const routes = [
   {
@@ -63,7 +65,13 @@ export const routes = [
     path: '/orders',
     name: 'orders',
     component: OrderHistory,
-    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
+  },
+  {
+    path: '/pay',
+    name: 'payment',
+    component: PaymentController,
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] }, // Restrict access based on roles
   },
   {
     path: '/forbidden',
@@ -71,56 +79,63 @@ export const routes = [
     component: ForbiddenView,
   },
   {
-    path: '/home',
+    path: '/',
     name: 'home',
     component: HomePage,
-    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
   },
   {
     path: '/caa',
     name: 'caa',
     component: CaaPage,
-    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
   },
   {
     path: '/ccis',
     name: 'ccis',
     component: CcisPage,
-    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
   },
   {
     path: '/ced',
     name: 'ced',
     component: CedPage,
-    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
   },
   {
     path: '/cegs',
     name: 'cegs',
     component: CegsPage,
-    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
   },
   {
     path: '/chass',
     name: 'chass',
     component: ChassPage,
-    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
   },
   {
     path: '/cmns',
     name: 'cmns',
     component: CmnsPage,
-    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
   },
   {
     path: '/cofes',
     name: 'cofes',
     component: CofesPage,
-    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG'] },
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
   },
   {
     path: '/:catchAll(.*)',
     name: 'not-found',
     component: NotFoundView,
+  },
+
+  {
+    path: '/about',
+    name: 'About',
+    component: AboutUs,
+    meta: { requiresAuth: true, allowedRoles: ['Student', 'LSG', 'Admin'] },
   },
 ]
