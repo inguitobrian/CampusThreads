@@ -19,7 +19,7 @@ const selectedDepartment = ref('') // To hold the selected department
             class="text-center rounded-xl"
             elevation="24"
             style="
-              max-width: 400px;
+              max-width: 600px;
               background: linear-gradient(
                 to top,
                 #b4cca9,
@@ -30,11 +30,18 @@ const selectedDepartment = ref('') // To hold the selected department
               padding: 20px;
             "
           >
-            <div class="d-flex align-center justify-center" style="gap: 10px">
+            <div
+              cols="12"
+              sm="6"
+              md="4"
+              lg="3"
+              class="d-flex align-center justify-center"
+              style="gap: 5px"
+            >
               <v-img
-                src="/Campusthreads.png"
+                src="/public/Campusthreads.png"
                 alt="Custom Logo"
-                max-width="60px"
+                style="max-width: 80px; width: 100%; height: auto"
                 contain
               ></v-img>
 
@@ -70,7 +77,7 @@ const selectedDepartment = ref('') // To hold the selected department
         <v-col cols="12" md="6" class="d-flex justify-center align-center">
           <v-col cols="12" md="10" class="d-flex flex-column">
             <v-img
-              src="/pana.svg"
+              src="/public/pana.svg"
               alt="Login Image"
               class="pa-2 animated-image"
               cover
