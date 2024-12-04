@@ -272,26 +272,72 @@ onMounted(async () => {
   background-color: #c6a9f4; /* Light purple */
 }
 
-/* Hover effects for each button */
-.filter-btn:hover {
-  opacity: 0.8;
+.product-card {
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f1f5f8, #e9ecef);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
 }
 
-/* Modal styles */
-.v-dialog .v-card {
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
-.v-card-title,
+/* Gradient border for the image */
+.product-img {
+  border-radius: 12px 12px 0 0;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Typography for the card title and subtitle */
+.v-card-title {
+  color: #40513b;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
 .v-card-subtitle {
-  font-weight: bold;
+  color: #6c757d;
+  font-size: 1rem;
+  text-align: center;
 }
 
-.v-btn {
-  font-weight: bold;
+/* Text content in the card */
+.v-card-text {
+  padding: 16px;
+  font-size: 0.9rem;
+  color: #343a40;
+  line-height: 1.5;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 0 0 12px 12px;
+  border-top: 1px solid #e0e0e0;
 }
 
+/* Price and college text styling */
+.v-card-text strong {
+  color: #40513b;
+}
+
+/* Add hover effects to buttons inside the card */
+.v-card-actions v-btn {
+  color: #40513b;
+  background-color: #f8f9fa;
+  border-radius: 20px;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.v-card-actions v-btn:hover {
+  background-color: #40513b;
+  color: #fff;
+  transform: scale(1.05);
+}
 @media (max-width: 768px) {
   .product-card {
     margin-bottom: 20px;
