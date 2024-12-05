@@ -19,7 +19,8 @@ const selectedDepartment = ref('') // To hold the selected department
             class="text-center rounded-xl"
             elevation="24"
             style="
-              max-width: 600px;
+              width: 500px;
+              height: auto;
               background: linear-gradient(
                 to top,
                 #b4cca9,
@@ -30,28 +31,27 @@ const selectedDepartment = ref('') // To hold the selected department
               padding: 20px;
             "
           >
-            <div
-              cols="12"
-              sm="6"
-              md="4"
-              lg="3"
-              class="d-flex align-center justify-center"
-              style="gap: 5px"
-            >
-              <v-img
-                src="/Campusthreads.png"
-                alt="Custom Logo"
-                style="max-width: 80px; width: 100%; height: auto"
-                contain
-              ></v-img>
+            <v-row class="d-flex align-center justify-center">
+              <!-- Image Column -->
+              <v-col class="d-flex justify-center">
+                <v-img
+                  src="/Campusthreads.png"
+                  alt="Custom Logo"
+                  style="max-width: 80px; width: 100%; height: auto"
+                  contain
+                ></v-img>
+              </v-col>
 
-              <v-card-title
-                class="text-h4 font-weight-black light-green-darken-4"
-                style="margin: 0; color: #40513b"
-              >
-                <span>Let's get started</span>
-              </v-card-title>
-            </div>
+              <!-- Text Column -->
+              <v-col cols="12" sm="12" md="auto" class="d-flex justify-center">
+                <v-card-title
+                  class="text-h3 font-weight-black light-green-darken-4"
+                  style="margin: 0; color: #40513b"
+                >
+                  <span>Let's get started</span>
+                </v-card-title>
+              </v-col>
+            </v-row>
 
             <v-card-text
               class="bg-surface-white mx-8 pt-8 text-center"

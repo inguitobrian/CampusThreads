@@ -4,7 +4,7 @@ import WelcomeUsers from '@/components/layout/WelcomeUsers.vue'
 
 const items = [
   { src: '/bb5c7a2ae83123e155fddf6d11040816.jpg' },
-  { src: '/DJI_0016 (1).jpg' },
+  { src: '/csu.jpg' },
   { src: '/55b172c9edee65f683757cb9d49e6b8a.jpg' },
   { src: '/bbc2ba5d1153d0f86705527cc838b68b.jpg' },
 ]
@@ -103,12 +103,19 @@ const shopItems = [
         <v-carousel-item
           v-for="(item, i) in items"
           :key="i"
-          :src="item.src"
-          cover
+          class="carousel-item-with-gradient"
         >
+          <!-- Gradient and Image Background -->
+          <div
+            class="image-overlay"
+            :style="{
+              backgroundImage: `linear-gradient(to top right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.22)), url(${item.src})`,
+            }"
+          ></div>
+
+          <!-- Text Content -->
           <v-container
-            class="d-flex flex-column justify-center align-center"
-            style="color: white; height: 100%"
+            class="text-content d-flex flex-column justify-center align-center"
           >
             <h1 class="display-2" style="font-weight: bold; font-size: 4rem">
               University Spirit Merchandise Hub
@@ -124,12 +131,20 @@ const shopItems = [
       </v-carousel>
 
       <v-container class="text-center mt-8">
-        <h1 class="text-h4 font-weight-bold mb-4" style="font-size: 2rem">
+        <h1
+          class="text-h4 font-weight-bold mb-4"
+          style="color: #111703; font-size: 2rem"
+        >
           "Wear Your School Spirit, Share Your Pride"
         </h1>
         <p
-          class="text-body-1"
-          style="font-size: 1rem; max-width: 900px; margin: 0 auto"
+          class="text-h6"
+          style="
+            color: #2e3b1f;
+            font-size: 1rem;
+            max-width: 900px;
+            margin: 0 auto;
+          "
         >
           "Our university gear lets you showcase your pride and connection to
           campus. Celebrate your journey and represent your alma mater with
@@ -155,7 +170,7 @@ const shopItems = [
                       style="
                         writing-mode: vertical-rl;
                         text-orientation: mixed;
-                        color: white;
+                        color: #c9d7b6;
                         font-weight: bold;
                         margin-left: 20px;
                         margin-top: 200px;
@@ -186,7 +201,7 @@ const shopItems = [
                       style="
                         writing-mode: vertical-rl;
                         text-orientation: mixed;
-                        color: white;
+                        color: #c9d7b6;
                         font-weight: bold;
                         margin-left: 20px;
                         margin-top: 200px;
@@ -216,7 +231,7 @@ const shopItems = [
                       style="
                         writing-mode: vertical-rl;
                         text-orientation: mixed;
-                        color: white;
+                        color: #c9d7b6;
                         font-weight: bold;
                         margin-left: 20px;
                         margin-top: 200px;
@@ -233,10 +248,13 @@ const shopItems = [
       </v-container>
 
       <v-container class="text-center mt-8">
-        <h1 class="display-2 font-weight-bold mb-2">
+        <h1 class="display-2 font-weight-bold mb-2" style="color: #111703">
           "Inspiring the Future, Empowering the Present"
         </h1>
-        <p class="text-body-1 mb-6" style="font-size: 1.2rem; color: #333">
+        <p
+          class="text-h6 mb-2"
+          style="color: #2e3b1f; font-size: 1rem; max-width: 900px; color: #333"
+        >
           Discover, Learn, and Grow with Us – Where Education and Excellence
           Meet
         </p>
@@ -321,7 +339,7 @@ const shopItems = [
       </v-parallax>
 
       <v-col cols="12" class="text-center">
-        <h1 class="text-h3 font-weight-bold mb-2" style="color: #537346">
+        <h1 class="text-h3 font-weight-bold mb-2" style="color: #2e3b1f">
           College Departments
         </h1>
         <p class="text-body-1 mb-4" style="font-size: 1.2rem; color: #333">
@@ -331,7 +349,7 @@ const shopItems = [
         <v-btn
           outlined
           rounded
-          class="text-none mb-8"
+          class="text-none mb-2"
           to="merchs"
           style="
             color: #537346;
@@ -416,8 +434,10 @@ const shopItems = [
           </v-col>
         </v-row>
       </v-container>
-      <v-container class="text-center my-10">
-        <h1 class="display-1 font-weight-bold mb-4">WHAT’S HOT</h1>
+      <v-container class="text-center my-5">
+        <h1 class="text-h3 font-weight-bold mb-4" style="color: #2e3b1f">
+          Our Merchandise
+        </h1>
         <p class="subtitle-1">
           Discover this season’s must-haves and elevate your campus wardrobe to
           new heights!
@@ -476,5 +496,31 @@ const shopItems = [
 
 .display-2 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.carousel-item-with-gradient {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.image-overlay {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: 1; /* Place behind the text */
+}
+
+.text-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #c9d7b6; /* Ensures text is visible */
+  z-index: 2; /* Place above the overlay */
 }
 </style>
