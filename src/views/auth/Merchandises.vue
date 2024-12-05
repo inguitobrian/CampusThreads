@@ -129,10 +129,21 @@ onMounted(async () => {
   <AppLayout>
     <template #content>
       <v-container>
-        <h2 class="text-center mb-4">College Merchandises</h2>
+        <h2
+          data-aos="slide-up"
+          data-aos-duration="1000"
+          class="text-center mb-4"
+        >
+          College Merchandises
+        </h2>
 
         <!-- Filter Buttons -->
-        <v-col cols="12" class="text-center d-flex justify-center gap-4">
+        <v-col
+          data-aos="zoom-out"
+          data-aos-duration="1000"
+          cols="12"
+          class="text-center d-flex justify-center gap-4"
+        >
           <v-btn class="filter-btn all" @click="activeType = ''">All</v-btn>
           <v-btn class="filter-btn lanyard" @click="activeType = 'Lanyard'"
             >Lanyards</v-btn
@@ -151,6 +162,8 @@ onMounted(async () => {
         <v-container class="mt-3">
           <v-row>
             <v-col
+              data-aos="flip-right"
+              data-aos-duration="500"
               v-for="item in filteredMerchandise"
               :key="item.id"
               cols="12"
@@ -275,15 +288,21 @@ onMounted(async () => {
 .product-card {
   border-radius: 12px;
   background: linear-gradient(135deg, #f1f5f8, #e9ecef);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   overflow: hidden;
   border: 1px solid #e0e0e0;
 }
 
 .product-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 6px 15px rgba(0, 0, 0, 0.2),
+    0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Gradient border for the image */
@@ -330,7 +349,9 @@ onMounted(async () => {
   border-radius: 20px;
   font-weight: bold;
   padding: 10px 20px;
-  transition: background-color 0.3s, transform 0.2s ease;
+  transition:
+    background-color 0.3s,
+    transform 0.2s ease;
 }
 
 .v-card-actions v-btn:hover {
