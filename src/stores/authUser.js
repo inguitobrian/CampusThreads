@@ -34,6 +34,8 @@ export const useAuthUserStore = defineStore('authUser', () => {
           firstname: user.user_metadata.firstname || '',
           lastname: user.user_metadata.lastname || '',
           email: user.email || '',
+          college_name: user.user_metadata.college_name || '',
+          college_id: user.user_metadata.college_id || '',
           isAdmin: user.user_metadata.is_admin || false,
           role: user.user_metadata.role || '', // Adding role here
           id: user.id || '', // Ensure ID is properly fetched

@@ -16,7 +16,7 @@ const cards = [
     link: '/ccis',
     title: 'College of Computing and Information Sciences',
     subtitle: 'IT, CS, IS',
-    image: '/pexels-kubrangle-15247433.jpg',
+    image: '/ccis1.jpg',
     description:
       'Gain expertise in software development, data science, and cybersecurity, preparing you for impactful careers in tech.',
   },
@@ -24,7 +24,7 @@ const cards = [
     link: '/cmns',
     title: 'College of Mathematics and Natural Science',
     subtitle: 'MATH, APPLIEDMATH, PHYSICS, CHEMISTRY',
-    image: '/pexels-pixabay-256490.jpg',
+    image: '/cmns.jpg',
     description:
       'Discover the principles of natural sciences and advanced mathematics, building a foundation for research and analysis.',
   },
@@ -40,7 +40,7 @@ const cards = [
     link: '/ced',
     title: 'College of Education',
     subtitle: 'ELEM, ENG, SCIENCE, MATH, FIL',
-    image: '/pexels-manelandsean-17328274.jpg',
+    image: '/ced.jpg',
     description:
       'Equip yourself with essential teaching skills and knowledge to inspire and educate future generations.',
   },
@@ -48,7 +48,7 @@ const cards = [
     link: '/cegs',
     title: 'College of Engineering and Geo-Sciences',
     subtitle: 'GE, CE, ECE, GEOL, ME',
-    image: '/pexels-karinarud-11964281.jpg',
+    image: '/cegs.jpg',
     description:
       'Master engineering principles and geoscience knowledge to solve complex environmental and infrastructural challenges.',
   },
@@ -56,7 +56,7 @@ const cards = [
     link: '/caa',
     title: 'College of Agriculture and Agri-Industries',
     subtitle: 'AGRI, AGRITECH',
-    image: '/pexels-uraw-12512732.jpg',
+    image: '/caa.jpg',
     description:
       'Explore agricultural sciences and technology, advancing skills in sustainable farming and food production.',
   },
@@ -64,7 +64,7 @@ const cards = [
     link: '/chass',
     title: 'College of Humanities and Social Sciences',
     subtitle: 'SW, PSYCH, SOCIO',
-    image: '/pexels-george-pak-7972506.jpg',
+    image: '/chass.jpg',
     description:
       'Engage with diverse perspectives in humanities and social sciences, fostering critical thinking and cultural understanding.',
   },
