@@ -15,7 +15,7 @@ const authStore = useAuthUserStore()
 
 const snackbar = ref(false) // Snackbar visibility
 
-// Load Variables
+// Default Form Data
 const formDataDefault = {
   image: null,
 }
@@ -28,11 +28,8 @@ const formAction = ref({
 const refVForm = ref()
 const avatarText = ref('') // Fallback for avatar initials
 const imgPreview = ref(
-  authStore.userData?.image_url || null, // Use null as a fallback
+  authStore.userData?.image_url || null, // Use null as fallback
 )
-
-// Modal visibility state
-const isModalVisible = ref(false)
 
 // Generate avatar text based on user data
 onMounted(() => {
@@ -45,44 +42,41 @@ onMounted(() => {
   }
 })
 
-// Function to handle file change and show image preview
+// File Change Handler
 const onPreview = async event => {
   const { fileObject, fileUrl } = await fileExtract(event)
   formData.value.image = fileObject // Update formData
   imgPreview.value = fileUrl // Update imgPreview state
 }
 
-// Function to reset preview if file-input clear is clicked
+// Reset Preview
 const onPreviewReset = () => {
-  imgPreview.value = authStore.userData?.image_url || null // Reset to default or null
+  imgPreview.value = authStore.userData?.image_url || null
 }
 
-// Submit Functionality
+// Submit Form
 const onSubmit = async () => {
-  formAction.value = { ...formActionDefault, formProcess: true } // Reset Form Action utils; Turn on processing
+  formAction.value = { ...formActionDefault, formProcess: true }
 
   const { data, error } = await authStore.updateUserImage(formData.value.image)
 
   if (error) {
-    formAction.value.formErrorMessage = error.message // Add Error Message and Status Code
+    formAction.value.formErrorMessage = error.message
     formAction.value.formStatus = error.status
   } else if (data) {
-    formAction.value.formSuccessMessage = 'Successfully Updated Profile Image.' // Add Success Message
-    snackbar.value = true // Show snackbar
+    formAction.value.formSuccessMessage = 'Successfully Updated Profile Image.'
+    snackbar.value = true
   }
 
-  formAction.value.formProcess = false // Turn off processing
+  formAction.value.formProcess = false
 }
-// Trigger Validators
+
+// Validate Form Before Submit
 const onFormSubmit = () => {
   refVForm.value?.validate().then(({ valid }) => {
     if (valid) onSubmit()
   })
 }
-// Fetch user information when the component mounts
-onMounted(() => {
-  authStore.getUserInformation()
-})
 </script>
 
 <template>
@@ -91,65 +85,72 @@ onMounted(() => {
     :form-error-message="formAction.formErrorMessage"
   ></AlertNotification>
 
-  <!-- Profile Section with Image and User Info -->
   <v-form ref="refVForm" @submit.prevent="onFormSubmit">
-    <v-row class="d-flex justify-center">
-      <!-- Profile Image Display -->
-      <v-col cols="12" sm="6" md="4" lg="3" class="d-flex justify-center pa-0">
-        <div
-          class="mx-auto d-flex justify-center align-center rounded-circle"
-          style="aspect-ratio: 1; width: 80%; height: 90%; overflow: hidden"
-        >
-          <!-- Show Profile Picture if available -->
+    <v-row class="d-flex justify-center py-4">
+      <!-- Avatar Section -->
+      <v-col
+        cols="12"
+        sm="6"
+        md="4"
+        lg="3"
+        class="d-flex justify-center align-center pa-0"
+      >
+        <div class="avatar-container">
           <v-img
             v-if="imgPreview"
-            class="rounded-circle"
+            class="avatar-img"
             :src="imgPreview"
             alt="Profile Picture Preview"
             cover
           ></v-img>
-
-          <!-- Otherwise, show initials -->
-          <div
-            v-else
-            class="text-h3 font-weight-bold d-flex justify-center align-center"
-            style="
-              color: white;
-              background-color: #d32f2f;
-              width: 100%;
-              height: 100%;
-            "
-          >
-            {{ avatarText }}
-          </div>
+          <div v-else class="avatar-initials">{{ avatarText }}</div>
         </div>
       </v-col>
 
-      <!-- User Info Below Image -->
-      <v-col
-        sm="6"
-        md="8"
-        lg="9"
-        class="d-flex flex-column justify-center pa-0"
-      >
-        <div class="text-center my-4 ma-0">
-          <h4 class="ma-0">
-            <b>Full Name:</b>
-            {{
-              authStore.userData?.firstname + ' ' + authStore.userData?.lastname
-            }}
+      <!-- User Info -->
+      <v-col sm="6" md="8" lg="9" class="d-flex flex-column justify-center">
+        <div class="user-info text-center mb-5">
+          <h1
+            style="
+              font-weight: bold;
+              font-family: 'Syne', sans-serif;
+              font-size: 4rem;
+              font-weight: 600;
+              font-style: normal;
+            "
+          >
+            {{ authStore.userData?.firstname }}
+            {{ authStore.userData?.lastname }}
+          </h1>
+          <h4
+            style="
+              font-family: 'Inter', sans-serif;
+              font-weight: 500;
+              font-size: 1.1rem;
+              font-style: normal;
+            "
+          >
+            <b>Email:</b> {{ authStore.userData?.email }}
           </h4>
-          <h4 class="my-2"><b>Email:</b> {{ authStore.userData?.email }}</h4>
-          <h4 class="my-2"><b>Role:</b> {{ authStore.userData?.role }}</h4>
+          <h4
+            style="
+              font-family: 'Inter', sans-serif;
+              font-weight: 500;
+              font-size: 1.1rem;
+              font-style: normal;
+            "
+          >
+            <b>Role:</b> {{ authStore.userData?.role }}
+          </h4>
         </div>
 
-        <!-- File Input to Upload Profile Picture -->
+        <!-- File Input -->
         <v-file-input
-          class="mt-5"
+          class="mt-4"
           :rules="[requiredValidator, imageValidator]"
           accept="image/png, image/jpeg, image/bmp"
-          label="Browse Profile Picture"
-          placeholder="Browse Profile Picture"
+          label="Upload Profile Picture"
+          placeholder="Choose File"
           prepend-icon="mdi-camera"
           show-size
           chips
@@ -160,10 +161,10 @@ onMounted(() => {
         <!-- Update Button -->
         <v-btn
           rounded
-          elevation="8"
-          class="mt-3 mb-3"
+          elevation="2"
+          class="mt-4 update-btn"
           type="submit"
-          color="light-green-darken-4"
+          color="#40513b"
           prepend-icon="mdi-image-edit"
           :disabled="formAction.formProcess"
           :loading="formAction.formProcess"
@@ -174,14 +175,11 @@ onMounted(() => {
     </v-row>
   </v-form>
 
+  <!-- Snackbar Notification -->
   <v-overlay v-model="snackbar" class="snackbar-overlay">
-    <v-card
-      class="centered-snackbar"
-      color="light-green-darken-4"
-      elevation="10"
-    >
+    <v-card class="snackbar-card">
       <v-card-text>
-        <h2>Profile Picture Updated!</h2>
+        <h3>Profile Picture Updated!</h3>
       </v-card-text>
       <v-card-actions class="justify-center">
         <v-btn color="white" @click="snackbar = false">OK</v-btn>
@@ -191,17 +189,59 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.avatar-container {
+  width: 200px;
+  height: 200px;
+  border: 4px solid #40513b;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+}
+
+.avatar-initials {
+  color: white;
+  font-size: 2rem;
+  background-color: #1976d2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 50%;
+}
+
+.user-info {
+  margin-top: 1rem;
+}
+
+.update-btn {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 .snackbar-overlay {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
-.centered-snackbar {
+.snackbar-card {
   width: 300px;
   text-align: center;
   border-radius: 12px;
-  padding: 16px;
+  padding: 20px;
+  background-color: #4caf50;
+  color: white;
 }
 </style>

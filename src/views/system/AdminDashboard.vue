@@ -267,15 +267,11 @@ onMounted(() => {
                     :disabled="formAction.formProcess"
                     block
                     rounded
-                    color="primary"
+                    color="#40513b"
                     elevation="2"
                   >
                     <span v-if="formAction.formProcess">Processing...</span>
                     <span v-else>Register LSG</span>
-                  </v-btn>
-
-                  <v-btn @click="logout" class="mt-4" block color="red" rounded>
-                    Logout
                   </v-btn>
                 </v-form>
               </v-card>

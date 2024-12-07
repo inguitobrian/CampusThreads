@@ -94,7 +94,20 @@ const updatePassword = async () => {
   <AppLayout>
     <template #content>
       <v-container>
-        <v-card class="mb-5" title="Profile Information">
+        <v-card
+          class="mb-5"
+          title="Profile Information"
+          style="
+            background: linear-gradient(
+              to top,
+              #b4cca9,
+              #cdddc6,
+              #ffffff,
+              #ffffff
+            );
+            border-radius: 16px;
+          "
+        >
           <v-card-text class="mb-5">
             <ProfilePicture></ProfilePicture>
           </v-card-text>
@@ -102,7 +115,19 @@ const updatePassword = async () => {
 
         <!-- Account Settings Card -->
         <div class="settings-wrapper">
-          <v-card class="settings-card">
+          <v-card
+            style="
+              background: linear-gradient(
+                to top,
+                #b4cca9,
+                #cdddc6,
+                #ffffff,
+                #ffffff
+              );
+              border-radius: 16px;
+            "
+            class="settings-card"
+          >
             <v-container>
               <h2 class="settings-title">Account Settings</h2>
 
@@ -213,7 +238,7 @@ const updatePassword = async () => {
                   rounded
                   elevation="8"
                   class="update-password-btn"
-                  color="light-green-darken-4"
+                  color="#40513b"
                   size="large"
                   type="submit"
                   prepend-icon="mdi-account-key"

@@ -170,7 +170,20 @@ onMounted(async () => {
               md="4"
               class="mb-4"
             >
-              <v-card @click="openDetailModal(item)" class="product-card">
+              <v-card
+                style="
+                  background: linear-gradient(
+                    to top,
+                    #b4cca9,
+                    #cdddc6,
+                    #ffffff,
+                    #ffffff
+                  );
+                  border-radius: 16px;
+                "
+                @click="openDetailModal(item)"
+                class="product-card"
+              >
                 <v-img
                   :src="item.image"
                   height="200px"

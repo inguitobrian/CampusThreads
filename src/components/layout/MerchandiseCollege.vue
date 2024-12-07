@@ -74,6 +74,21 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <!-- Snackbar for success message -->
+    <v-overlay v-model="snackbar" class="snackbar-overlay">
+      <v-card
+        class="centered-snackbar"
+        color="light-green-darken-4"
+        elevation="10"
+      >
+        <v-card-text>
+          <h2>Order Successful!</h2>
+        </v-card-text>
+        <v-card-actions class="justify-center">
+          <v-btn color="white" @click="snackbar = false">OK</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-overlay>
   </div>
 </template>
 
@@ -91,6 +106,8 @@ const props = defineProps({
     required: true,
   },
 })
+
+const snackbar = ref(false) // To show the snackbar
 
 const merchandiseList = ref([])
 const isDetailModalOpen = ref(false)
@@ -153,6 +170,7 @@ async function confirmPurchase() {
       .select('quantity')
       .eq('merchandise_id', selectedMerchandise.value.id)
       .single()
+
     if (stockError) {
       console.error('Error fetching stock data:', stockError.message)
       return
@@ -189,7 +207,7 @@ async function confirmPurchase() {
     }
 
     isDetailModalOpen.value = false
-    alert('Purchase successful!')
+    snackbar.value = true // Show the snackbar
   } else {
     alert('You must be logged in to make a purchase.')
   }
@@ -212,19 +230,39 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.snackbar-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
+}
+
+.centered-snackbar {
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  border-radius: 12px;
+}
+
 /* Custom styles for cards with gradient backgrounds and shadows */
 .product-card {
   border-radius: 12px;
   background: linear-gradient(135deg, #f1f5f8, #e9ecef);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   overflow: hidden;
   border: 1px solid #e0e0e0;
 }
 
 .product-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2), 0 3px 5px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 6px 15px rgba(0, 0, 0, 0.2),
+    0 3px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Gradient border for the image */
@@ -271,7 +309,9 @@ onMounted(async () => {
   border-radius: 20px;
   font-weight: bold;
   padding: 10px 20px;
-  transition: background-color 0.3s, transform 0.2s ease;
+  transition:
+    background-color 0.3s,
+    transform 0.2s ease;
 }
 
 .v-card-actions v-btn:hover {

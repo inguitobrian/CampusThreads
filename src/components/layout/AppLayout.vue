@@ -66,6 +66,10 @@ onMounted(() => {
 
         <v-spacer></v-spacer>
 
+        <v-btn v-if="!isLoggedIn" class="login-btn" to="/login">
+          <span class="mdi mdi-login yes"></span>
+          Login
+        </v-btn>
         <!-- Profile Header only for logged-in users -->
         <ProfileHeader v-if="isLoggedIn"></ProfileHeader>
       </v-app-bar>
@@ -192,5 +196,34 @@ onMounted(() => {
 
 .v-main {
   min-height: 100vh; /* Ensures the main content fills the screen */
+}
+/* Login Button Styling */
+/* Icon Styling */
+.login-btn .mdi {
+  font-size: 24px; /* Make the icon larger */
+}
+
+/* Login Button Styling */
+.login-btn {
+  background: linear-gradient(135deg, #c9d7b6, #1b5f13); /* Gradient effect */
+  color: white;
+  font-weight: bold;
+  font-family: 'Manrope', sans-serif;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease; /* Smooth transition */
+  display: flex;
+  align-items: center; /* Align icon and text */
+  gap: 8px; /* Spacing between icon and text */
+}
+
+.login-btn:hover {
+  background: linear-gradient(135deg, #c9d7b6, #958c72); /* Reverse gradient */
+  transform: scale(1.1); /* Slight zoom-in on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
 </style>

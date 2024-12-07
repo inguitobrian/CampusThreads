@@ -116,7 +116,7 @@ const shopItems = [
             <div
               class="image-overlay"
               :style="{
-                backgroundImage: `linear-gradient(to top right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.22)), url(${item.src})`,
+                backgroundImage: `linear-gradient(to top right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.30)), url(${item.src})`,
               }"
             ></div>
 
@@ -128,13 +128,26 @@ const shopItems = [
                 data-aos="fade-up"
                 data-aos-duration="1000"
                 class="display-2"
-                style="font-weight: bold; font-size: 4rem"
+                style="
+                  font-weight: bold;
+                  font-family: 'Syne', sans-serif;
+                  font-size: 5rem;
+                  font-weight: 700;
+                  font-style: normal;
+                "
               >
-                University Spirit Merchandise Hub
+                Campus Threads Merchandise Hub
               </h1>
               <p
                 class="text-h5"
-                style="max-width: 600px; text-align: center; margin-top: 20px"
+                style="
+                  font-family: 'Inter', sans-serif;
+                  font-weight: 300;
+                  font-style: normal;
+
+                  text-align: center;
+                  margin-top: 20px;
+                "
               >
                 Your one-stop shop for all campus gear and essentials.
               </p>
@@ -148,7 +161,15 @@ const shopItems = [
           data-aos="fade-up"
           data-aos-duration="1000"
           class="text-h4 font-weight-bold mb-4"
-          style="color: #111703; font-size: 2rem"
+          style="
+            font-weight: bold;
+            font-family: 'Syne', sans-serif;
+
+            font-weight: 800;
+            font-style: normal;
+
+            color: #2e3b1f;
+          "
         >
           "Wear Your School Spirit, Share Your Pride"
         </h1>
@@ -279,7 +300,13 @@ const shopItems = [
           data-aos="fade-up"
           data-aos-duration="800"
           class="display-2 font-weight-bold mb-2"
-          style="color: #111703"
+          style="
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            color: #111703;
+            font-weight: 300;
+          "
         >
           "Inspiring the Future, Empowering the Present"
         </h1>
@@ -317,6 +344,13 @@ const shopItems = [
           data-aos="fade-up"
           data-aos-duration="500"
           class="display-2 font-weight-bold mb-2"
+          style="
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-style: normal;
+            color: #111703;
+            font-weight: 300;
+          "
         >
           "Wear your pride. With CampusThreads, your college spirit comes to
           life through custom merchandise."
@@ -388,7 +422,7 @@ const shopItems = [
             </v-btn>
           </v-col>
 
-          <v-col class="d-flex justify-center align-center">
+          <v-col class="d-flex justify-center align-center ml-12">
             <v-img
               data-aos="zoom-out-left"
               data-aos-duration="500"
@@ -406,7 +440,14 @@ const shopItems = [
           data-aos="fade-up"
           data-aos-duration="500"
           class="text-h3 font-weight-bold mb-2"
-          style="color: #2e3b1f"
+          style="
+            font-weight: bold;
+            font-family: 'Syne', sans-serif;
+
+            font-weight: 800;
+            font-style: normal;
+            color: #2e3b1f;
+          "
         >
           College Departments
         </h1>
@@ -532,7 +573,15 @@ const shopItems = [
           data-aos="fade-left"
           data-aos-duration="800"
           class="text-h3 font-weight-bold mb-4"
-          style="color: #2e3b1f"
+          style="
+            font-weight: bold;
+            font-family: 'Syne', sans-serif;
+
+            font-weight: 800;
+            font-style: normal;
+
+            color: #2e3b1f;
+          "
         >
           Our Merchandise
         </h1>
