@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { supabase } from '@/utils/supabase.js'
 import AppLayout from '@/components/layout/AppLayout.vue'
+import OrderList from '@/components/layout/OrderList.vue'
 
 // Reactive state
 const merchTypes = ref(['Lanyard', 'Uniform', 'Accessories'])
@@ -293,7 +294,7 @@ onMounted(() => {
 <template>
   <AppLayout>
     <template #content>
-      <v-container>
+      <v-container fluid>
         <!-- Header Section -->
         <v-row class="mb-5">
           <v-col class="text-center">
@@ -314,7 +315,7 @@ onMounted(() => {
                 >
                 <v-spacer></v-spacer>
                 <router-link to="/addmerch">
-                  <v-btn color="primary" large>
+                  <v-btn color="#40513b" large>
                     <v-icon left>mdi-plus</v-icon>
                     Add New Item
                   </v-btn>
@@ -440,6 +441,12 @@ onMounted(() => {
           </v-card>
         </v-dialog>
       </v-container>
+
+      <v-card class="mb-5" title="Purchase History from Users">
+        <v-card-text class="mb-5">
+          <OrderList></OrderList>
+        </v-card-text>
+      </v-card>
     </template>
   </AppLayout>
 </template>

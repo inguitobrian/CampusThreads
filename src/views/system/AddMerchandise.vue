@@ -4,7 +4,20 @@
       <v-container>
         <v-row class="justify-center">
           <v-col cols="12" md="8">
-            <v-card elevation="10" class="py-6 px-8">
+            <v-card
+              style="
+                background: linear-gradient(
+                  to top,
+                  #b4cca9,
+                  #cdddc6,
+                  #ffffff,
+                  #ffffff
+                );
+                border-radius: 16px;
+              "
+              elevation="10"
+              class="py-6 px-8"
+            >
               <h1 class="text-center title-with-icon">
                 <v-icon class="mr-2" color="primary">mdi-plus-box</v-icon>
                 Add Merchandise
@@ -57,7 +70,7 @@
 
                 <v-btn
                   :disabled="!formValid || isUploading"
-                  color="primary"
+                  color="#40513b"
                   @click="handleAddMerchandise"
                   elevation="2"
                   class="animated-button"
@@ -83,9 +96,7 @@
             <h2 class="mt-2">Merchandise Successfully Added!</h2>
           </v-card-text>
           <v-card-actions class="justify-center">
-            <v-btn color="white" @click="snackbar = false">
-              OK
-            </v-btn>
+            <v-btn color="white" @click="snackbar = false"> OK </v-btn>
           </v-card-actions>
         </v-card>
       </v-overlay>
@@ -228,7 +239,9 @@ onMounted(() => {
 }
 
 .animated-button {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
 }
 
 .animated-button:hover {

@@ -65,7 +65,7 @@
               <p><strong>Quantity:</strong> {{ order.qty }}</p>
               <p><strong>Total Price:</strong> {{ order.formattedPrice }}</p>
               <p>
-                <strong>Order Date:</strong>
+                <strong>Purchase Date:</strong>
                 {{ formatDate(order.created_at) }}
               </p>
             </v-card-text>

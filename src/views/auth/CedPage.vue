@@ -92,6 +92,8 @@ function prevSet() {
 
               <v-container>
                 <h1
+                  data-aos="fade-up"
+                  data-aos-duration="800"
                   class="text-h4 font-weight-bold"
                   style="font-size: 2rem; text-align: left; padding-top: 50px"
                 >
@@ -101,7 +103,11 @@ function prevSet() {
 
               <v-container fluid>
                 <v-row>
-                  <v-col cols="6">
+                  <v-col
+                    data-aos="fade-up-right"
+                    data-aos-duration="1000"
+                    cols="6"
+                  >
                     <v-parallax
                       height="500"
                       src="/df92d76bfd8fa56352d2b916bfb4b973.jpg"
@@ -145,7 +151,11 @@ function prevSet() {
                     </v-parallax>
                   </v-col>
 
-                  <v-col cols="6">
+                  <v-col
+                    data-aos="fade-up-left"
+                    data-aos-duration="1000"
+                    cols="6"
+                  >
                     <v-parallax
                       height="500"
                       src="/e98b82627662e62ab553b39ebe51174a.jpg"
@@ -192,6 +202,8 @@ function prevSet() {
               </v-container>
               <v-container class="text-center mt-8">
                 <h1
+                  data-aos="fade-up"
+                  data-aos-duration="800"
                   class="text-h4 font-weight-bold mb-4"
                   style="font-size: 2rem"
                 >
@@ -199,6 +211,8 @@ function prevSet() {
                   path in education."
                 </h1>
                 <p
+                  data-aos="fade-up"
+                  data-aos-duration="800"
                   class="text-body-1"
                   style="
                     font-size: 1rem;
@@ -217,6 +231,8 @@ function prevSet() {
                 style="height: 100vh"
               >
                 <video
+                  data-aos="zoom-out-up"
+                  data-aos-duration="800"
                   autoplay
                   loop
                   playsinline
@@ -231,12 +247,16 @@ function prevSet() {
               </v-responsive>
               <v-container class="text-left mt-8">
                 <h1
+                  data-aos="fade-up"
+                  data-aos-duration="800"
                   class="text-h4 font-weight-bold mb-4"
                   style="font-size: 2rem; text-align: left"
                 >
                   Don’t miss
                 </h1>
                 <p
+                  data-aos="fade-up"
+                  data-aos-duration="800"
                   class="text-body-1"
                   style="
                     font-size: 1rem;
@@ -255,6 +275,8 @@ function prevSet() {
                 <v-row>
                   <!-- Product Cards -->
                   <v-col
+                    data-aos="fade-up-left"
+                    data-aos-duration="1000"
                     v-for="(image, index) in images"
                     :key="index"
                     cols="6"
@@ -302,7 +324,7 @@ function prevSet() {
                   </v-card>
                 </v-dialog>
               </v-container>
-              <div>
+              <div data-aos="slide-right" data-aos-duration="500">
                 <MerchandiseCollege :collegeId="6" collegeName="CED College" />
               </div>
             </v-container>

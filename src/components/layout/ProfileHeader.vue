@@ -187,7 +187,9 @@ const onLogout = async () => {
   font-weight: 500;
   text-transform: capitalize;
   margin-top: 10px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .menu-button:hover {

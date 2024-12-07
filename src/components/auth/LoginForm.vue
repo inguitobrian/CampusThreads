@@ -8,7 +8,7 @@ import { requiredValidator, emailValidator } from '@/utils/validators'
 const router = useRouter()
 const visible = ref(false)
 const refVForm = ref()
-const isAdminLogin = ref(false) // Toggle for admin login
+const selectedRole = ref('Student') // Default role
 const formDataDefault = {
   email: '',
   password: '',
@@ -38,8 +38,8 @@ const onSubmit = async () => {
     // Get the role from user metadata
     const userRole = user?.user_metadata?.role
 
-    // Handle Admin login
-    if (isAdminLogin.value) {
+    if (selectedRole.value === 'Admin') {
+      // Admin Login
       if (userRole !== 'Admin') {
         formAction.value.formErrorMessage = `Only Admin accounts can log in here.`
         formAction.value.formStatus = 403
@@ -48,7 +48,7 @@ const onSubmit = async () => {
         router.replace('/')
       }
     } else {
-      // Handle Student or LSG login
+      // Student/LSG Login
       const validUserRoles = ['Student', 'LSG']
       if (!validUserRoles.includes(userRole)) {
         formAction.value.formErrorMessage = `The user is not registered yet.`
@@ -78,12 +78,31 @@ const onFormSubmit = () => {
   ></AlertNotification>
 
   <v-form ref="refVForm" fast-fail @submit.prevent="onFormSubmit">
-    <!-- Toggle for Admin Login -->
-    <v-switch
-      v-model="isAdminLogin"
-      label="Log in as Admin"
-      class="mb-4 d-flex justify-center align-center"
-    ></v-switch>
+    <!-- Role Selection Buttons -->
+    <div class="mb-4 d-flex justify-center align-center">
+      <v-btn-toggle v-model="selectedRole" mandatory>
+        <v-btn
+          size="large"
+          rounded="xl"
+          value="Student"
+          outlined
+          class="text-h7 font-weight-bold"
+          color="#558B2F"
+        >
+          Student
+        </v-btn>
+        <v-btn
+          size="large"
+          rounded="xl"
+          value="Admin"
+          outlined
+          class="text-h7 font-weight-bold"
+          color="#558B2F"
+        >
+          Admin
+        </v-btn>
+      </v-btn-toggle>
+    </div>
 
     <!-- Email Field -->
     <v-text-field

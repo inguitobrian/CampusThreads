@@ -81,11 +81,7 @@ function prevSet() {
           <!-- Main Content -->
           <v-main>
             <v-container fluid>
-              <v-img
-                src="/pexels-kubrangle-15247433.jpg"
-                height="400px"
-                cover
-              >
+              <v-img src="/pexels-kubrangle-15247433.jpg" height="400px" cover>
                 <div class="f-text">
                   College of Computing and Information Sciences
                 </div>
@@ -93,6 +89,8 @@ function prevSet() {
 
               <v-container>
                 <h1
+                  data-aos="fade-up"
+                  data-aos-duration="800"
                   class="text-h4 font-weight-bold"
                   style="font-size: 2rem; text-align: left; padding-top: 50px"
                 >
@@ -102,7 +100,11 @@ function prevSet() {
 
               <v-container fluid>
                 <v-row>
-                  <v-col cols="6">
+                  <v-col
+                    data-aos="fade-up-right"
+                    data-aos-duration="1000"
+                    cols="6"
+                  >
                     <v-parallax
                       height="500"
                       src="/6b31e097902ce3e77726f039b2b12b6f.jpg"
@@ -146,7 +148,11 @@ function prevSet() {
                     </v-parallax>
                   </v-col>
 
-                  <v-col cols="6">
+                  <v-col
+                    data-aos="fade-up-left"
+                    data-aos-duration="1000"
+                    cols="6"
+                  >
                     <v-parallax
                       height="500"
                       src="/662e1da6960c94df95d5925d1538ae97.jpg"
@@ -193,12 +199,16 @@ function prevSet() {
               </v-container>
               <v-container class="text-center mt-8">
                 <h1
+                  data-aos="fade-up"
+                  data-aos-duration="800"
                   class="text-h4 font-weight-bold mb-4"
                   style="font-size: 2rem"
                 >
                   "Eat. Sleep. Code. Repeat."
                 </h1>
                 <p
+                  data-aos="fade-up"
+                  data-aos-duration="800"
                   class="text-body-1"
                   style="
                     font-size: 1rem;
@@ -216,6 +226,8 @@ function prevSet() {
                 style="height: 100vh"
               >
                 <video
+                  data-aos="zoom-out-up"
+                  data-aos-duration="800"
                   autoplay
                   loop
                   playsinline
@@ -231,12 +243,16 @@ function prevSet() {
 
               <v-container class="text-left mt-8">
                 <h1
+                  data-aos="fade-up"
+                  data-aos-duration="800"
                   class="text-h4 font-weight-bold mb-4"
                   style="font-size: 2rem; text-align: left"
                 >
                   Don’t miss
                 </h1>
                 <p
+                  data-aos="fade-up"
+                  data-aos-duration="800"
                   class="text-body-1"
                   style="
                     font-size: 1rem;
@@ -255,6 +271,8 @@ function prevSet() {
                 <v-row>
                   <!-- Product Cards -->
                   <v-col
+                    data-aos="fade-up-left"
+                    data-aos-duration="1000"
                     v-for="(image, index) in images"
                     :key="index"
                     cols="6"
@@ -302,7 +320,7 @@ function prevSet() {
                   </v-card>
                 </v-dialog>
               </v-container>
-              <div>
+              <div data-aos="slide-up" data-aos-duration="800">
                 <MerchandiseCollege :collegeId="1" collegeName="CCIS College" />
               </div>
             </v-container>
