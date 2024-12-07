@@ -56,13 +56,10 @@ onMounted(() => {
 
         <v-toolbar-title
           class="pa-0 ma-2"
-          style="
-            color: white;
-            font-family: 'Manrope', sans-serif;
-            font-weight: 500;
-          "
-          >CampusThreads.</v-toolbar-title
+          style="color: white; font-family: 'Manrope', sans-serif; font-weight: 500;"
         >
+          CampusThreads.
+        </v-toolbar-title>
 
         <v-spacer></v-spacer>
 
@@ -88,11 +85,10 @@ onMounted(() => {
             <v-icon left class="mr-2">mdi-school</v-icon>
             <v-list-item-content>Colleges</v-list-item-content>
             <v-icon
-              :style="{
-                transform: menuVisible ? 'rotate(180deg)' : 'rotate(0deg)',
-              }"
-              >mdi-chevron-down</v-icon
+              :style="{ transform: menuVisible ? 'rotate(180deg)' : 'rotate(0deg)' }"
             >
+              mdi-chevron-down
+            </v-icon>
           </v-list-item>
 
           <!-- Dropdown menu for colleges -->
@@ -143,9 +139,7 @@ onMounted(() => {
             <v-col cols="12" sm="6" class="text-center text-sm-end">
               <a href="/privacy-policy" class="footer-link">Privacy Policy</a>
               <span class="footer-divider">|</span>
-              <a href="/terms-of-service" class="footer-link"
-                >Terms of Service</a
-              >
+              <a href="/terms-of-service" class="footer-link">Terms of Service</a>
               <span class="footer-divider">|</span>
               <a href="/faqs" class="footer-link">FAQs</a>
               <span class="footer-divider">|</span>
@@ -166,64 +160,68 @@ onMounted(() => {
   align-items: center;
 }
 
+.v-navigation-drawer {
+  background: linear-gradient(to top, #111703, #2e3b1f); /* Gradient background */
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  padding: 16px;
+}
+
+.v-navigation-drawer a {
+  color: #c9d7b6;
+  text-decoration: none;
+}
+
+.v-navigation-drawer a:hover {
+  color: #f0f0f0;
+  font-weight: bold;
+}
+
 .footer {
-  background: linear-gradient(
-    135deg,
-    #111703,
-    #2e3b1f
-  ); /* Gradient background */
-  color: #f0f0f0; /* High contrast text color */
-  padding: 16px 0; /* Comfortable padding */
-  font-size: 0.9rem; /* Readable font size */
-  position: relative; /* Ensures the footer appears at the bottom of the content */
+  background: linear-gradient(135deg, #111703, #2e3b1f);
+  color: #f0f0f0;
+  padding: 16px 0;
+  font-size: 0.9rem;
+  position: relative;
   width: 100%;
 }
 
 .footer-link {
-  color: #f0f0f0; /* Text color */
-  text-decoration: none; /* Remove underline */
-  margin: 0 8px; /* Space between links */
+  color: #f0f0f0;
+  text-decoration: none;
+  margin: 0 8px;
 }
 
 .footer-link:hover {
-  color: #c9d7b6; /* Slight hover effect */
+  color: #c9d7b6;
 }
 
 .footer-divider {
-  color: #f0f0f0; /* Divider color matching the text */
-  margin: 0 4px; /* Space around dividers */
+  color: #f0f0f0;
+  margin: 0 4px;
 }
 
 .v-main {
-  min-height: 100vh; /* Ensures the main content fills the screen */
-}
-/* Login Button Styling */
-/* Icon Styling */
-.login-btn .mdi {
-  font-size: 24px; /* Make the icon larger */
+  min-height: 100vh;
 }
 
-/* Login Button Styling */
 .login-btn {
-  background: linear-gradient(135deg, #c9d7b6, #1b5f13); /* Gradient effect */
+  background: linear-gradient(135deg, #c9d7b6, #1b5f13);
   color: white;
   font-weight: bold;
   font-family: 'Manrope', sans-serif;
   text-transform: uppercase;
   padding: 8px 16px;
-  border-radius: 20px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease; /* Smooth transition */
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
-  align-items: center; /* Align icon and text */
-  gap: 8px; /* Spacing between icon and text */
+  align-items: center;
+  gap: 8px;
 }
 
 .login-btn:hover {
-  background: linear-gradient(135deg, #c9d7b6, #958c72); /* Reverse gradient */
-  transform: scale(1.1); /* Slight zoom-in on hover */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  background: linear-gradient(135deg, #c9d7b6, #958c72);
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 </style>
