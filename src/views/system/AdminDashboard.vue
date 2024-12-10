@@ -181,7 +181,7 @@ onMounted(() => {
                       <v-text-field
                         v-model="formData.firstname"
                         label="First Name"
-                        prepend-inner-icon="mdi-account"
+                        prepend-inner-icon="mdi-account-circle"
                         :rules="[requiredValidator]"
                       ></v-text-field>
                     </v-col>
@@ -189,7 +189,7 @@ onMounted(() => {
                       <v-text-field
                         v-model="formData.lastname"
                         label="Last Name"
-                        prepend-inner-icon="mdi-account"
+                        prepend-inner-icon="mdi-account-circle-outline"
                         :rules="[requiredValidator]"
                       ></v-text-field>
                     </v-col>
@@ -198,26 +198,21 @@ onMounted(() => {
                   <v-text-field
                     v-model="formData.account_id"
                     label="ID (e.g. 221-00391)"
-                    prepend-inner-icon="mdi-account-card-details"
-                    :rules="[
-                      requiredValidator,
-                      value =>
-                        isValidId(value) ||
-                        'ID must be in the format 3 digits-5 digits',
-                    ]"
+                    prepend-inner-icon="mdi-card-account-details"
+                    :rules="[requiredValidator, value => isValidId(value) || 'ID must be in the format 3 digits-5 digits']"
                   ></v-text-field>
 
                   <v-text-field
                     label="Phone Number"
                     v-model="formData.number"
-                    prepend-inner-icon="mdi-phone"
+                    prepend-inner-icon="mdi-phone-in-talk"
                     :rules="[requiredValidator, phoneNumberValidator]"
                   ></v-text-field>
 
                   <v-text-field
                     label="Email"
                     v-model="formData.email"
-                    prepend-inner-icon="mdi-email-outline"
+                    prepend-inner-icon="mdi-email"
                     :rules="[requiredValidator, emailValidator]"
                   ></v-text-field>
 
@@ -238,13 +233,7 @@ onMounted(() => {
                     label="Re-enter Password"
                     prepend-inner-icon="mdi-lock-outline"
                     @click:append-inner="reenter = !reenter"
-                    :rules="[
-                      requiredValidator,
-                      confirmedValidator(
-                        formData.password_confirmation,
-                        formData.password,
-                      ),
-                    ]"
+                    :rules="[requiredValidator, confirmedValidator(formData.password_confirmation, formData.password)]"
                   ></v-text-field>
 
                   <div>
@@ -267,8 +256,9 @@ onMounted(() => {
                     :disabled="formAction.formProcess"
                     block
                     rounded
-                    color="#40513b"
+                    color="primary"
                     elevation="2"
+                    large
                   >
                     <span v-if="formAction.formProcess">Processing...</span>
                     <span v-else>Register LSG</span>
@@ -281,25 +271,24 @@ onMounted(() => {
           <!-- User Management Section -->
           <v-row>
             <v-col cols="12" md="12">
-              <v-card class="pa-4 elevation-3">
+              <v-card class="pa-4 elevation-3 gradient-card">
                 <h2 class="text-center">List of Users</h2>
                 <v-data-table
                   :headers="[
                     { text: 'Name', align: 'start', value: 'fullName' },
                     { text: 'Email', value: 'email' },
                     { text: 'Role', value: 'role' },
-
-                    { text: 'Time', value: 'created_at' },
+                    { text: 'Time', value: 'created_at' }
                   ]"
                   :items="users"
                   item-key="id"
+                  :items-per-page="5"
                 >
                   <template v-slot:items="props">
                     <tr :key="props.item.id">
                       <td>{{ props.item.fullName }}</td>
                       <td>{{ props.item.email }}</td>
                       <td>{{ props.item.role }}</td>
-
                       <td>{{ props.item.created_at }}</td>
                       <td>
                         <v-btn
@@ -308,7 +297,7 @@ onMounted(() => {
                           rounded
                           small
                         >
-                          Make Admin
+                          <v-icon>mdi-account-cog</v-icon> Make Admin
                         </v-btn>
                         <v-btn
                           @click="updateRole(props.item.id, 'User')"
@@ -316,7 +305,7 @@ onMounted(() => {
                           rounded
                           small
                         >
-                          Make User
+                          <v-icon>mdi-account-check</v-icon> Make User
                         </v-btn>
                       </td>
                     </tr>
@@ -332,9 +321,16 @@ onMounted(() => {
 </template>
 
 <style scoped>
+
+.gradient-card {
+  background: linear-gradient(135deg, #c9d7b6, #1b5f13); /* Gradient from light olive green to dark green */
+  color: white; /* Text color to ensure visibility on dark background */
+}
 .admin-container {
   padding-top: 40px;
+  background-color: #f7f8fa;
 }
+
 .register-container {
   background: linear-gradient(135deg, #6ff665, #99fd85);
   min-height: 100vh;
@@ -357,5 +353,19 @@ h2 {
 
 .text-center {
   text-align: center;
+}
+
+.v-btn {
+  transition: all 0.3s ease;
+}
+
+.v-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.v-data-table {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 </style>
