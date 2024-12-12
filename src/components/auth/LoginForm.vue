@@ -41,6 +41,8 @@ const onSubmit = async () => {
     if (selectedRole.value === 'Admin') {
       // Admin Login
       if (userRole !== 'Admin') {
+        // Sign out user if role mismatch
+        await supabase.auth.signOut()
         formAction.value.formErrorMessage = `Only Admin accounts can log in here.`
         formAction.value.formStatus = 403
       } else {
@@ -51,6 +53,8 @@ const onSubmit = async () => {
       // Student/LSG Login
       const validUserRoles = ['Student', 'LSG']
       if (!validUserRoles.includes(userRole)) {
+        // Sign out user if role mismatch
+        await supabase.auth.signOut()
         formAction.value.formErrorMessage = `The user is not registered yet.`
         formAction.value.formStatus = 403
       } else {
